@@ -46,23 +46,41 @@
 \makeglossaries
 \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
 \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
+
+\newacronym{SW}{SW}{software}
+\newacronym{BE}{BE}{back-end}
+\newacronym{FE}{FE}{front-end}
+
+\newacronym{MS}{MS}{microservice}
 \newacronym{NS}{NS}{Normalized Systems theory}
-\newacronym{MS}{MS}{Microservice}
-\newacronym{MSA}{MSA}{Microservice Architecture}
-\newacronym{SOA}{SOA}{Service-oriented Architecture}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% CONTENT
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\newacronym{REST}{REST}{representational state transfer}
+\newacronym{RPC}{RPC}{remote procedure call}
+\newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
+
+\newacronym{EA}{EA}{enterprise architecture}
+\newacronym{MSA}{MSA}{microservice architecture}
+\newacronym{SOA}{SOA}{service-oriented architecture}
+
+\newacronym{AWS}{AWS}{Amazon Web Services}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                        %%
+%%                      THE DOCUMENT                      %%
+%%                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\listoftodos 
 
-%
-% GOALS AND APPROACH
-%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% INTRODUCTION
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \setsecnumdepth{part}
 \chapter{Introduction}
-\todo{whole chapter}
+\todo[inline,size=\Large]{Missing whole chapter}
 \begin{verbatim}
 motivace
 
@@ -70,6 +88,12 @@ motivace
 - microservices = craftmanship
 - NS theory of systems
 - distributed 
+
+
+- modularity, granularity, evolvability
+- evolvability, adaptation to change
+    
+    
     
 \end{verbatim}
 
@@ -77,10 +101,11 @@ Widely used throughout the industry by leading companies \cite{ms-who-is-using}.
 
 \setsecnumdepth{all}
 
-%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
 % GOALS AND APPROACH
-%
-
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \chapter{Goals and Approach}
 \section{Goals}
 In accordance to~thesis assignment the~following goals were set:
@@ -92,20 +117,39 @@ In accordance to~thesis assignment the~following goals were set:
 \end{itemize}
 
 \section{Approach}
+Microservices architecture is a \acrfull{EA} pattern. \acrshort{EA} could be analyzed in enormously broad context, spanning from business-IT alignment, through \acrshort{SW} development methodologies to choice of programming languages. This section discusses boundaries for this thesis to make the topic reasonably narrow without overlooking the quintessence of \acrlong{MSA}.
+
+\subsection{Organizational Aspects}
+Microservices are often valued for their positive effects on organizations and teams of engineers creating them. Development of end-to-end features and operational responsibility fosters DevOps culture \cite{devops-what-is}. Code ownership and cross-functional teams cultivate team spirit and nurture motivation of developers \cite{ms-fow-new-term-def, ms-modelling-with-petter, ms-building-ms}.
+
+There's also a sociological observation called \textit{Conway's law} that states:
+\begin{quote}
+Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure. \cite{conways-law}
+\end{quote}
+
+The bi-directional influence between software architecture and the organization that creates it is a remarkable topic and it would be unwise to ignore it while running a business. Despite that, it will be ignored in this thesis, as it would broaden its scope excessively. The \acrshort{NS} literature \cite{ns-recreating, ns-toward-general-theory} has the same attitude and avoids discussion how the organization influences the \acrshort{SW} and vice versa.
+
+\subsection{Performance aspects}
+The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a system to be free from combinatorial effects, i.e., to be indefinitely evolvable. Until now, the industrial \acrlong{SW} projects \cite{ns-it-isnt-different, ns-exploring-defence} are focused on the evolvability of the \acrshort{SW} artifact and doesn't value any other non-functional requirement as much as evolvability.
+
+On the other hand, \acrlong{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
+
+\subsection{Libraries, frameworks and other 3rd party technologies}
+\begin{verbatim}
+    - turbulent times, new frameworks emerging and be abandoned every day
+    - https://github.com/mfornos/awesome-microservices not an extensive list of tech, but will suffice
+    - don't bother with choosing and comparing particular 3rd party tech, too small detail
+    - exctract the principcle and compare that
+\end{verbatim}
+
+
 \subsection{General Rules}
 In an~effort to~make this work conceptually coherent, there were defined essential principles with which this thesis is created:
-\todo{General rules - design principles (napsat nebo smazat)}
-\begin{itemize}
-    \item don't ignore implementation details
-    
-% 	\item Primary aim is not to~create something useful, but to~explore possibilities and map the~state of~the~art.
-% 	\item Energy will be devoted to~be theoretically correct, complete and compliant with both instruments.
-% 	\item The~method has been designed without direct access to~\acrshort{nse}, so the~user experience cannot be simulated. Therefore its considered as secondary aspect.
-% 	\item Flexibility will be the~major requirement for both theoretical and practical parts.
-% 	\item Implemented prototyped should serve as proof of~concept, not a~production grade tool.
-% 	\item Theoretical method as well as prototype tool will presume working with valid data models and will posses minimal or none validation mechanisms.
-% 	\item Transformation method will endeavour to~avoid any changes in~design of~the~model. So the~model, created without any intention of~using this tool, can be transformed as-is or with minimal modifications. \emph{Model design guidelines} will be created to~cover those inevitable design rules (e.g. using only data types supported by the~\acrshort{nse}).
-\end{itemize}
+\begin{enumerate}
+    \item Avoid discussion how organization influences the \acrshort{SW} and vice versa.
+    \item Do not sacrifice performance and scalability for the sake of evolvability.
+    \item When recommending to use an existing technology, extract the principle and recommend that 
+\end{enumerate}
 
 \section{Thesis Structure and Tasks}
 To fulfill the goals of this thesis the following finer-grain task was defined. The~final structure of~this work is derived from this task list.
@@ -138,35 +182,166 @@ To fulfill the goals of this thesis the following finer-grain task was defined. 
 	\item Summarize successes and failures (Chapter~\textit{\nameref{sec:conclusion}})
 \end{enumerate}
 
-\chapter{Theoretical Background}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% NS INTRODUCTION
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\chapter{Introduction to Normalized Systems}
 \label{sec:theoretical_background}
-\todo{whole chapter}
-something about \cite{ns-towards-evolvable}, or \cite{ns-recreating} and for sure \cite{ns-toward-general-theory}
-also something about \cite{ms-vs-soa}, or \cite{ms-who-is-using} and \cite{ms-goto-challenges-george}, and \cite{ms-building-ms} and \cite{ms-evolutionary-arch}
-\cite{ms-design-tradeoffs}
-\cite{ms-underestimated-network-impact}
-\cite{ms-integrating-with-adaptable-ea}
+\section{Motivation for Constant Change}
+\todo[inline,size=\Large]{Motivation for constant change}
+\begin{verbatim}
+    Agile
+    Scrum
+    Lean
+    Learn build measure cycle
+    
+    Often used by companies in internet business which is the most volatile 
+\end{verbatim}
+
+\section{Normalized Systems Theory in Applied to Software}
+\todo[inline,size=\Large]{Motivation for constant change}
+\begin{verbatim}
+- prevzit a doplnit z BP
+\end{verbatim}
+
+
+\section{Microservice Architecture}
+\todo[inline,size=\Large]{Motivation for constant change}
+\begin{verbatim}
+ -- co sem vlastne napsat? vynechat uplne?
+\end{verbatim}
+\textcolor{magenta}{
+microservices are small components, built around business capabilities [3], that are easy to understand, deploy, and scale independently, even using different technology stacks
+}
+
+\textcolor{magenta}{SOA is built on the concept of foster reuse: a share-as-much-as-possible architecture style, whereas microservices architecture is built on the concept of a share-as-little-as- possible style [8]. Given that service reuse has often been less than expected [9], instead of reusing existing microservices for new tasks or use cases, they should be “micro” enough to allow rapidly developing a new one that can coexist, evolve or replace the previous one according to the business needs [10].}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% MICROSERVICE ANALYSIS
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \chapter{Analysis of the Microservice Architecture}
 \label{sec:msa_analysis}
-\todo{whole chapter}
+
+\section{Microservice scope}
+\begin{verbatim}
+    - domain driven development
+    - focus on one thing and do it well
+    
+\end{verbatim}
+
+\section{Inner vs. Outer Architecture}
+\begin{verbatim}
+    - focus on outer arch
+    - inner - two arguments - it's sth. that can be rewritten by a team in two weeks
+    - mention other definition
+\end{verbatim}
+\begin{figure}
+ \caption{\textit{Inner vs. Outer Architecture}}
+ \label{fig:in-vs-out-arch}
+ \missingfigure{\nameref{fig:in-vs-out-arch}}
+\end{figure}
+
+
+\section{Inter-microservice Communication}
+\begin{verbatim}
+    - direct vs. messaging
+    - smart endpoints vs. dumb pipes
+\end{verbatim}
+
+\subsection{Interaction Models}
+Interaction Models refers to the communication flow among components. Possible values: synchronous, asynchronous.
+
+\subsection{Service Interfaces}
+\textcolor{magenta}{Service Interfaces are the different means of specifying contracts (if any) for the communication of microservices [45]. Possible values: formal (defined through a formal contract), tech-tied (the interface is tied to the implemen- tation technology), ad-hoc (defined in a novel language).}
+
+
+\subsection{Data Exchange Protocol}
+Data Exchange are the protocols used to represent the communication. Possible values: REST/HTTP, RPC-alike, message queues, other.
+
+
+
+\section{User Interface}
+\begin{verbatim}
+    - as seen on figure \nameref{fig:in-vs-out-arch} there's plenty of devices that can serve as frontend
+    - tenths of operation systems, tenths of web browsers,  
+\end{verbatim}
+
+\section{Persistence}
+
+\textcolor{magenta}{Eventual Consistency: Maintaining strong consistency is extremely difficult for a distributed system, which means everyone has to manage eventual consistency.}
+
+\textcolor{magenta}{Data Storage usually integrated multiple services in legacy systems, but in microservices architectures it is mandatory to find seams in the databases and use the right technologies to split them out cleanly \cite{ms-building-ms}. Possible values: SQL, graph-oriented, document-oriented, other.}
+
+\section{Deployment \& Operations}
+\textcolor{magenta}{Deployment encompasses how and where services are actually hosted and deployed. Although the cloud has been adopted as the de-facto platform for microservices [44], there are several alternatives into and out of the cloud.}
+
+\textcolor{magenta}{– Platform can be customized due to privacy, security or business constraints. Possible values: public cloud, private cloud, in-house.}
+
+\textcolor{magenta}{– Management encompasses the responsive reaction to failures and changing environmental conditions, minimizing human intervention [7]. Possible val- ues: built-in cloud services (e.g., AWS Cloudwatch and Autoscaling), third- party services (e.g., Rightscale, New Relic), ad-hoc solutions (i.e., tied to the particular approach).}
+
+\subsection{Scalability / Elasticity}
+– Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
+\subsection{Availability and Resilience}
+\textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
+
+\section{Security}
+\begin{verbatim}
+    - Sessions auth
+    - JWT/token authentication
+\end{verbatim}
+
+\missingfigure{JWT vs. Session authentication call diagram}
+
+\subsection{Observability}
+\subsubsection{Monitoring}
+\subsubsection{Logging}
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% TOWARDS STABLE MICROSERVICES
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \chapter{Towards Stable Microservice Architecture}
 \label{sec:msa_compliance}
-\todo{whole chapter}
+\section{Mapping NS Elements to Microservice Architecture}
+
+\todo[inline,size=\Large]{Missing whole chapter}
 
 \chapter{Guidelines for Stable Microservice Architecture}
 \label{sec:guidelines}
-\todo{whole chapter}
+\todo[inline,size=\Large]{Missing whole chapter}
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% CONCLUSION
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \setsecnumdepth{part}
 \chapter{Conclusion}
 \label{sec:conclusion}
-\todo{whole chapter}
+\section{Evaluation of Goals}
+\todo[inline,size=\Large]{Missing section}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% REFERENCES ETC.
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\section{Thoughts on Utilization}
+\todo[inline,size=\Large]{Missing section}
+
+\section{Future Work}
+\todo[inline,size=\Large]{Missing section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                        %%
+%%                    REFERENCES ETC.                     %%
+%%                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{iso690}
 \bibliography{DP_references}
@@ -186,5 +361,7 @@ also something about \cite{ms-vs-soa}, or \cite{ms-who-is-using} and \cite{ms-go
             .2 src\DTcomment{\LaTeX{} source codes of~the~thesis}.
     }
 \end{figure}
+
+\listoftodos
 
 \end{document}
