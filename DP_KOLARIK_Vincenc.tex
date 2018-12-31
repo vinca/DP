@@ -47,6 +47,8 @@
 \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
 \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
+\newacronym{API}{API}{application programming interface}
+\newacronym{IT}{IT}{information technology}
 \newacronym{SW}{SW}{software}
 \newacronym{BE}{BE}{back-end}
 \newacronym{FE}{FE}{front-end}
@@ -57,12 +59,17 @@
 \newacronym{REST}{REST}{representational state transfer}
 \newacronym{RPC}{RPC}{remote procedure call}
 \newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
+\newacronym{OOP}{OOP}{object oriented programming}
+\newacronym{MVC}{MVC}{Model-View-Controller architecture}
+\newacronym{MVVM}{MVVM}{Model-View-ViewModel architecture}
 
 \newacronym{EA}{EA}{enterprise architecture}
+\newacronym{SA}{SA}{software architecture}
 \newacronym{MSA}{MSA}{microservice architecture}
 \newacronym{SOA}{SOA}{service-oriented architecture}
 
 \newacronym{AWS}{AWS}{Amazon Web Services}
+\newacronym{IOT}{IoT}{internet of things}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,6 +149,11 @@ On the other hand, \acrlong{MS} came into being due to the need for performance 
     - exctract the principcle and compare that
 \end{verbatim}
 
+\subsection{User Interface and }
+\begin{verbatim}
+    - tons of presentations layers, frontends, desktop apps, mobile apps, watch apps and gadgets 
+    - end with external API
+\end{verbatim}
 
 \subsection{General Rules}
 In an~effort to~make this work conceptually coherent, there were defined essential principles with which this thesis is created:
@@ -154,11 +166,11 @@ In an~effort to~make this work conceptually coherent, there were defined essenti
 \section{Thesis Structure and Tasks}
 To fulfill the goals of this thesis the following finer-grain task was defined. The~final structure of~this work is derived from this task list.
 \begin{enumerate}
-	\item Provide an~overview of~utilized theories and concepts (Chapter~\textit{\nameref{sec:theoretical_background}})
-	\begin{itemize}
-		\item Introduce key concepts of~\acrlong{NS}
-		\item Describe the key principles and motivation for \acrlong{MSA}
-	\end{itemize}
+% 	\item Provide an~overview of~utilized theories and concepts (Chapter~\textit{\nameref{sec:theoretical_background}})
+% 	\begin{itemize}
+% 		\item Introduce key concepts of~\acrlong{NS}
+% 		\item Describe the key principles and motivation for \acrlong{MSA}
+% 	\end{itemize}
 
 	\item Analyze the \acrlong{MSA} (Chapter~\textit{\nameref{sec:msa_analysis}})
 	\begin{itemize}
@@ -169,8 +181,8 @@ To fulfill the goals of this thesis the following finer-grain task was defined. 
 
 	\item Examine compliance of \acrlong{MSA} to \acrlong{NS} (Chapter~\textit{\nameref{sec:msa_compliance}})
 	\begin{itemize}
-		\item Apply the \textit{Design Theorems for Stable Software} to the essential concepts from previous chapter
-		\item Discuss 
+		\item Discuss the architectural patterns and principles using \acrlong{NS}
+		\item Apply the \textit{Design Theorems for Stable Software} \cite{ns-towards-evolvable} to the essential concepts from previous chapter
 	\end{itemize}	
 
 	\item Summarize design guidelines for \acrshort{MSA} (Chapter~\textit{\nameref{sec:guidelines}})
@@ -184,57 +196,201 @@ To fulfill the goals of this thesis the following finer-grain task was defined. 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
-% NS INTRODUCTION
+% Theoretical Background
 % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-\chapter{Introduction to Normalized Systems}
+\chapter{Theoretical Background}
 \label{sec:theoretical_background}
-\section{Motivation for Constant Change}
-\todo[inline,size=\Large]{Motivation for constant change}
-\begin{verbatim}
-    Agile
-    Scrum
-    Lean
-    Learn build measure cycle
-    
-    Often used by companies in internet business which is the most volatile 
-\end{verbatim}
 
-\section{Normalized Systems Theory in Applied to Software}
-\todo[inline,size=\Large]{Motivation for constant change}
-\begin{verbatim}
-- prevzit a doplnit z BP
-\end{verbatim}
+% 
+% Introduction to Normalized Systems
+% 
+\section{Introduction to Normalized Systems}
+\acrfull{NS} is a theoretical framework designed to engineer systems (in its broad meaning) to be able to absorb a set of anticipated changes in an infinite period. The ability to absorb changes ---~\textit{evolvability}~--- is the essential property of studied systems. The theory formulates a set of~\textit{rules of evolvability} backed by formal proofs (more in section \ref{sec:evolvability_rules}).
+
+\subsection{Ongoing Research}
+The~theory is being developed at the University of~Antwerp, the~department Management Information Systems of~the~faculty Applied Economics. Due to its success, the~authors, Jan Verelst and Herwig Mannaert, have established the~Normalized Systems Institute for further applied research in the \acrshort{SW} industry.
+
+Although the theory originated in a narrow field --- \acrlong{SW} development, it has been generalized and now is being applied to wide range of various disciplines: from business process modeling through legal documents to first thoughts on civil engineering.~\cite{ns-towards-evolvable}
+
+Due to the focus of this thesis, \acrlong{NS} will be explained on the domain of \acrlong{SW} development.
+
+\subsection{Essential Principles}
+\label{sec:evolvability_rules}
+
+\begin{figure}[t]
+  \centering
+    \includegraphics{images/Combinatorial_effects_explained.pdf}
+   	\caption{Combinatorial effects explained~\cite{ns-recreating}}
+    \label{fig:combinatorial_effects}
+\end{figure}
+
+The authors of \acrlong{NS} state the contemporary \acrshort{IT} problems are manifestations of~fundamental flaws in~currently used \acrshort{SW} development methodologies. The Achilles' heel is the evolvability --- adding new features to~existing code base generates \emph{combinatorial effects}, that lead to~a~growth of~overall system complexity (see fig. \ref{fig:combinatorial_effects}). Such effects cause to increase the cost of future changes and decrease overall software quality~.\cite{ns-recreating}
+
+Initial idea was first uttered by Manny Lehman in~1980:
+
+\begin{quote}
+As an~evolving program is continually changed, its complexity, reflecting deteriorating structure, increases unless work is done to~maintain or reduce it.~\cite{lehman-1980-programs}
+\end{quote}
+
+In spite of~that, \acrlong{NS} strive to fulfill the dream articulated by Douglas McIlroy in~1968:
+
+\begin{quote}
+Expect families of~routines to~be constructed on rational principles so that families fit together as building blocks. In short, [the user] should be able safely to~regard components as black boxes.~\cite{mcilroy-1968-mass-software}
+\end{quote}
+
+\acrshort{NS} assume that a~change introduced to~a~system is a natural and unavoidable phenomenon. Therefore all rules and principles are designed to~accommodate that fact. The~theory defines a set of~guidelines on how to~engineer the~\acrlong{SW} architecture as a structure of~highly independent modules, which can be added, removed or changed separately. Sufficiently granular architecture will suppress all combinatorial effects during evolution of~the~system.
+
+The~normalized design theorems require a strict separation of~data and actions manipulating that data. Such segregation might be controversial as it contradicts the~essence of~\acrfull{OOP}, which postulates that data and related actions belong into one entity --- a \textit{class}.
+
+\subsection{Rules of~Evolvability}
+This section introduces the four rules of~software evolvability, which are the building blocks of~\acrshort{NS} theory. An experienced software developer will recognize these rules as they originate from a heuristic design knowledge. The value added by \acrshort{NS} is the theoretical proofs which promote these practical experiences to~defensible theorems.
+
+\subsubsection*{Basic Terminology}
+At the~beginning, it is necessary to~clarify several terms used in~further definitions:
+\begin{quote}
+A \textbf{data entity} refers to~a~software entity that contains various attributes or fields, including links to~other data entities. Therefore, a~data entity only contains data (as in~a~structure or record) and does not have an~interface.~\cite{ns-recreating}
+\end{quote}
+
+\begin{quote}
+An \textbf{action entity} refers to~a~software entity that represents an~operation at a~given modular level in~a~hierarchy.~\cite{ns-recreating}
+\end{quote}
+
+\begin{quote}
+A \textbf{task} is part of~an~action entity and is a~set of~instructions that performs a~certain functionality. A task is located at the~submodular level.~\cite{ns-recreating}
+\end{quote}
+
+\subsubsection{Separation of~Concerns}
+\begin{quote}
+An action entity can only contain a~single task in~normalized systems.~\cite{ns-recreating}
+\end{quote}
+
+This theorem implies the identification and separation of~every single \textit{task}. Correct separation of~tasks will induce \emph{separation of~concerns} in~the~big picture.
+
+Separation of concerns is a~widely used \emph{best practice} among software architects. However, it is very vaguely formulated. Current manifestations in~software development include for example \emph{multi-tier architectures} (e.g., \acrshort{MVC}, \acrshort{MVVM}) or use of~an~\emph{integration bus} for inter-process communication.
+
+\subsubsection{Data Version Transparency}
+\begin{quote}
+Data entities that are received as input or produced as output by action entities, need to~exhibit version transparency in~normalized systems.~\cite{ns-recreating}
+\end{quote}
+
+Data version transparency is an instrument to~cope with an addition or removal a~\emph{data field} in~entity. It implies encapsulation of~the~data fields. Wrapping the~data entity allows co-existence of~various versions of~such entity.
+
+An example from \acrshort{OOP}: data version transparency can be easily achieved by using exclusively the \textit{0-parameter constructor} for instantiation and \emph{setters} for the attribute access. In case of addition of a data field, it is simply left in its initial state. If an \textit{all-parameters constructor} would be used, 
+
+\subsubsection{Action Version Transparency}
+\begin{quote}
+Action entities need to~exhibit version transparency in~normalized systems.~\cite{ns-recreating}
+\end{quote}
+
+Analogously to~previous theorem, various versions of~data entities need to~co-exist in~single system.
+
+This can be achieved by using wrapper functions/methods or polymorphism.
+
+\subsubsection{Separation of~states}
+\begin{quote}
+The~calling of~an~action entity by another action entity needs to~exhibit state keeping in~normalized systems.~\cite{ns-recreating}
+\end{quote}
+
+It is a~formalization of~instinctive \emph{avoiding the~transition (undefined) state}. When a~state is kept for every call or instance of~an~action entity, the~whole system behaves as a~deterministic state machine. This eliminates the~need for complicated recovery from undefined error states.
+
+An example of~manifestation of~this design theorem is database transaction mechanism. The~commit (rollback) action guarantees atomic transition from one defined state to~another. Another common example is asynchronous communication between systems.
+
+\subsection{Impacts on Software Development}
+\label{sec:nsImpacts}
+In order \acrshort{NS} principles to~be effective, the~\emph{rules of~evolvability} must be strictly obeyed. The~system must be free of~combinatorial effects at compile time, deployment time and run time. This requires the~code to~be absolutely error free, which is not an~easy task to~achieve. The~\emph{data} and \emph{action version transparency} rules also imply a~lot of~ballast (non-logic) code (e.g. wrapper classes, accessor methods). For a~human programmer writing code complying with \acrshort{NS} is boring and frustrating.
+
+On the~other hand, \acrshort{NS} presents a~set of~\emph{software design patterns}, that are solution to~these challenges. The~design patterns (called \emph{elements}) are defined comprehensively enough, that are suitable for code generation. The~core of~created \emph{is} is composed only from following \emph{elements}:
+
+\begin{itemize}
+	\item a~\emph{data element} for storing data
+	\item an~\emph{action element} for the~execution of~a~calculation or algorithm
+	\item a~\emph{workflow element} for the~execution of~sequences of~action elements
+	\item a~\emph{connector element} for input and output functionality
+	\item a~\emph{trigger element} for time-based or status-based execution of~action elements
+\end{itemize}
+
+These patterns are proven to~exhibit high cohesion and loose coupling, therefore the~generated application will be be free of combinatorial effects.
+
+% 
+% Software Architecture
+% 
+
+\section{Introduction to Software Architecture}
+As time goes by, the size and complexity of a software system grow, the design questions soon grow beyond algorithms and data structures. The new problem of the overall system design emerges.
+
+When the problem is untreated, applications soon become tightly coupled, brittle and increasingly difficult to change. Even experienced team of developers without a vision resort to the prosaic layered architecture pattern a.k.a. the \textit{n-tier architecture}, creating implicit layers by separating source-code modules into packages. A result of this practice often is a collection of poorly organized source code, modules and components lack clear borders, responsibilities, and relationships with each other. This primeval architecture style is mockingly called a \textit{the big ball of mud}\cite{big-ball-mud}.
+
+Obviously, the topic of \acrfull{SA} is frequently discussed~---~there are many conferences organized by respected organizations (e.g. IEEE International Conference on Software Architecture\footnote{http://icsa-conferences.org/}, O'Reilly Software Architecture Conference\footnote{https://conferences.oreilly.com/software-architecture/}), many people bear a job title \textit{Software Architect} or \textit{Solutions Architect}\footnote{https://www.glassdoor.com/}. Despite all that, there are many definitions of the \textit{software architecture} and none of them is widely respected.
+
+One of the pioneers of \acrshort{SA} defines this complex discipline as:
+\begin{quote}
+    The software architecture of a computing system is the set of structures needed to reason about the system, which comprise software elements, relations among them, and properties of both. \cite{documenting-sw-arch}
+\end{quote}
+
+One of the 
 
 
-\section{Microservice Architecture}
-\todo[inline,size=\Large]{Motivation for constant change}
+
+
 \begin{verbatim}
- -- co sem vlastne napsat? vynechat uplne?
+- vytezit patterns
 \end{verbatim}
 \textcolor{magenta}{
-microservices are small components, built around business capabilities [3], that are easy to understand, deploy, and scale independently, even using different technology stacks
+asdf
 }
+
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% Microservice Analysis
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% 
+% Design, scope, etc.
+% 
+
+\chapter{Analysis of the~Microservice Architecture}
+\label{sec:msa_analysis}
+
+\section{(De)composition of Microservice Application}
+
+
+
 
 \textcolor{magenta}{SOA is built on the concept of foster reuse: a share-as-much-as-possible architecture style, whereas microservices architecture is built on the concept of a share-as-little-as- possible style [8]. Given that service reuse has often been less than expected [9], instead of reusing existing microservices for new tasks or use cases, they should be “micro” enough to allow rapidly developing a new one that can coexist, evolve or replace the previous one according to the business needs [10].}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% 
-% MICROSERVICE ANALYSIS
-% 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\chapter{Analysis of the Microservice Architecture}
-\label{sec:msa_analysis}
 
-\section{Microservice scope}
+
+
 \begin{verbatim}
-    - domain driven development
-    - focus on one thing and do it well
+
+
+
+
+    - domain dirven design
+    - conways's law
     
 \end{verbatim}
 
-\section{Inner vs. Outer Architecture}
+\subsection{Microservice scope}
+microservices are small components, built around business capabilities [3], that are easy to understand, deploy, and scale independently, even using different technology stacks
+
+\begin{verbatim}
+    - domain driven development
+    - focus on one thing and do it well
+        
+\end{verbatim}
+    One problem with the term microservice is that the first thing you hear is micro. This suggests that a service should be very small. This is also true of other size-based terms such as miniservice or nanoservice. In reality, size isn’t a useful metric.
+A much better goal is to define a well-designed service to be a service capable of being developed by a small team with minimal lead time and with minimal collabora- tion with other teams. In theory, a team might only be responsible for a single service, so that service is by no means micro. Conversely, if a service requires a large team or takes a long time to test, it probably makes sense to split the team and the service. Or if you constantly need to change a service because of changes to other services or if it’s triggering changes in other services, that’s a sign that it’s not loosely coupled. You might even have built a distributed monolith.
+The microservice architecture structures an application as a set of small, loosely coupled services. As a result, it improves the development time attributes—main- tainability, testability, deployability, and so on—and enables an organization to develop better software faster. It also improves an application’s scalability, although that’s not the main goal. To develop a microservice architecture for your application, you need to identify the services and determine how they collaborate. Let’s look at how to do that.
+
+\subsection{Strong Module Boundaries}
+
+\subsection{Inner vs. Outer Architecture}
 \begin{verbatim}
     - focus on outer arch
     - inner - two arguments - it's sth. that can be rewritten by a team in two weeks
@@ -247,7 +403,26 @@ microservices are small components, built around business capabilities [3], that
 \end{figure}
 
 
+
+
+\subsection{Technological diversity}
+
+
+\subsection{Tradeoffs of Distributed Architecture}
+\subsubsection{Eventual Consistency}
+!!!
+\subsubsection{Operational Complexity}
+\subsubsection{Distribution}
+
+
+
+
+% 
+% Communication patterns
+% 
+
 \section{Inter-microservice Communication}
+The microservice architecture is a distributed architecture, so interprocess communication plays a key role.
 \begin{verbatim}
     - direct vs. messaging
     - smart endpoints vs. dumb pipes
@@ -255,6 +430,22 @@ microservices are small components, built around business capabilities [3], that
 
 \subsection{Interaction Models}
 Interaction Models refers to the communication flow among components. Possible values: synchronous, asynchronous.
+3.1.1 Interaction styles
+It’s useful to first think about the style of interaction between a service and its clients before selecting an IPC mechanism for a service’s API. Thinking first about the inter- action style will help you focus on the requirements and avoid getting mired in the details of a particular IPC technology. Also, as described in section 3.4, the choice of interaction style impacts the availability of your application. Furthermore, as you’ll see in chapters 9 and 10, it helps you select the appropriate integration testing strategy.
+There are a variety of client-service interaction styles. As table 3.1 shows, they can be categorized in two dimensions. The first dimension is whether the interaction is one-to-one or one-to-many:
+- One-to-one—Each client request is processed by exactly one service
+- One-to-many—Each request is processed by multiple services.
+The second dimension is whether the interaction is synchronous or asynchronous:
+Synchronous—The client expects a timely response from the service and might even block while it waits.
+Asynchronous—The client doesn’t block, and the response, if any, isn’t necessar- ily sent immediately.
+Table 3.1 The various interaction styles can be characterized in two dimensions: one-to-one vs one-to- many and synchronous vs asynchronous.
+Synchronous —
+Asynchronous Publish/subscribe Publish/async responses
+The following are the different types of one-to-one interactions:
+Request/response—A service client makes a request to a service and waits for a response. The client expects the response to arrive in a timely fashion. It might event block while waiting. This is an interaction style that generally results in services being tightly coupled.
+Asynchronous request/response—A service client sends a request to a service, which replies asynchronously. The client doesn’t block while waiting, because the ser- vice might not send the response for a long time.
+
+
 
 \subsection{Service Interfaces}
 \textcolor{magenta}{Service Interfaces are the different means of specifying contracts (if any) for the communication of microservices [45]. Possible values: formal (defined through a formal contract), tech-tied (the interface is tied to the implemen- tation technology), ad-hoc (defined in a novel language).}
@@ -263,21 +454,34 @@ Interaction Models refers to the communication flow among components. Possible v
 \subsection{Data Exchange Protocol}
 Data Exchange are the protocols used to represent the communication. Possible values: REST/HTTP, RPC-alike, message queues, other.
 
-
-
-\section{User Interface}
-\begin{verbatim}
-    - as seen on figure \nameref{fig:in-vs-out-arch} there's plenty of devices that can serve as frontend
-    - tenths of operation systems, tenths of web browsers,  
-\end{verbatim}
-
+% 
+% Persistence
+% 
 \section{Persistence}
 
 \textcolor{magenta}{Eventual Consistency: Maintaining strong consistency is extremely difficult for a distributed system, which means everyone has to manage eventual consistency.}
 
 \textcolor{magenta}{Data Storage usually integrated multiple services in legacy systems, but in microservices architectures it is mandatory to find seams in the databases and use the right technologies to split them out cleanly \cite{ms-building-ms}. Possible values: SQL, graph-oriented, document-oriented, other.}
 
+- one DB per MS pattern 
+
+One key challenge when using messaging is atomically updating the database and publishing a message. A good solution is to use the Transactional outbox pattern and first write the message to the database as part of the database trans- action. A separate process then retrieves the message from the database using either the Polling publisher pattern or the Transaction log tailing pattern and publishes it to the message broker.
+
+% 
+% Transaction management
+% 
+\section{Transaction management}
+\label{sec:transaction_management}
+After that I look at the two different ways of coordinating sagas: choreography, where participants exchange events without a centralized point of con- trol, and orchestration, 
+
+\subsection{Two-Phase Commit}
+\subsection{Three-Phase Commit}
+\subsection{The Saga Pattern}
+
+
 \section{Deployment \& Operations}
+\textcolor{magenta}{Independent Deployment: Simple services are easier to deploy, and since they are autonomous, are less likely to cause system failures when they go wrong.}
+
 \textcolor{magenta}{Deployment encompasses how and where services are actually hosted and deployed. Although the cloud has been adopted as the de-facto platform for microservices [44], there are several alternatives into and out of the cloud.}
 
 \textcolor{magenta}{– Platform can be customized due to privacy, security or business constraints. Possible values: public cloud, private cloud, in-house.}
@@ -288,8 +492,17 @@ Data Exchange are the protocols used to represent the communication. Possible va
 – Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
 \subsection{Availability and Resilience}
 \textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
+% 
+% External API Design
+% 
+\section{Transaction management}
 
-\section{Security}
+
+% 
+% Cross-cutting concerns
+%
+\section{Cross-cutting concerns}
+\subsection{Security}
 \begin{verbatim}
     - Sessions auth
     - JWT/token authentication
@@ -304,7 +517,7 @@ Data Exchange are the protocols used to represent the communication. Possible va
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
-% TOWARDS STABLE MICROSERVICES
+% Towards stable microservices
 % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
@@ -320,7 +533,7 @@ Data Exchange are the protocols used to represent the communication. Possible va
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
-% CONCLUSION
+% Conclusion
 % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \setsecnumdepth{part}
