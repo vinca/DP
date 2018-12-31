@@ -48,28 +48,25 @@
 \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
 \newacronym{API}{API}{application programming interface}
-\newacronym{IT}{IT}{information technology}
-\newacronym{SW}{SW}{software}
+\newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{BE}{BE}{back-end}
+\newacronym{EA}{EA}{enterprise architecture}
 \newacronym{FE}{FE}{front-end}
-
-\newacronym{MS}{MS}{microservice}
-\newacronym{NS}{NS}{Normalized Systems theory}
-
-\newacronym{REST}{REST}{representational state transfer}
-\newacronym{RPC}{RPC}{remote procedure call}
+\newacronym{IOT}{IoT}{internet of things}
+\newacronym{IT}{IT}{information technology}
 \newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
-\newacronym{OOP}{OOP}{object oriented programming}
+\newacronym{MSA}{MSA}{microservice architecture}
+\newacronym{MS}{MS}{microservice}
 \newacronym{MVC}{MVC}{Model-View-Controller architecture}
 \newacronym{MVVM}{MVVM}{Model-View-ViewModel architecture}
-
-\newacronym{EA}{EA}{enterprise architecture}
+\newacronym{NS}{NS}{Normalized Systems theory}
+\newacronym{OOP}{OOP}{object oriented programming}
+\newacronym{POJO}{POJO}{plain old Java object}
+\newacronym{REST}{REST}{representational state transfer}
+\newacronym{RPC}{RPC}{remote procedure call}
 \newacronym{SA}{SA}{software architecture}
-\newacronym{MSA}{MSA}{microservice architecture}
 \newacronym{SOA}{SOA}{service-oriented architecture}
-
-\newacronym{AWS}{AWS}{Amazon Web Services}
-\newacronym{IOT}{IoT}{internet of things}
+\newacronym{SW}{SW}{software}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,7 +112,7 @@ Widely used throughout the industry by leading companies \cite{ms-who-is-using}.
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \chapter{Goals and Approach}
 \section{Goals}
-In accordance to~thesis assignment the~following goals were set:
+According to~a~thesis assignment the~following goals were set:
 \begin{itemize}
 	\item Analyze the current state-of-the-art design methods and industrial applications of microservice architecture.
 	\item Identify key features and the most significant challenges encountered in~the~industry.
@@ -124,17 +121,17 @@ In accordance to~thesis assignment the~following goals were set:
 \end{itemize}
 
 \section{Approach}
-Microservices architecture is a \acrfull{EA} pattern. \acrshort{EA} could be analyzed in enormously broad context, spanning from business-IT alignment, through \acrshort{SW} development methodologies to choice of programming languages. This section discusses boundaries for this thesis to make the topic reasonably narrow without overlooking the quintessence of \acrlong{MSA}.
+Microservices architecture is an \acrfull{EA} pattern. \acrshort{EA} could be analyzed in enormously broad context, spanning from business-IT alignment, through \acrshort{SW} development methodologies to a choice of programming languages. This section discusses boundaries for this thesis to make the topic reasonably narrow without overlooking the quintessence of \acrlong{MSA}.
 
 \subsection{Organizational Aspects}
 Microservices are often valued for their positive effects on organizations and teams of engineers creating them. Development of end-to-end features and operational responsibility fosters DevOps culture \cite{devops-what-is}. Code ownership and cross-functional teams cultivate team spirit and nurture motivation of developers \cite{ms-fow-new-term-def, ms-modelling-with-petter, ms-building-ms}.
 
 There's also a sociological observation called \textit{Conway's law} that states:
 \begin{quote}
-Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure. \cite{conways-law}
+    Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure.~\cite{conways-law}
 \end{quote}
 
-The bi-directional influence between software architecture and the organization that creates it is a remarkable topic and it would be unwise to ignore it while running a business. Despite that, it will be ignored in this thesis, as it would broaden its scope excessively. The \acrshort{NS} literature \cite{ns-recreating, ns-toward-general-theory} has the same attitude and avoids discussion how the organization influences the \acrshort{SW} and vice versa.
+The bi-directional influence between software architecture and the organization that creates it is a remarkable topic, and it would be unwise to ignore it while running a business. Despite that, it will be ignored in this thesis, as it would broaden its scope excessively. The \acrshort{NS} literature \cite{ns-recreating, ns-toward-general-theory} has the same attitude and avoids discussion how the organization influences the \acrshort{SW} and vice versa.
 
 \subsection{Performance aspects}
 The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a system to be free from combinatorial effects, i.e., to be indefinitely evolvable. Until now, the industrial \acrlong{SW} projects \cite{ns-it-isnt-different, ns-exploring-defence} are focused on the evolvability of the \acrshort{SW} artifact and doesn't value any other non-functional requirement as much as evolvability.
@@ -152,7 +149,7 @@ On the other hand, \acrlong{MS} came into being due to the need for performance 
 \subsection{User Interface and }
 \begin{verbatim}
     - tons of presentations layers, frontends, desktop apps, mobile apps, watch apps and gadgets 
-    - end with external API
+    - end with external API \ref{sec:ext_api}
 \end{verbatim}
 
 \subsection{General Rules}
@@ -172,7 +169,7 @@ To fulfill the goals of this thesis the following finer-grain task was defined. 
 % 		\item Describe the key principles and motivation for \acrlong{MSA}
 % 	\end{itemize}
 
-	\item Analyze the \acrlong{MSA} (Chapter~\textit{\nameref{sec:msa_analysis}})
+	\item Analyze the \acrlong{MSA} (Chapter \textit{\nameref{sec:msa_analysis}})
 	\begin{itemize}
 		\item Perform a literature review on \acrshort{MS} and on application of \acrshort{NS} to \acrshort{MS} and/or related architecture styles and patterns
         \item Extract the essential concepts of state-of-the-art design of \acrshort{MS}
@@ -221,48 +218,42 @@ Due to the focus of this thesis, \acrlong{NS} will be explained on the domain of
 \begin{figure}[t]
   \centering
     \includegraphics{images/Combinatorial_effects_explained.pdf}
-   	\caption{Combinatorial effects explained~\cite{ns-recreating}}
+   	\caption{Combinatorial effects explained}
     \label{fig:combinatorial_effects}
 \end{figure}
 
-The authors of \acrlong{NS} state the contemporary \acrshort{IT} problems are manifestations of~fundamental flaws in~currently used \acrshort{SW} development methodologies. The Achilles' heel is the evolvability --- adding new features to~existing code base generates \emph{combinatorial effects}, that lead to~a~growth of~overall system complexity (see fig. \ref{fig:combinatorial_effects}). Such effects cause to increase the cost of future changes and decrease overall software quality~.\cite{ns-recreating}
+The authors of \acrlong{NS} state the contemporary \acrshort{IT} problems are manifestations of~fundamental flaws in~currently used \acrshort{SW} development methodologies. The Achilles' heel is the evolvability --- adding new features to~existing code base generates \emph{combinatorial effects} (or \textit{instabilities} in newer literature, e.g. \cite{ns-toward-general-theory}), that lead to a~growth of~overall system complexity (see fig. \ref{fig:combinatorial_effects}~\cite{ns-recreating}). Such effects cause to increase the cost of future changes and decrease overall software quality.\cite{ns-recreating}
 
 Initial idea was first uttered by Manny Lehman in~1980:
-
 \begin{quote}
-As an~evolving program is continually changed, its complexity, reflecting deteriorating structure, increases unless work is done to~maintain or reduce it.~\cite{lehman-1980-programs}
+    As an~evolving program is continually changed, its complexity, reflecting deteriorating structure, increases unless work is done to~maintain or reduce it.~\cite{lehman-1980-programs}
 \end{quote}
 
 In spite of~that, \acrlong{NS} strive to fulfill the dream articulated by Douglas McIlroy in~1968:
-
 \begin{quote}
-Expect families of~routines to~be constructed on rational principles so that families fit together as building blocks. In short, [the user] should be able safely to~regard components as black boxes.~\cite{mcilroy-1968-mass-software}
+    Expect families of~routines to~be constructed on rational principles so that families fit together as building blocks. In short, [the user] should be able safely to~regard components as black boxes.~\cite{mcilroy-1968-mass-software}
 \end{quote}
 
 \acrshort{NS} assume that a~change introduced to~a~system is a natural and unavoidable phenomenon. Therefore all rules and principles are designed to~accommodate that fact. The~theory defines a set of~guidelines on how to~engineer the~\acrlong{SW} architecture as a structure of~highly independent modules, which can be added, removed or changed separately. Sufficiently granular architecture will suppress all combinatorial effects during evolution of~the~system.
 
 The~normalized design theorems require a strict separation of~data and actions manipulating that data. Such segregation might be controversial as it contradicts the~essence of~\acrfull{OOP}, which postulates that data and related actions belong into one entity --- a \textit{class}.
 
-\subsection{Rules of~Evolvability}
-This section introduces the four rules of~software evolvability, which are the building blocks of~\acrshort{NS} theory. An experienced software developer will recognize these rules as they originate from a heuristic design knowledge. The value added by \acrshort{NS} is the theoretical proofs which promote these practical experiences to~defensible theorems.
+% 
+% Design Theorems of Stable Software
+% 
+\section{Design Theorems of Stable Software}
+\label{sec:theorems}
+This section introduces the four rules of~software evolvability --- \textit{the design theorems of stable software}, which are the building blocks of~\acrshort{NS} theory. An experienced software developer will recognize these rules as they originate from a heuristic design knowledge. The value added by \acrshort{NS} is the theoretical proofs which promote these practical experiences to~defensible theorems. (The proofs are omitted for brevity, but can be found in \cite{ns-recreating, ns-toward-general-theory}.)
 
-\subsubsection*{Basic Terminology}
-At the~beginning, it is necessary to~clarify several terms used in~further definitions:
+\subsection{The Four Theorems}
+The \acrshort{NS} theory can prove the system is free from instabilities if and only if the system complies to all the design theorems. Therefore the following postulate is set as an ultimate goal:
 \begin{quote}
-A \textbf{data entity} refers to~a~software entity that contains various attributes or fields, including links to~other data entities. Therefore, a~data entity only contains data (as in~a~structure or record) and does not have an~interface.~\cite{ns-recreating}
-\end{quote}
-
-\begin{quote}
-An \textbf{action entity} refers to~a~software entity that represents an~operation at a~given modular level in~a~hierarchy.~\cite{ns-recreating}
-\end{quote}
-
-\begin{quote}
-A \textbf{task} is part of~an~action entity and is a~set of~instructions that performs a~certain functionality. A task is located at the~submodular level.~\cite{ns-recreating}
+    An evolving information system should not have \textit{instabilities} (\textit{combinatorial effects}): a bounded amount of additional functional requirements cannot lead to an unbounded amount of additional (versions of) software primitives.~\cite{ns-toward-general-theory}
 \end{quote}
 
 \subsubsection{Separation of~Concerns}
 \begin{quote}
-An action entity can only contain a~single task in~normalized systems.~\cite{ns-recreating}
+A processing function can only contain a single task in order to achieve stability.~\cite{ns-toward-general-theory}
 \end{quote}
 
 This theorem implies the identification and separation of~every single \textit{task}. Correct separation of~tasks will induce \emph{separation of~concerns} in~the~big picture.
@@ -271,75 +262,109 @@ Separation of concerns is a~widely used \emph{best practice} among software arch
 
 \subsubsection{Data Version Transparency}
 \begin{quote}
-Data entities that are received as input or produced as output by action entities, need to~exhibit version transparency in~normalized systems.~\cite{ns-recreating}
+A structure that is passed through the interface of a processing function needs to exhibit version transparency in order to achieve stability.~\cite{ns-toward-general-theory}
 \end{quote}
 
 Data version transparency is an instrument to~cope with an addition or removal a~\emph{data field} in~entity. It implies encapsulation of~the~data fields. Wrapping the~data entity allows co-existence of~various versions of~such entity.
 
-An example from \acrshort{OOP}: data version transparency can be easily achieved by using exclusively the \textit{0-parameter constructor} for instantiation and \emph{setters} for the attribute access. In case of addition of a data field, it is simply left in its initial state. If an \textit{all-parameters constructor} would be used, 
+An example from \acrshort{OOP}: data version transparency can be easily achieved by using exclusively the \textit{0-parameter constructor} for instantiation and \emph{accessor methods} for the attribute access (e.g., a \acrshort{POJO}). In that case, all internal data fields are hidden and addition of a new one does not cause processing method to fail.
 
 \subsubsection{Action Version Transparency}
 \begin{quote}
-Action entities need to~exhibit version transparency in~normalized systems.~\cite{ns-recreating}
+A processing function that is called by another processing function, needs to exhibit version transparency in order to achieve stability.~\cite{ns-toward-general-theory}
 \end{quote}
 
 Analogously to~previous theorem, various versions of~data entities need to~co-exist in~single system.
 
-This can be achieved by using wrapper functions/methods or polymorphism.
+This can be achieved by using wrapper functions in procedural programming or by using polymorphism in \acrshort{OOP}.
 
-\subsubsection{Separation of~states}
+\subsubsection{Separation of~States}
 \begin{quote}
-The~calling of~an~action entity by another action entity needs to~exhibit state keeping in~normalized systems.~\cite{ns-recreating}
+Calling a processing function within another processing function, needs to exhibit state keeping in order to achieve stability.~\cite{ns-toward-general-theory}
 \end{quote}
 
-It is a~formalization of~instinctive \emph{avoiding the~transition (undefined) state}. When a~state is kept for every call or instance of~an~action entity, the~whole system behaves as a~deterministic state machine. This eliminates the~need for complicated recovery from undefined error states.
+It is a~formalization of~instinctive \emph{avoiding the~transition to an undefined state}. When a~state is kept for every call of a processing function, the~whole system behaves as a~deterministic state machine. This eliminates the~need for complicated recovery from undefined error states.
 
-An example of~manifestation of~this design theorem is database transaction mechanism. The~commit (rollback) action guarantees atomic transition from one defined state to~another. Another common example is asynchronous communication between systems.
+An example of a~manifestation of~this design theorem is a~database transaction mechanism. The~commit (rollback) action guarantees atomic transition from one defined state to~another.
 
 \subsection{Impacts on Software Development}
-\label{sec:nsImpacts}
-In order \acrshort{NS} principles to~be effective, the~\emph{rules of~evolvability} must be strictly obeyed. The~system must be free of~combinatorial effects at compile time, deployment time and run time. This requires the~code to~be absolutely error free, which is not an~easy task to~achieve. The~\emph{data} and \emph{action version transparency} rules also imply a~lot of~ballast (non-logic) code (e.g. wrapper classes, accessor methods). For a~human programmer writing code complying with \acrshort{NS} is boring and frustrating.
+The postulate in section \ref{sec:theorems} implies all the \textit{design theorems for stable software} must be consistently followed. The~\acrshort{SW} artifact must be free of~instabilities at compile time, deployment time and run time. It requires the~code base to~be entirely error free, which is not an~easy task to~achieve.
 
-On the~other hand, \acrshort{NS} presents a~set of~\emph{software design patterns}, that are solution to~these challenges. The~design patterns (called \emph{elements}) are defined comprehensively enough, that are suitable for code generation. The~core of~created \emph{is} is composed only from following \emph{elements}:
+Other inconveniences are inevitably encountered during the development of \acrshort{SW} according to \acrshort{NS}. For example the~\emph{data} and \emph{action version transparency} rules also imply a~lot of~\textit{boilerplate} (non-logic) code (e.g., wrapper classes, accessor methods). For a~human programmer writing code complying with \acrshort{NS} is annoying and frustrating.
 
-\begin{itemize}
-	\item a~\emph{data element} for storing data
-	\item an~\emph{action element} for the~execution of~a~calculation or algorithm
-	\item a~\emph{workflow element} for the~execution of~sequences of~action elements
-	\item a~\emph{connector element} for input and output functionality
-	\item a~\emph{trigger element} for time-based or status-based execution of~action elements
-\end{itemize}
+On the~other hand, \acrshort{NS} presents a~set of~\emph{software design patterns} (described in \cite{ns-recreating}) which could be easily produced via code generation. The generated boilerplate code skeleton is then enriched with custom code containing business logic and algorithms. In case the skeleton itself is introduced to a change, the custom code is \textit{harvested} and then \textit{re-injected} back to the fully re-generated skeleton.~\cite{vk-bp}
 
-These patterns are proven to~exhibit high cohesion and loose coupling, therefore the~generated application will be be free of combinatorial effects.
+The code generation approach remedies the developers' disgruntlement for sure. However, it requires the development of sophisticated tooling to get the fully \acrshort{NS}-compliant \acrlong{SW} working. The only known implementation --- the \textit{NSX Expanders}\footnote{https://normalizedsystems.org/tools/} --- is capable of production of remarkably granular, yet still \textit{monolithic} applications.
+
+This thesis is an attempt to broaden the application of \acrlong{NS} to a domain of distributed software architectures.
 
 % 
 % Software Architecture
 % 
-
 \section{Introduction to Software Architecture}
 As time goes by, the size and complexity of a software system grow, the design questions soon grow beyond algorithms and data structures. The new problem of the overall system design emerges.
 
-When the problem is untreated, applications soon become tightly coupled, brittle and increasingly difficult to change. Even experienced team of developers without a vision resort to the prosaic layered architecture pattern a.k.a. the \textit{n-tier architecture}, creating implicit layers by separating source-code modules into packages. A result of this practice often is a collection of poorly organized source code, modules and components lack clear borders, responsibilities, and relationships with each other. This primeval architecture style is mockingly called a \textit{the big ball of mud}\cite{big-ball-mud}.
+When the problem is untreated, applications soon become tightly coupled, brittle and increasingly difficult to change. Even experienced team of developers without a vision resort to the prosaic layered architecture pattern also known as the \textit{n-tier architecture}, creating implicit layers by separating source-code modules into packages. A result of this practice often is a collection of poorly organized source code, modules and components lack clear borders, responsibilities, and relationships with each other. This primeval architecture style is mockingly called a \textit{the big ball of mud}~\cite{big-ball-mud}.
 
-Obviously, the topic of \acrfull{SA} is frequently discussed~---~there are many conferences organized by respected organizations (e.g. IEEE International Conference on Software Architecture\footnote{http://icsa-conferences.org/}, O'Reilly Software Architecture Conference\footnote{https://conferences.oreilly.com/software-architecture/}), many people bear a job title \textit{Software Architect} or \textit{Solutions Architect}\footnote{https://www.glassdoor.com/}. Despite all that, there are many definitions of the \textit{software architecture} and none of them is widely respected.
+\subsection{Formal Definition}
+Obviously, the topic of \acrfull{SA} is frequently discussed. There are many conferences organized by respected organizations (e.g., IEEE International Conference on Software Architecture\footnote{http://icsa-conferences.org/}, O'Reilly Software Architecture Conference\footnote{https://conferences.oreilly.com/software-architecture/}), many people bear a job title \textit{Software Architect} or \textit{Solutions Architect}\footnote{https://www.glassdoor.com/}. Despite all that, there are many definitions of \textit{software architecture}, and none of them is considered universal.
 
-One of the pioneers of \acrshort{SA} defines this complex discipline as:
+For example, the IEEE Computer Society defines software architecture as:
 \begin{quote}
-    The software architecture of a computing system is the set of structures needed to reason about the system, which comprise software elements, relations among them, and properties of both. \cite{documenting-sw-arch}
+    [Software] Architecture is the fundamental organization of a system embodied in its components, their relationships to each other, and to the environment, and the principles guiding its design and evolution.~\cite{std-ieee-arch}
 \end{quote}
 
-One of the 
+One of the pioneers of \acrlong{SA}, Len Bass, defines this complex discipline as:
+\begin{quote}
+    The software architecture of a computing system is the set of structures needed to reason about the system, which comprise software elements, relations among them, and properties of both.~\cite{documenting-sw-arch}
+\end{quote}
+
+After introducing these two definitions, the domain of \acrshort{SA} seem to be highly abstract and difficult. It is clear there's a need of an instrument, that will help break down this complex domain. Such an instrument can be the \textit{4+1 View Model of Architecture} featured in the next chapter.
+
+% 
+% 4+1 View Model of Architecture
+% 
+\section{4+1 View Model of Architecture}
 
 
 
 
-\begin{verbatim}
-- vytezit patterns
-\end{verbatim}
-\textcolor{magenta}{
-asdf
-}
+\begin{figure}[b]
+  \centering
+    \includegraphics{images/4+1_view.pdf}
+    \caption{4+1 View Model of Architecture}
+    \label{fig:arch-41-view}
+\end{figure}
 
+
+
+
+
+The “4+1” view model is rather “generic”: other notations and tools can be used, other design methods can
+be used, especially for the and the logical and process decompositions, but we have indicated the ones we
+have used with succes
+
+THE 4+1 VIEW MODEL OF SOFTWARE ARCHITECTURE
+More concretely, an application’s architecture can be viewed from multiple perspec- tives, in the same way that a building’s architecture can be viewed from structural, plumbing, electrical, and other perspectives. Phillip Krutchen wrote a classic paper describing the 4+1 view model of software architecture, “Architectural Blueprints— The ‘4+1’ View Model of Software Architecture” (www.cs.ubc.ca/~gregor/teaching/ papers/4+1view-architecture.pdf). The 4+1 model, shown in Figure 2.1, defines four different views of a software architecture. Each describes a particular aspect of the architecture and consists of a particular set of software elements and relationships between them.
+The purpose of each view is as follows:
+
+\begin{itemize}
+    \item \textbf{Logical view} covers the The software elements that are created by developers. In object- oriented languages, these elements are classes and packages. The relations between them are the relationships between classes and packages, including inheritance, associations, and depends-on.
+    \begin{itemize}
+        \item \textbf{Components}: asdf 
+    \end{itemize}
+    
+    \item \textbf{Development view} — The output of the build system. This view consists of mod- ules, which represent packaged code, and components, which are executable or deployable units consisting of one or more modules. In Java, a module is a JAR file, and a component is typically a WAR file or an executable JAR file. The relations between them include dependency relationships between modules and composition relationships between components and modules.
+    
+    \item \textbf{Process view} components at runtime. Each element is a process, and the relations between processes represent interprocess communication.
+
+    
+    \item \textbf{Physical view} How the processes are mapped to machines. The elements in this view consist of (physical or virtual) machines and the processes. The relations between machines represent networking. This view also describes the relation- ship between processes and machines.
+
+\end{itemize}
+
+
+\section{Architectural Styles}
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -397,9 +422,9 @@ The microservice architecture structures an application as a set of small, loose
     - mention other definition
 \end{verbatim}
 \begin{figure}
- \caption{\textit{Inner vs. Outer Architecture}}
- \label{fig:in-vs-out-arch}
  \missingfigure{\nameref{fig:in-vs-out-arch}}
+ \caption{Inner vs. Outer Architecture}
+ \label{fig:in-vs-out-arch}
 \end{figure}
 
 
@@ -489,12 +514,17 @@ After that I look at the two different ways of coordinating sagas: choreography,
 \textcolor{magenta}{– Management encompasses the responsive reaction to failures and changing environmental conditions, minimizing human intervention [7]. Possible val- ues: built-in cloud services (e.g., AWS Cloudwatch and Autoscaling), third- party services (e.g., Rightscale, New Relic), ad-hoc solutions (i.e., tied to the particular approach).}
 
 \subsection{Scalability / Elasticity}
+\label{sec:scalability}
 – Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
 \subsection{Availability and Resilience}
 \textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
 % 
 % External API Design
 % 
+\section{External API}
+\label{sec:ext_api}
+
+
 \section{Transaction management}
 
 
@@ -573,6 +603,7 @@ After that I look at the two different ways of coordinating sagas: choreography,
             .2 DP\_Kolarik\_Vincenc.pdf\DTcomment{PDF version of~the~thesis}.
             .2 src\DTcomment{\LaTeX{} source codes of~the~thesis}.
     }
+
 \end{figure}
 
 \listoftodos
