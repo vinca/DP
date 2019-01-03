@@ -1,24 +1,15 @@
-% options:
-% thesis=B bachelor's thesis
-% thesis=M master's thesis
-% czech thesis in Czech language
-% english thesis in English language
-% hidelinks remove colour boxes around hyperlinks
-
 \documentclass[thesis=M,english,hidelinks]{FITthesis}[2012/10/20]
 
 \usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
 \usepackage{dirtree} %directory tree visualisation
 \usepackage{graphicx} %graphics files inclusion
-% \usepackage{subfig} %subfigures
-% \usepackage{amsmath} %advanced maths
-% \usepackage{amssymb} %additional math symbols
 \usepackage{todonotes}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % FORMAL STUFF
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
 \department{Department of Software Engineering}
 \title{Applying the Normalized Systems Theory on Microservice Architecture}
 \authorGN{Vincenc} %author's given name/names
@@ -50,8 +41,12 @@
 \newacronym{API}{API}{application programming interface}
 \newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{BE}{BE}{back-end}
+\newacronym{DAO}{DAO}{data access object}
+\newacronym{DB}{DB}{database}
 \newacronym{EA}{EA}{enterprise architecture}
+\newacronym{ESB}{ESB}{enterprise service bus}
 \newacronym{FE}{FE}{front-end}
+\newacronym{FP}{FP}{functional programming}
 \newacronym{IOT}{IoT}{internet of things}
 \newacronym{IT}{IT}{information technology}
 \newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
@@ -61,12 +56,15 @@
 \newacronym{MVVM}{MVVM}{Model-View-ViewModel architecture}
 \newacronym{NS}{NS}{Normalized Systems theory}
 \newacronym{OOP}{OOP}{object oriented programming}
+\newacronym{ORM}{ORM}{object-relational mapping}
 \newacronym{POJO}{POJO}{plain old Java object}
 \newacronym{REST}{REST}{representational state transfer}
 \newacronym{RPC}{RPC}{remote procedure call}
 \newacronym{SA}{SA}{software architecture}
 \newacronym{SOA}{SOA}{service-oriented architecture}
+\newacronym{SOAP}{SOAP}{simple object access protocol}
 \newacronym{SW}{SW}{software}
+\newacronym{VM}{VM}{virtual machine}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,53 +317,128 @@ One of the pioneers of \acrlong{SA}, Len Bass, defines this complex discipline a
     The software architecture of a computing system is the set of structures needed to reason about the system, which comprise software elements, relations among them, and properties of both.~\cite{documenting-sw-arch}
 \end{quote}
 
-After introducing these two definitions, the domain of \acrshort{SA} seem to be highly abstract and difficult. It is clear there's a need of an instrument, that will help break down this complex domain. Such an instrument can be the \textit{4+1 View Model of Architecture} featured in the next chapter.
+After introducing these two definitions, the problem of \acrshort{SA} seem to be highly abstract and difficult. It is clear there's a need of an instrument, that will help break down this complex domain. Such an instrument is featured in the next chapter.
 
 % 
 % 4+1 View Model of Architecture
 % 
 \section{4+1 View Model of Architecture}
+The \textit{4+1 View Model} was designed by Philippe Kruchten as a tool \textit{describing the architecture of software-intensive systems, based on the use of multiple, concurrent views}.~\cite{arch-41-views}
 
+Architects may use the four views to systematically depict the miscellaneous \acrshort{SW} elements and the fifth view --- scenarios (or \textit{use cases} in contemporary terminology) which \textit{illustrate} or \textit{animate} the static system.
 
+The view model is \textit{generic}. It doesn't prescribe any particular notation for the different perspectives, or any set of available \textit{architectural patterns} or \textit{styles}, hence allowing the multiple styles coexist in one system.
 
-
-\begin{figure}[b]
+\begin{figure}
   \centering
     \includegraphics{images/4+1_view.pdf}
     \caption{4+1 View Model of Architecture}
     \label{fig:arch-41-view}
 \end{figure}
 
-
-
-
-
-The “4+1” view model is rather “generic”: other notations and tools can be used, other design methods can
-be used, especially for the and the logical and process decompositions, but we have indicated the ones we
-have used with succes
-
-THE 4+1 VIEW MODEL OF SOFTWARE ARCHITECTURE
-More concretely, an application’s architecture can be viewed from multiple perspec- tives, in the same way that a building’s architecture can be viewed from structural, plumbing, electrical, and other perspectives. Phillip Krutchen wrote a classic paper describing the 4+1 view model of software architecture, “Architectural Blueprints— The ‘4+1’ View Model of Software Architecture” (www.cs.ubc.ca/~gregor/teaching/ papers/4+1view-architecture.pdf). The 4+1 model, shown in Figure 2.1, defines four different views of a software architecture. Each describes a particular aspect of the architecture and consists of a particular set of software elements and relationships between them.
-The purpose of each view is as follows:
+\subsection{Views Description}
+\label{sec:41-views-description}
 
 \begin{itemize}
-    \item \textbf{Logical view} covers the The software elements that are created by developers. In object- oriented languages, these elements are classes and packages. The relations between them are the relationships between classes and packages, including inheritance, associations, and depends-on.
+    \item \textbf{Logical view} describes the elementary code fragments produced by developers --- classes, funtions, configuration files, etc.
     \begin{itemize}
-        \item \textbf{Components}: asdf 
+        \item \textbf{Components:} class (\acrshort{OOP}), function (\acrshort{FP})
+        \item \textbf{Connectors:} association, inheritance, composition
+        \item \textbf{Stakeholders:} end-user
+        \item \textbf{Concerns:} functionality
     \end{itemize}
     
-    \item \textbf{Development view} — The output of the build system. This view consists of mod- ules, which represent packaged code, and components, which are executable or deployable units consisting of one or more modules. In Java, a module is a JAR file, and a component is typically a WAR file or an executable JAR file. The relations between them include dependency relationships between modules and composition relationships between components and modules.
+    \item \textbf{Development view} depics the artefacts of a packaged runnable code. It describes modules (e.g., a JAR file) and components (e.g., a WAR archive or executable JAR) components and dependencies among them.
+    \begin{itemize}
+        \item \textbf{Components:} compiled \acrshort{SW} artefacts
+        \item \textbf{Connectors:} compile-time dependencies
+        \item \textbf{Stakeholders:} developer, operations engineer
+        \item \textbf{Concerns:} modularity, code reuse, portability, deployable artefact boundaries
+    \end{itemize}
     
-    \item \textbf{Process view} components at runtime. Each element is a process, and the relations between processes represent interprocess communication.
-
+    \item \textbf{Process view} represents components at runtime.
+    \begin{itemize}
+        \item \textbf{Components:} processes
+        \item \textbf{Connectors:} inter-process communication (e.g., \acrshort{REST}/\acrshort{SOAP}/\acrshort{RPC} call) 
+        \item \textbf{Stakeholders:} developer, operations engineer
+        \item \textbf{Concerns:} performance, availability, fault-tolerance, data integrity
+    \end{itemize}
     
-    \item \textbf{Physical view} How the processes are mapped to machines. The elements in this view consist of (physical or virtual) machines and the processes. The relations between machines represent networking. This view also describes the relation- ship between processes and machines.
-
+    \item \textbf{Physical view} describes how the running deployed artifacts are mapped to \textit{deployment nodes}.
+    \begin{itemize}
+        \item \textbf{Components:} nodes (i.e. containers, \acrshort{VM}s, physical machines)
+        \item \textbf{Connectors:} network interfaces
+        \item \textbf{Stakeholders:} operations engineer
+        \item \textbf{Concerns:} scalability, performance, availability
+    \end{itemize}
+    
+    \item \textbf{Scenarios} are detailed recipes describing actions across the whole application. This view is redundant to the previous four --- therefore marked as \textit{+1} --- but serves as a validation mechanism for the whole architectural vision.
+    \begin{itemize}
+        \item \textbf{Components:} step-by-step scenarios
+        \item \textbf{Connectors:} use-case dependencies
+        \item \textbf{Stakeholders:} end-user, developer, QA engineers
+        \item \textbf{Concerns:} understandability
+    \end{itemize}
 \end{itemize}
 
+\subsection{Relations between views}
+The four views are not fully independent or orthogonal. Elements of one view must relate to elements in other views, otherwise, the model has some inconsistencies (e.g., non deployed code artifacts, not utilized or inaccessible \acrshort{VM}s). Directions of those relations --- \textit{mappings} --- are shown in \ref{fig:arch-41-view} using the black arrows.
+
+Although every \acrlong{SA} could be viewed from all of those four viewpoints, it is not always necessary to draw all of them to describe the architecture sufficiently. For example, a simple web application running on a single machine with an embedded database does not need a physical view, as it would depict just one machine hosting one process. On the opposite side, systems with millions of lines of code may require logical view diagrams containing thousands of classes and packages. This view would require a high level of abstraction to be understandable. The abstractions could become almost identical to the development view, and therefore render the logical view redundant.
+
+The scenarios are always useful since they contain information about the purpose of the application --- the business value.
 
 \section{Architectural Styles}
+The term \textit{architectural style} is in similar manner used in civil engineering. Building were designed in \textit{renaissance}, \textit{functionalism} or \textit{brutalism} styles. All buildings of the particular style were different, yet they shared the same materials, had similar properties (e.g., esthetics, hygiene), and they were build to fulfill the similar ideals.
 
+That is surprisingly close to how it applies to software --- the applications of particular style are built using the same set of elements and relations between them (e.g., classes and their composition), they exhibit the same properties (e.g., layering, modularity) and are build to fulfill the same non-functional requirements (e.g., maximum availability, high evolvability).
+
+There is a often-cited definition of architectural style by David Garlanand and Mary Shaw published in 1994:
+\begin{quote}
+An architectural style, then, defines a family of such systems in terms of a pattern of structural organization. More specifically, an architectural style determines the vocabulary of components and connectors that can be used in instances of that style, together with a set of constraints on how they can be combined.~\cite{sa-intro-garlan-shaw}
+\end{quote}
+
+Architectural styles are usually characterized only from a single view. For example, a \acrfull{MVC} application is defined in logical view as a trio of interacting components, each with its defined responsibility and function. \acrshort{MVC} doesn't say how the application should be deployed --- it doesn't prescribe anything for the other views. 
+
+Next two sections provide a brief introduction to some of the architectural styles that are used and compared in further chapters.
+
+\subsection{Layered Architecture}
+Layered architecture organizes code elements \acrshort{SW} into stacked modules --- layers. Each layer has a properly defined purpose and responsibilities. Elements in those layers can interact only with elements from layer right above or right below. A layer can only depend on a layer right below.
+
+A frequently used instance of this style is the \textit{3-tier architecture}:
+\begin{itemize}
+    \item \textbf{presentation layer} handles user-interaction code
+    \item \textbf{business logic layer} contains the core functions and algorithms
+    \item \textbf{persistence layer} handles database transactions
+\end{itemize}
+
+Such architecture elegant in its simplicity, and this principle may be applied to any of the four views.
+
+However, major drawbacks arise for advanced applications. Imagine a logical view of a simple web application. What if a customer running the website wants to add a mobile application to his portfolio? In the style of layered architecture, the code of the mobile app would belong to the presentation layer, causing the web \acrshort{FE} and mobile app code to be mixed. If it would be put to a separate layer, the mobile app would have to interact with the business logic layer through the the web \acrshort{FE}.
+
+\subsection{Hexagonal Architecture}
+\begin{figure}[b]
+  \centering
+    \includegraphics[width=\textwidth]{images/hexagonal_arch.pdf}
+    \caption{Hexagonal Architecture}
+    \label{fig:hexagonal_arch}
+\end{figure}
+
+The \textit{Hexagonal Architecture} was first proposed in 2007 by Alistair Cockburn, one of the co-authors of \textit{The Agile Manifesto}\footnote{https://agilemanifesto.org/}.
+
+It aims to overcome limits of the layered architecture. The business logic is isolated in the centre (\textit{Core Application} in \nameref{fig:hexagonal_arch}) and exposes interfaces called \textit{ports}.
+
+Ports have two directions:
+\begin{itemize}
+    \item \textbf{inbound} handle the invocations of the business logic from the outer world, usually an \acrlong{API}
+    \item \textbf{outbound} is how the business logic interacts with external systems, e.g. a data persistence, logging, message publishers
+\end{itemize}
+
+Between a port and an external system is an \textit{adapter}, which bridges the business logic port with the specific technology (e.g., a \acrlong{DAO}). The core application does not depend on the adapters. Therefore it is easy to swap, e.g., a generic \acrshort{ORM} for a custom optimized \acrshort{DAO}.
+
+More than one adapter may be bound to a single port (e.g., the same business logic action is invoked by a message received or by a \acrshort{REST} call).
+
+Decoupling using ports and adapters allows easy extendability without any changes introduced to the business logic. It also makes the core application testable without the need for the surrounding components (e.g., the whole application can be black-box tested without a need for \acrshort{DB})
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
@@ -380,6 +453,23 @@ The purpose of each view is as follows:
 \chapter{Analysis of the~Microservice Architecture}
 \label{sec:msa_analysis}
 
+Microservice architecture is described in process view --- simply as a collection of processes communicating with each other. Although logical and development views may be organized organized in any way, \acrshort{MSA} strongly endorses one rule: share nothing with others. This extremely radical decoupling allows swift development of independently deployable artifacts.
+
+This architecture style is exploited by leading companies in the online business --- e.g., Amazon, Ebay, Netflix, Spotify, Uber, SoundCloud and many more \cite{ms-who-is-using}. They adoption of this style due to its two crucial features: easy \textit{scalability} to their extreme dimensions \cite{ms-ebay-scalability-best-practices, ms-ebay-ds-scalability, ms-spotify-horizontal-scaling, ms-spotify}, and rapid development of new features --- evolvability. Modern enterprises are able to create new functionality on an unprecedented rates - online marketplace Etsy is able to release new features 50 times a day and Amazon deploys new code to production every 11.3 seconds \cite{devops-deploying-hourly}.
+
+Independence is the essential principle, that allows teams to deploy new version of the 
+
+
+
+
+\begin{figure}[b]
+  \centering
+    \includegraphics[width=0.7\textwidth]{images/monolith_vs_microservice.pdf}
+    \caption{Monolith vs. Microservices}
+    \label{fig:monolith_vs_microservices}
+\end{figure}
+
+
 \section{(De)composition of Microservice Application}
 
 
@@ -391,6 +481,11 @@ The purpose of each view is as follows:
 
 
 
+
+
+\subsection{Microservice scope}
+
+
 \begin{verbatim}
 
 
@@ -400,8 +495,6 @@ The purpose of each view is as follows:
     - conways's law
     
 \end{verbatim}
-
-\subsection{Microservice scope}
 microservices are small components, built around business capabilities [3], that are easy to understand, deploy, and scale independently, even using different technology stacks
 
 \begin{verbatim}
@@ -421,10 +514,12 @@ The microservice architecture structures an application as a set of small, loose
     - inner - two arguments - it's sth. that can be rewritten by a team in two weeks
     - mention other definition
 \end{verbatim}
+
 \begin{figure}
- \missingfigure{\nameref{fig:in-vs-out-arch}}
- \caption{Inner vs. Outer Architecture}
- \label{fig:in-vs-out-arch}
+  \centering
+    \includegraphics[width=0.7\textwidth]{images/architecture_inner_vs_outer.pdf}
+    \caption{Inner vs. Outer Architecture}
+  \label{fig:in-vs-out-arch}
 \end{figure}
 
 
