@@ -4,6 +4,7 @@
 \usepackage{dirtree} %directory tree visualisation
 \usepackage{graphicx} %graphics files inclusion
 \usepackage{todonotes}
+\usepackage{multicol}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
 
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
@@ -43,10 +44,15 @@
 \newacronym{API}{API}{application programming interface}
 \newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{BE}{BE}{back-end}
+\newacronym{CAP}{CAP}{consistency, availability, partition tolerance (theorem)}
+\newacronym{CI}{CI}{continuous integration}
+\newacronym{CD}{CD}{continuous delivery}
 \newacronym{DAO}{DAO}{data access object}
 \newacronym{DB}{DB}{database}
 \newacronym{DBMS}{DBMS}{database management system}
 \newacronym{DDD}{DDD}{domain driven design}
+\newacronym{DRY}{DRY}{don't repeat yourself}
+\newacronym{DTO}{DTO}{data transfer object}
 \newacronym{EA}{EA}{enterprise architecture}
 \newacronym{ESB}{ESB}{enterprise service bus}
 \newacronym{FE}{FE}{front-end}
@@ -95,12 +101,12 @@ motivace
 - microservices = craftmanship
 - NS theory of systems
 - distributed 
-
+    
+- loose coupling high cohesion
 
 - modularity, granularity, evolvability
 - evolvability, adaptation to change
-    
-    
+
     
 \end{verbatim}
 
@@ -410,7 +416,7 @@ Next two sections provide a brief introduction to some of the architectural styl
 \subsection{Layered Architecture}
 Layered architecture organizes code elements \acrshort{SW} into stacked modules --- layers. Each layer has a properly defined purpose and responsibilities. Elements in those layers can interact only with elements from layer right above or right below. A layer can only depend on a layer right below.
 
-A frequently used instance of this style is the \textit{3-tier architecture}:
+This architecture style is sometimes called the \textit{n-tier architecture}, where \textit{n} can be replaced with an integer. A frequently used instance is the \textit{3-tier architecture}:
 \begin{itemize}
     \item \textbf{presentation layer} handles user-interaction code
     \item \textbf{business logic layer} contains the core functions and algorithms
@@ -445,6 +451,16 @@ More than one adapter may be bound to a single port (e.g., the same business log
 
 Decoupling using ports and adapters allows easy extendability without any changes introduced to the business logic. It also makes the core application testable without the need for the surrounding components (e.g., the whole application can be black-box tested without a need for \acrshort{DB})
 
+\subsection{Monolith Architecture}
+
+\acrshort{MSA} in this thesis is often compared to a \textit{monolith} or a \textit{monolithic architecture}. This term is a polyseme --- it is applied to more than one of the four architectural views and has a different meaning in each of them.
+
+Originally it was used in context of the layered architecture (i.e., in the logical view). It was a synonym for the 1-tier logically unstructured code base \cite{professional-asp, wiki-monolith}, usually exhibiting the same poor properties as the \textit{big ball of mud} \cite{big-ball-mud}.
+
+On the dawn of microservice architecture, it needed to be compared to the traditional single-process application --- so the word monolith received a new meaning. In this context, \textit{monolith} doesn't have the pejorative connotation, as it often represents the well structured, n-tier application (see \fullref{fig:monolith_vs_microservices}).
+
+In this thesis the word \textit{monolith} is used exclusively with the second meaning.
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
 % Microservice Analysis
@@ -457,7 +473,7 @@ Decoupling using ports and adapters allows easy extendability without any change
 
 \chapter{Analysis of the~Microservice Architecture}
 \label{sec:msa_analysis}
-
+\todo{nějak se vyjádřit k tý literature review}
 \begin{figure}[b]
   \centering
     \includegraphics[width=0.7\textwidth]{images/monolith_vs_microservice.pdf}
@@ -472,7 +488,9 @@ This architecture style is exploited by leading companies in the online business
 %Independence is the essential principle of \acrshort{MSA}. Not only it allows teams to deploy their artifacts independently, it allows them to choose any 3rd party technology they want to use. Teams handle th 
 \todo{independence? rozepsat?}
 
-In spite of all the listed advantages, \acrlong{MSA} is no silver bullet. This style adds a lot of obvious as well as hidden complexity --- complicated operations, asynchronous communication, fallacies of distributed computing \cite{devops-fallacies}, changes in organization necessary to deal with \textit{Conway's law} \cite{conways-law}, (more in Section \nameref{sec:tradeoffs}). It's not easy to decide the pros \acrshort{MSA} compensate the cons. Analysis of the proper decision making is too complex to fit in scope of this thesis, but the general rule of thumb is:
+In spite of all the listed advantages, \acrlong{MSA} is no silver bullet. This style adds a lot of obvious as well as hidden complexity --- complicated operations, asynchronous communication, fallacies of distributed computing \cite{devops-fallacies}, changes in organization necessary to deal with \textit{Conway's law} \cite{conways-law}. (More in \fullref{sec:tradeoffs}).
+
+It's not easy to decide when the pros \acrshort{MSA} compensate the cons. Analysis of the proper decision making is too complex to fit in scope of this thesis, but the general rule of thumb is:
 \begin{quote}
     Don't even consider microservices unless you have a system that's too complex to manage as a monolith.~\cite{ms-fow-monolith-first}
 \end{quote}
@@ -510,42 +528,94 @@ This approach is the essence mentioned in the industry-oriented books \cite{ms-b
   \label{fig:in-vs-out-arch}
 \end{figure}
 
-Until now, the \acrshort{MSA} was discussed as a cluster of independently deployed services and communication between them. On the other hand, the resultant artifact was always addressed as one \textit{application} --- that means the services construct an integral system. In order to keep balance between the freedom of the inner workings of a \acrshort{MS} and complexity of operations, another border between \textit{inner} and \textit{outer} architecture must be defined (see fig. \fullref{fig:in-vs-out-arch}).
+Until now, the \acrshort{MSA} was discussed as a cluster of independently deployed services and communication between them. On the other hand, the resultant artifact was always addressed as one \textit{application} --- that means the services construct an integral system. In order to keep balance between the freedom of the inner workings of a \acrshort{MS} and complexity of operations, another border between \textit{inner} and \textit{outer} architecture must be defined (see fig. The \fullref{fig:in-vs-out-arch}).
 
 The \textbf{outer architecture} includes direct communication between services and other supporting systems (e.g., monitoring and logging), the execution environments (e.g., docker containers or \acrshort{VM}s), networking (including load-balancing, routing etc.) and messaging channels (i.e. message brokers). It doesn't describe just the inter-connections, but more importantly the \textit{contracts} between them (i.e. the \acrshort{API} definitions). 
 
-The \textbf{inner architecture} is everything else --- the internal business logic, the choice of programming language, 3rd party libraries and frameworks (if it's possible to run them in the supported execution environment), the data persistence, from choice of \acrshort{ORM} through schema to the choice of \acrshort{DBMS} is hidden from the outer world (as long as it is able to be executed in the unified environment).
+The \textbf{inner architecture} is everything else --- the internal business logic, the choice of programming language, 3rd party libraries and frameworks (if it's possible to run them in the supported execution environment), the data persistence (everything from \acrshort{ORM} through schema to the choice of \acrshort{DBMS} is hidden from the outer world --- as long as it is able to be executed in the unified environment).
 
 \subsection{Technological diversity}
-The freedom of the inner architecture is often considered an advantage of \acrshort{MSA} --- it allows development tools \textit{to select the best weapons} --- the best programming language, the best 3rd party technology, the most suitable \acrshort{DB} schema. It allows experimentation with all the aspects and that keeps the developers motivated \cite{ms-building-ms, ms-3-pillars}, fosters the culture of innovation \cite{innovation-well-oiled-machine}, and reduces the chance of lock-ins for outdated technology.
-
-
-While enabling technological heterogeneity is usually considered an advantage of MSA [4] that allows the selection of the best tool for the job, reduces the possibility of lock-ins for outdated technology, and supports a culture of innovation and experimentation. However, MSA also comes with some risks for the organization. An explosion of technological diversity can quickly become overwhelming and unmanageable. Moreover, you are dependent on employees with the corresponding skills to handle these technologies and programming languages.
-
+The freedom of the inner architecture is often considered an advantage of \acrshort{MSA}. It allows developers to \textit{select the best weapons} --- the best programming language, the best 3rd party technology, the most suitable \acrshort{DB} schema. It allows experimentation with all the aspects and that keeps the developers motivated \cite{ms-building-ms, ms-3-pillars}, fosters the culture of innovation \cite{innovation-well-oiled-machine}, reduces the chance of lock-ins for outdated technology \cite{ms-building-ms} and helps keep the whole application loosely coupled (see \ref{sec:strong_boundaries}).
 
 \subsection{Strong Module Boundaries}
-- DRY only within microservice, but not between
-- shred libraries
+\label{sec:strong_boundaries}
+A common recommendation in \acrshort{SW} development is to have clearly defined code module boundaries. It's the manifestation of loose coupling and Douglas McIlroy's vision (see \fullref{sec:evolvability_rules}). \acrshort{MSA} is no different.
 
-- be extremely cau
-- creation of commons as DTOs strongly discouraged
+Respecting the strong module boundaries doesn't depend on the architecture style --- it is possible to create a perfectly modular monolithic app. It is only the matter of developer's discipline.
 
+The \acrlong{MSA} magnifies the need for modularization by its intrinsic features, e.g., separate build artifacts for independent deployment, freedom of choice in technologies or persistence encapsulation.
 
-\subsection{Tradeoffs of Distributed Architecture}
+Therefore, a developer feels much stronger guilt for including code from another service, when he knows the code he \textit{borrows} might be rewritten to completely different programming language without prior notice.
+
+Sometimes the discipline means breaking some established but blindly-followed guidelines and best practices. For example the undisputed \acrfull{DRY} principle must be in context of \acrshort{MSA} be applied only on the microservice level, not across the whole application. 
+
+Authors of the up-to-date industry literature \cite{ms-building-ms, ms-evolutionary-arch, ms-ca} also recommend an extreme caution when creating an internal shared library of common functions and/or data structures (e.g., \acrshort{DTO}s) since it leads to unrestrained coupling and the time invested into creation of such artifacts limits the technological diversity. 
+
+\subsection{Trade-offs of a Distributed Architecture}
 \label{sec:tradeoffs}
-\subsubsection{Eventual Consistency}
-!!!
-\subsubsection{Operational Complexity}
+
+This section analyses the costs of adoption of the microservice architecture. Every benefit listed in the previous section has a cost of its own. And almost all of them increase the overall complexity of the system.
+
 \subsubsection{Distribution}
+\acrshort{MSA} utilizes a distributed system to provide fine-grained modularity. The fact it is distributed bring a lot of complexity and possible unintended consequences. 
 
+L. Peter Deutsch compiled a list called \textit{Fallacies of distributed computing} \cite{devops-fallacies-wiki} in 1994. The list consists of eight false assumptions which must be kept in mind while designing and operating a distributed system: 
+\begin{multicols}{2}
+    \begin{itemize}
+        \item The network is reliable.
+        \item Latency is zero.
+        \item Bandwidth is infinite.
+        \item The network is secure.
+        \item Topology doesn't change.
+        \item There is one administrator.
+        \item Transport cost is zero.
+        \item The network is homogeneous.
+    \end{itemize}
+\end{multicols}
 
+All of the listed fallacies are still valid \cite{devops-fallacies}, although effects of some are were alleviated due to the advance of related technology.
 
+\textbf{The network is reliable.} has a whole \fullref{sec:resilience} dedicated to dealing with this phenomenon.
+
+\textbf{Latency is zero.} \& \textbf{Transport cost is zero.} \& \textbf{Bandwidth is infinite.} have a great impact on applications performance. The ways how to mitigate this are discussed in \fullref{sec:inter-service-communication}.
+
+\textbf{Topology doesn't change.} \& \textbf{The network is homogeneous.} \todo{odkazat na service discovery nebo nejak ukecat}
+
+\textbf{The network is secure.} \& \textbf{There is one administrator.} belong to the application operations domain, therefore are out of scope of this analysis.
+
+\subsubsection{Eventual Consistency}
+\begin{figure}
+  \centering
+    \includegraphics[width=0.5\textwidth]{images/CAP.pdf}
+    \caption{CAP Theorem}
+    \label{fig:cap}
+\end{figure}
+The \acrshort{MSA} is a distributed architecture therefore it exhibits implications of the \acrshort{CAP} (also known as Brewer's) theorem \cite{cap-acm}. The theorem states that a distributed data store can't provide more than two out of the following properties:
+\begin{itemize}
+    \item \textbf{Consistency} --- each read receives the most recent write or an error
+    \item \textbf{Availability} --- each request receives a non-error response, although without a guarantee to contain the most recent write
+    \item \textbf{Partition tolerance} --- the data store responds with an non-error reply despite an erratic number of messages being lost or delayed in communication between nodes
+\end{itemize}
+
+The implications of this phenomenon are known to all users of some of the present-day web applications --- missing updated data, inconsistent notifications counts, etc. That's the nature of distributed architecture: the request to update data is handled by green node, the request for listing the data is handled by blue node. Until the blue and green nodes exchange information, the user is stuck in an \textit{inconsistency window}.
+
+For users, the eventual consistency is just annoying. For a programmers it is a whole lot of added complexity they have to deal with. The logic they've might end up making decisions on inconsistent information. This issue is exceptionally difficult to debug as the numbers of possible situations may rise extremely.
+
+Design patterns guaranteeing the eventual consistency already exist (see \fullref{sec:transaction_management}), but for some use cases it might not be good enough. The \textit{eventuality} will probably never be accepted in mission-critical financial, traffic control and similar systems. Since the \acrshort{CAP} theorem is formally proven, the \acrshort{MSA} will be hardly ever adapted in domains with such requirements.
+
+\subsubsection{Operational Complexity}
+By splitting up the monolithic code base, the complexity of the code base itself lowers, but it leaks into the space between the microservices --- into the operations of the application. The number of deployed code artifacts rise; number of \acrshort{DBMS} and NoSQL \acrshort{DB}s rise; load-balancers, message brokers and monitoring and management systems need to be deployed.
+
+The swarm of tiny services is almost impossible to handle one by one. That reinforces the importance of \acrfull{CI} and \acrfull{CD} tools and practices, as well as it enforces the implementation of the DevOps ideas and culture.
+
+Distributed architecture also necessitate additional supporting systems, such as monitoring dashboards and centralized logging. Lack of those systems render almost impossible to trace back a bug in the application.
 
 % 
 % Communication patterns
 % 
 
 \section{Inter-microservice Communication}
+\label{sec:inter-service-communication}
 The microservice architecture is a distributed architecture, so interprocess communication plays a key role.
 \begin{verbatim}
     - direct vs. messaging
@@ -623,16 +693,33 @@ Choosing the right processes and tools is an important factor in producing good 
 \subsection{Scalability / Elasticity}
 \label{sec:scalability}
 – Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
+
+
+
 \subsection{Availability and Resilience}
+\label{sec:resilience}
+Successful companies that adapted \acrshort{MSA} always design their systems for failure. 
+Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
+
+
+
 \textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
+
+
+
+Of course you can do a great deal to mitigate this problem. Firstly you can increase the granularity of your calls, so you make fewer of them. This complicates your programming model, you now have to think of how to batch up your inter-service interactions. It will also only get you so far, as you are going to have to call each collaborating service at least once.
+
+The second mitigation is to use asynchrony. If make six asynchronous calls in parallel you're now only as slow as the slowest call instead of the sum of their latencies. This can be a big performance gain, but comes at another cognitive cost. Asynchronous programming is hard: hard to get right, and much harder to debug. But most microservice stories I've heard need asynchrony in order to get acceptable performance.
+
+Right after speed is reliability. You expect in-process function calls to work, but a remote call can fail at any time. With lots of microservices, there's even more potential failure points. Wise developers know this and design for failure. Happily the kinds of tactics you need for asynchronous collaboration also fit well with handling failure and the result can improve resiliency. That's not much compensation however, you still have the extra complexity of figuring out the consequences of failure for every remote call.
+
+
+
 % 
 % External API Design
 % 
 \section{External API}
 \label{sec:ext_api}
-
-
-\section{Transaction management}
 
 
 % 
