@@ -6,6 +6,8 @@
 \usepackage{todonotes}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
 
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % FORMAL STUFF
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -43,6 +45,8 @@
 \newacronym{BE}{BE}{back-end}
 \newacronym{DAO}{DAO}{data access object}
 \newacronym{DB}{DB}{database}
+\newacronym{DBMS}{DBMS}{database management system}
+\newacronym{DDD}{DDD}{domain driven design}
 \newacronym{EA}{EA}{enterprise architecture}
 \newacronym{ESB}{ESB}{enterprise service bus}
 \newacronym{FE}{FE}{front-end}
@@ -58,6 +62,7 @@
 \newacronym{OOP}{OOP}{object oriented programming}
 \newacronym{ORM}{ORM}{object-relational mapping}
 \newacronym{POJO}{POJO}{plain old Java object}
+\newacronym{RD}{R\&D}{research and development}
 \newacronym{REST}{REST}{representational state transfer}
 \newacronym{RPC}{RPC}{remote procedure call}
 \newacronym{SA}{SA}{software architecture}
@@ -389,9 +394,9 @@ Although every \acrlong{SA} could be viewed from all of those four viewpoints, i
 The scenarios are always useful since they contain information about the purpose of the application --- the business value.
 
 \section{Architectural Styles}
-The term \textit{architectural style} is in similar manner used in civil engineering. Building were designed in \textit{renaissance}, \textit{functionalism} or \textit{brutalism} styles. All buildings of the particular style were different, yet they shared the same materials, had similar properties (e.g., esthetics, hygiene), and they were build to fulfill the similar ideals.
+The term \textit{architectural style} is in similar manner used in civil engineering. Building were designed in \textit{renaissance}, \textit{functionalism} or \textit{brutalism} styles. All buildings of the particular style were different, yet they shared the same materials, had similar properties (e.g., aesthetics, hygiene), and they were build to fulfill the same ideals.
 
-That is surprisingly close to how it applies to software --- the applications of particular style are built using the same set of elements and relations between them (e.g., classes and their composition), they exhibit the same properties (e.g., layering, modularity) and are build to fulfill the same non-functional requirements (e.g., maximum availability, high evolvability).
+That is surprisingly close to how it applies to software --- the applications of particular style are built using the same set of elements and relations between them (e.g., classes and their composition), they exhibit the same properties (e.g., layering, modularity) and are build to fulfill the same non-functional requirements (e.g., high availability, rapid evolvability).
 
 There is a often-cited definition of architectural style by David Garlanand and Mary Shaw published in 1994:
 \begin{quote}
@@ -453,67 +458,50 @@ Decoupling using ports and adapters allows easy extendability without any change
 \chapter{Analysis of the~Microservice Architecture}
 \label{sec:msa_analysis}
 
-Microservice architecture is described in process view --- simply as a collection of processes communicating with each other. Although logical and development views may be organized organized in any way, \acrshort{MSA} strongly endorses one rule: share nothing with others. This extremely radical decoupling allows swift development of independently deployable artifacts.
-
-This architecture style is exploited by leading companies in the online business --- e.g., Amazon, Ebay, Netflix, Spotify, Uber, SoundCloud and many more \cite{ms-who-is-using}. They adoption of this style due to its two crucial features: easy \textit{scalability} to their extreme dimensions \cite{ms-ebay-scalability-best-practices, ms-ebay-ds-scalability, ms-spotify-horizontal-scaling, ms-spotify}, and rapid development of new features --- evolvability. Modern enterprises are able to create new functionality on an unprecedented rates - online marketplace Etsy is able to release new features 50 times a day and Amazon deploys new code to production every 11.3 seconds \cite{devops-deploying-hourly}.
-
-Independence is the essential principle, that allows teams to deploy new version of the 
-
-
-
-
 \begin{figure}[b]
   \centering
     \includegraphics[width=0.7\textwidth]{images/monolith_vs_microservice.pdf}
-    \caption{Monolith vs. Microservices}
+    \caption{Monolith vs. Microservices Illustrated}
     \label{fig:monolith_vs_microservices}
 \end{figure}
+
+Microservice architecture is described in process view --- simply as a collection of processes communicating with each other. Although logical and development views may be organized organized in any way, \acrshort{MSA} strongly endorses one rule: share nothing with others. This extremely radical decoupling allows swift development of independently deployable artifacts.
+
+This architecture style is exploited by leading companies in the online business --- e.g., Amazon, Ebay, Netflix, Spotify, Uber, SoundCloud and many more \cite{ms-who-is-using}. The enterprises praise adoption of this style due to its two crucial features: easy \textit{scalability} to their extreme dimensions \cite{ms-ebay-scalability-best-practices, ms-ebay-ds-scalability, ms-spotify-horizontal-scaling, ms-spotify}, and rapid development of new features --- \textit{evolvability}. Modern enterprises are able to create new functionality on an unprecedented rates - online marketplace Etsy is able to release new features 50 times a day and Amazon deploys new code to production every 11.3 seconds \cite{devops-deploying-hourly}.
+
+%Independence is the essential principle of \acrshort{MSA}. Not only it allows teams to deploy their artifacts independently, it allows them to choose any 3rd party technology they want to use. Teams handle th 
+\todo{independence? rozepsat?}
+
+In spite of all the listed advantages, \acrlong{MSA} is no silver bullet. This style adds a lot of obvious as well as hidden complexity --- complicated operations, asynchronous communication, fallacies of distributed computing \cite{devops-fallacies}, changes in organization necessary to deal with \textit{Conway's law} \cite{conways-law}, (more in Section \nameref{sec:tradeoffs}). It's not easy to decide the pros \acrshort{MSA} compensate the cons. Analysis of the proper decision making is too complex to fit in scope of this thesis, but the general rule of thumb is:
+\begin{quote}
+    Don't even consider microservices unless you have a system that's too complex to manage as a monolith.~\cite{ms-fow-monolith-first}
+\end{quote}
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.7\textwidth]{images/microservices_productivity.png}
+    \caption{Monolith vs. Microservices --- Productivity to Complexity ratio~\cite{ms-fow-monolith-first}}
+    \label{fig:microservices_productivity}
+\end{figure}
+
+
+\textit{Microservices} is a buzzword now and \textit{since the successful large companies adopted this architecture, it must be the key to their success} --- this is a portrayal of a dangerous phenomenon called \textit{Microservice Envy}. This assumption may lead a lot of \acrshort{RD} departments to unnecessary struggle. The ThoughtWorks company made a website dedicated to monitoring the state-of-the-art of \acrshort{MSA} knowledge and tooling to help other teams to avoid this pitfall.\footnote{https://www.thoughtworks.com/radar/techniques/microservice-envy}
 
 
 \section{(De)composition of Microservice Application}
 
-
-
-
-\textcolor{magenta}{SOA is built on the concept of foster reuse: a share-as-much-as-possible architecture style, whereas microservices architecture is built on the concept of a share-as-little-as- possible style [8]. Given that service reuse has often been less than expected [9], instead of reusing existing microservices for new tasks or use cases, they should be “micro” enough to allow rapidly developing a new one that can coexist, evolve or replace the previous one according to the business needs [10].}
-
-
-
-
-
-
+This section looks closer on the eminent implications and concerns creating a~\acrlong{MS} application.
 
 \subsection{Microservice scope}
+Microservice applications are composed of \textit{microservices}. The preposition \textit{micro} suggests existence of some \textit{milliservices} or \textit{nanoservices}. Or at least that the \textit{microservice} itself should be very small. This might be very misleading interpretation. If we consider the common rule, that the microservice code base should be owned by one cross-functional team \cite{ms-building-ms, ms-evolutionary-arch, ms-fow-new-term-def} with top limit of 8-10 people, the deployed artifact might not be small at all.
 
+\acrshort{MSA} could be used for project starting from scratch (a \textit{greenfield} project), or for splitting a monolithical code base (a \textit{brownfield} project). Regardless of the origin, the recommended first step is always deep analysis of the application domain. The well-known methodology for this purpose is \textit{domain driven design} (\acrshort{DDD}) exquisitely described in \cite{domain-driven-design}.
 
-\begin{verbatim}
+Based on a particular domain model, the development team can identify real-world components. Each component is responsible for a \textit{business capability} --- in \acrshort{DDD} it is called a \textit{bounded context}. Seams between the bounded contexts are the first candidates for microservice boundaries.
 
-
-
-
-    - domain dirven design
-    - conways's law
-    
-\end{verbatim}
-microservices are small components, built around business capabilities [3], that are easy to understand, deploy, and scale independently, even using different technology stacks
-
-\begin{verbatim}
-    - domain driven development
-    - focus on one thing and do it well
-        
-\end{verbatim}
-    One problem with the term microservice is that the first thing you hear is micro. This suggests that a service should be very small. This is also true of other size-based terms such as miniservice or nanoservice. In reality, size isn’t a useful metric.
-A much better goal is to define a well-designed service to be a service capable of being developed by a small team with minimal lead time and with minimal collabora- tion with other teams. In theory, a team might only be responsible for a single service, so that service is by no means micro. Conversely, if a service requires a large team or takes a long time to test, it probably makes sense to split the team and the service. Or if you constantly need to change a service because of changes to other services or if it’s triggering changes in other services, that’s a sign that it’s not loosely coupled. You might even have built a distributed monolith.
-The microservice architecture structures an application as a set of small, loosely coupled services. As a result, it improves the development time attributes—main- tainability, testability, deployability, and so on—and enables an organization to develop better software faster. It also improves an application’s scalability, although that’s not the main goal. To develop a microservice architecture for your application, you need to identify the services and determine how they collaborate. Let’s look at how to do that.
-
-\subsection{Strong Module Boundaries}
+This approach is the essence mentioned in the industry-oriented books \cite{ms-building-ms, ms-evolutionary-arch, ms-patterns, ms-ca} as well as science journals \cite{ms-integrating-with-adaptable-ea, ms-towards-integrated-soa, ms-design-tradeoffs, ms-approaches-to-soa-evolution, ms-self-managing} and many blog posts (e.g., \cite{ms-fow-new-term-def, ms-modelling-with-petter}). Yet, this is the only advice that is given by the many authors of the professional literature. The rest is upon the particular domain, experience of the \acrlong{EA} and the team delivering the service. 
 
 \subsection{Inner vs. Outer Architecture}
-\begin{verbatim}
-    - focus on outer arch
-    - inner - two arguments - it's sth. that can be rewritten by a team in two weeks
-    - mention other definition
-\end{verbatim}
 
 \begin{figure}
   \centering
@@ -522,13 +510,29 @@ The microservice architecture structures an application as a set of small, loose
   \label{fig:in-vs-out-arch}
 \end{figure}
 
+Until now, the \acrshort{MSA} was discussed as a cluster of independently deployed services and communication between them. On the other hand, the resultant artifact was always addressed as one \textit{application} --- that means the services construct an integral system. In order to keep balance between the freedom of the inner workings of a \acrshort{MS} and complexity of operations, another border between \textit{inner} and \textit{outer} architecture must be defined (see fig. \fullref{fig:in-vs-out-arch}).
 
+The \textbf{outer architecture} includes direct communication between services and other supporting systems (e.g., monitoring and logging), the execution environments (e.g., docker containers or \acrshort{VM}s), networking (including load-balancing, routing etc.) and messaging channels (i.e. message brokers). It doesn't describe just the inter-connections, but more importantly the \textit{contracts} between them (i.e. the \acrshort{API} definitions). 
 
+The \textbf{inner architecture} is everything else --- the internal business logic, the choice of programming language, 3rd party libraries and frameworks (if it's possible to run them in the supported execution environment), the data persistence, from choice of \acrshort{ORM} through schema to the choice of \acrshort{DBMS} is hidden from the outer world (as long as it is able to be executed in the unified environment).
 
 \subsection{Technological diversity}
+The freedom of the inner architecture is often considered an advantage of \acrshort{MSA} --- it allows development tools \textit{to select the best weapons} --- the best programming language, the best 3rd party technology, the most suitable \acrshort{DB} schema. It allows experimentation with all the aspects and that keeps the developers motivated \cite{ms-building-ms, ms-3-pillars}, fosters the culture of innovation \cite{innovation-well-oiled-machine}, and reduces the chance of lock-ins for outdated technology.
+
+
+While enabling technological heterogeneity is usually considered an advantage of MSA [4] that allows the selection of the best tool for the job, reduces the possibility of lock-ins for outdated technology, and supports a culture of innovation and experimentation. However, MSA also comes with some risks for the organization. An explosion of technological diversity can quickly become overwhelming and unmanageable. Moreover, you are dependent on employees with the corresponding skills to handle these technologies and programming languages.
+
+
+\subsection{Strong Module Boundaries}
+- DRY only within microservice, but not between
+- shred libraries
+
+- be extremely cau
+- creation of commons as DTOs strongly discouraged
 
 
 \subsection{Tradeoffs of Distributed Architecture}
+\label{sec:tradeoffs}
 \subsubsection{Eventual Consistency}
 !!!
 \subsubsection{Operational Complexity}
@@ -608,6 +612,14 @@ After that I look at the two different ways of coordinating sagas: choreography,
 
 \textcolor{magenta}{– Management encompasses the responsive reaction to failures and changing environmental conditions, minimizing human intervention [7]. Possible val- ues: built-in cloud services (e.g., AWS Cloudwatch and Autoscaling), third- party services (e.g., Rightscale, New Relic), ad-hoc solutions (i.e., tied to the particular approach).}
 
+
+microservices CA:
+Your microservice system is not just a byproduct of the service components that handle messages at runtime. The system behavior is also a result of the processes and tools that workers in the system use to do their job. In the microservice’s system, this usually includes tooling and processes related to software development, code deployment, maintenance, and product management.
+Choosing the right processes and tools is an important factor in producing good microservice system behavior. For example, adopting standardized processes like DevOps and Agile or tools like Docker containers can increase the changeability of your system. In Chapters 4 and 6 we will take a closer look at the processes and tools that can have the biggest impact on a microservices system.
+
+
+
+
 \subsection{Scalability / Elasticity}
 \label{sec:scalability}
 – Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
@@ -651,6 +663,10 @@ After that I look at the two different ways of coordinating sagas: choreography,
 \section{Mapping NS Elements to Microservice Architecture}
 
 \todo[inline,size=\Large]{Missing whole chapter}
+
+Separation of Concerns
+The Netflix microservice architecture arises because of separation of concerns (SoC) in the engineering team organization. Each team owns a group of services. They own building, operating, and evolving those services, and present a stable agreed interface and service level agreement to the consumers of those services. Invoking Conway’s law, an organization structured with independent self-contained cells of engineers will naturally build what is now called a microservice architecture.
+
 
 \chapter{Guidelines for Stable Microservice Architecture}
 \label{sec:guidelines}
