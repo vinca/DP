@@ -212,6 +212,50 @@ publisher = {O'Reilly Media, Inc.},
 isbn = {1491956259 9781491956250}
 }
 
+@InProceedings{ms-sc-measuring,
+author="Vural, Hulya
+and Koyuncu, Murat
+and Misra, Sanjay",
+editor="Gervasi, Osvaldo
+and Murgante, Beniamino
+and Misra, Sanjay
+and Stankova, Elena
+and Torre, Carmelo M.
+and Rocha, Ana Maria A.C.
+and Taniar, David
+and Apduhan, Bernady O.
+and Tarantino, Eufemia
+and Ryu, Yeonseung",
+title="A Case Study on Measuring the Size of Microservices",
+booktitle="Computational Science and Its Applications -- ICCSA 2018",
+year="2018",
+publisher="Springer International Publishing",
+address="Cham",
+pages="454--463",
+abstract="In cloud computing, the microservices has become the mostly used architectural style. However, there is still an ongoing debate about how big a microservice should be. In this case study, a monolith application is measured using Common Software Measurement International Consortium (COSMIC) Function Points. The same application is divided into pieces by following the Domain Driven Design (DDD) principles. The resulting cloud friendly microservices are measured again using COSMIC Function Points and the obtained results are compared.",
+isbn="978-3-319-95174-4"
+}
+
+@InProceedings{ms-sc-collaborative-mdd,
+author="Sorgalla, Jonas
+and Rademacher, Florian
+and Sachweh, Sabine
+and Z{\"u}ndorf, Albert",
+editor="Mazzara, Manuel
+and Ober, Iulian
+and Sala{\"u}n, Gwen",
+title="On Collaborative Model-Driven Development of Microservices",
+booktitle="Software Technologies: Applications and Foundations",
+year="2018",
+publisher="Springer International Publishing",
+address="Cham",
+pages="596--603",
+abstract="Microservice Architecture (MSA) denotes an emerging architectural style for distributed and service-based systems whereby each microservice is highly cohesive and implements a single business capability. A microservice system consists of multiple, loosely coupled microservices. It provides complex capabilities through services interacting in choreographies. A single dedicated team, typically practicing DevOps, is responsible for each microservice, i.e., it ``owns'' the service. However, while systems relying on MSA have several architectural advantages especially for cloud applications, their realization is characterized by an increased accidental complexity due to redundant handcrafting of implementation, e.g., to make each service standalone runnable. A promising way to cope with such complexity is the usage of Model-driven Development (MDD) whereby models are used as first-class entities in the software development process. Although there are already first steps taken on how MDD could be applied by a single team to implement its microservices, the question of how MDD can be adapted to MSA's development distribution across multiple teams remains an issue. In this paper we envision the application of Collaborative Model-driven Software Engineering (CMDSE) to MDD of MSA by surveying relevant characteristics of CMDSE and identifying challenges for its application to MSA. The present paper takes a first step towards enabling holistic MDD of MSA across microservice teams.",
+isbn="978-3-030-04771-9"
+}
+
+
+
 @article{ms-underestimated-network-impact,
   author    = {Nane Kratzke},
   title     = {About Microservices, Containers and their Underestimated Impact on Network Performance},
@@ -238,6 +282,29 @@ keywords={information systems;service-oriented architecture;microservices integr
 doi={10.1109/EDOCW.2016.7584392}, 
 ISSN={2325-6605}, 
 month={Sep.},}
+
+
+@Inbook{ms-today-tomorrow,
+author="Dragoni, Nicola
+and Giallorenzo, Saverio
+and Lafuente, Alberto Lluch
+and Mazzara, Manuel
+and Montesi, Fabrizio
+and Mustafin, Ruslan
+and Safina, Larisa",
+editor="Mazzara, Manuel
+and Meyer, Bertrand",
+title="Microservices: Yesterday, Today, and Tomorrow",
+bookTitle="Present and Ulterior Software Engineering",
+year="2017",
+publisher="Springer International Publishing",
+address="Cham",
+pages="195--216",
+abstract="Microservices is an architectural style inspired by service-oriented computing that has recently started gaining popularity. Before presenting the current state of the art in the field, this chapter reviews the history of software architecture, the reasons that led to the diffusion of objects and services first, and microservices later. Finally, open problems and future challenges are introduced. This survey primarily addresses newcomers to the discipline, while offering an academic viewpoint on the topic. In addition, we investigate some practical issues and point out a few potential solutions.",
+isbn="978-3-319-67425-4",
+doi="10.1007/978-3-319-67425-4_12",
+url="https://doi.org/10.1007/978-3-319-67425-4_12"
+}
 
 
 % ENGINEERING BOOKS
@@ -396,6 +463,7 @@ month={Sep.},}
   url = {https://www.infoq.com/articles/ebay-scalability-best-practices},
   note = {[accessed: 11. 11. 2017]},
 }
+
 
 
 
@@ -631,6 +699,16 @@ volume = {2}
   note = {[accessed: 25. 11. 2018]},
 }
 
+@Misc{inter-process-comm,
+  author = {Wikipedia},
+  year = {2018},
+  title = {\emph{Inter-process communication}},
+  howpublished = {[ONLINE]},
+  url = {https://en.wikipedia.org/wiki/Inter-process_communication},
+  note = {[accessed: 19. 12. 2018]},
+}
+
+
 @book{domain-driven-design,
  author = {Evans, Eric J.},
  title = {Domain-Driven Design: Tacking Complexity In the Heart of Software},
@@ -698,6 +776,15 @@ volume = {2}
    note = {[accessed: 8. 9. 2018]},
  }
 
+@Misc{awesome-microservices,
+   author = {Fornos, Marc},
+   title ={\emph{Awesome Microservices: A curated list of Microservice Architecture related principles and technologies}},
+   year = {2018},
+   howpublished = {[ONLINE]},
+   url = {https://github.com/mfornos/awesome-microservices},
+   note = {[accessed: 8. 9. 2018]},
+ }
+
 @article{cap-acm,
  author = {Gilbert, Seth and Lynch, Nancy},
  title = {Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-tolerant Web Services},
@@ -716,3 +803,16 @@ volume = {2}
  publisher = {ACM},
  address = {New York, NY, USA},
 } 
+
+@ARTICLE{ms-ieee-interview, 
+author={J. Thönes}, 
+journal={IEEE Software}, 
+title={Microservices}, 
+year={2015}, 
+volume={32}, 
+number={1}, 
+pages={116-116}, 
+keywords={Interviews;Software architecture;Service oriented architecture;Software engineering;architecture;enterprise service bus;http;microservice;service-oriented architecture;software engineering;SE Radio}, 
+doi={10.1109/MS.2015.11}, 
+ISSN={0740-7459}, 
+month={Jan},}

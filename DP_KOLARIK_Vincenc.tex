@@ -7,7 +7,7 @@
 \usepackage{multicol}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
 
-\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \textit{\nameref*{#1}}}}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % FORMAL STUFF
@@ -27,9 +27,11 @@
 % ABSTRACT & KEYWORDS
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\acknowledgements{THANKS (remove entirely in case you do not with to thank anyone)}
-\abstractEN{Summarize the contents and contribution of your work in a few sentences in English language.}
-\abstractCS{V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.}
+\acknowledgements{Thanks to my family and girlfriend, Tamara, for all the patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
+
+\abstractEN{Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.}
+
+\abstractCS{V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.}
 
 \keywordsCS{Replace with comma-separated list of keywords in Czech.}
 \keywordsEN{Replace with comma-separated list of keywords in English.}
@@ -58,7 +60,9 @@
 \newacronym{FE}{FE}{front-end}
 \newacronym{FP}{FP}{functional programming}
 \newacronym{IOT}{IoT}{internet of things}
+\newacronym{IPC}{IPC}{inter-process communication}
 \newacronym{IT}{IT}{information technology}
+\newacronym{JSON}{JSON}{JavaScript object notation}
 \newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
 \newacronym{MSA}{MSA}{microservice architecture}
 \newacronym{MS}{MS}{microservice}
@@ -76,6 +80,7 @@
 \newacronym{SOAP}{SOAP}{simple object access protocol}
 \newacronym{SW}{SW}{software}
 \newacronym{VM}{VM}{virtual machine}
+\newacronym{XML}{XML}{extensible markup language}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,12 +153,11 @@ The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a
 On the other hand, \acrlong{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
 \subsection{Libraries, frameworks and other 3rd party technologies}
-\begin{verbatim}
+Microservices are the present-day buzzword
     - turbulent times, new frameworks emerging and be abandoned every day
     - https://github.com/mfornos/awesome-microservices not an extensive list of tech, but will suffice
     - don't bother with choosing and comparing particular 3rd party tech, too small detail
     - exctract the principcle and compare that
-\end{verbatim}
 
 \subsection{User Interface and }
 \begin{verbatim}
@@ -178,26 +182,36 @@ To fulfill the goals of this thesis the following finer-grain task was defined. 
 % 		\item Describe the key principles and motivation for \acrlong{MSA}
 % 	\end{itemize}
 
-	\item Analyze the \acrlong{MSA} (Chapter \textit{\nameref{sec:msa_analysis}})
+	\item Perform a literature review on \acrshort{MS} and on application of \acrshort{NS} to \acrshort{MS} and/or related architecture styles and patterns
 	\begin{itemize}
-		\item Perform a literature review on \acrshort{MS} and on application of \acrshort{NS} to \acrshort{MS} and/or related architecture styles and patterns
+		\item[$\Rightarrow$] \fullref{sec:literature_review}
+	\end{itemize}
+	
+	\item Analyze the \acrlong{MSA}
+	\begin{itemize}
         \item Extract the essential concepts of state-of-the-art design of \acrshort{MS}
 		\item Identify key concerns in \acrshort{MS} design and implementation
+		\item[$\Rightarrow$] \fullref{sec:msa_analysis}
 	\end{itemize}
 
-	\item Examine compliance of \acrlong{MSA} to \acrlong{NS} (Chapter~\textit{\nameref{sec:msa_compliance}})
+	\item Examine compliance of \acrlong{MSA} to \acrlong{NS}
 	\begin{itemize}
 		\item Discuss the architectural patterns and principles using \acrlong{NS}
 		\item Apply the \textit{Design Theorems for Stable Software} \cite{ns-towards-evolvable} to the essential concepts from previous chapter
+		\item[$\Rightarrow$] \fullref{sec:msa_compliance}
 	\end{itemize}	
 
-	\item Summarize design guidelines for \acrshort{MSA} (Chapter~\textit{\nameref{sec:guidelines}})
+	\item Summarize design guidelines for \acrshort{MSA}
 	\begin{itemize}
 		\item Provide concise and comprehensive overview of formulated guidelines
 		\item Demonstrate guidelines on suitable case study
+		\item[$\Rightarrow$] \fullref{sec:guidelines}
 	\end{itemize}
 	
-	\item Summarize successes and failures (Chapter~\textit{\nameref{sec:conclusion}})
+	\item Summarize successes and failures
+	\begin{itemize}
+		\item[$\Rightarrow$] chapter: \textit{\nameref{sec:conclusion}}
+	\end{itemize}
 \end{enumerate}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -455,25 +469,132 @@ Decoupling using ports and adapters allows easy extendability without any change
 
 \acrshort{MSA} in this thesis is often compared to a \textit{monolith} or a \textit{monolithic architecture}. This term is a polyseme --- it is applied to more than one of the four architectural views and has a different meaning in each of them.
 
-Originally it was used in context of the layered architecture (i.e., in the logical view). It was a synonym for the 1-tier logically unstructured code base \cite{professional-asp, wiki-monolith}, usually exhibiting the same poor properties as the \textit{big ball of mud} \cite{big-ball-mud}.
+Originally it was used in context of the layered architecture (i.e., in the logical view). It was a synonym for the 1-tier logically unstructured code base \cite{professional-asp, wiki-monolith}, usually exhibiting the same poor properties as the \textit{big ball of mud}~\cite{big-ball-mud}.
 
-On the dawn of microservice architecture, it needed to be compared to the traditional single-process application --- so the word monolith received a new meaning. In this context, \textit{monolith} doesn't have the pejorative connotation, as it often represents the well structured, n-tier application (see \fullref{fig:monolith_vs_microservices}).
+On the dawn of microservice architecture, it needed to be compared to the traditional single-process application --- so the word monolith received a new meaning. In \cite{ms-today-tomorrow} it is defined as:
+
+\begin{quote}
+    A monolith is a software application whose modules cannot be executed independently.
+\end{quote}
+
+In this context, \textit{monolith} doesn't have the pejorative connotation, as it often represents the well structured, n-tier application (see \fullref{fig:monolith_vs_microservices}).
 
 In this thesis the word \textit{monolith} is used exclusively with the second meaning.
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% Literature Review
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\chapter{Microservice Architecture Literature Review}
+\label{sec:literature_review}
+This chapter surveys the available literature and other sources of information on the topic of \textit{\acrlong{MSA}}, \textit{evolvability of \acrlong{MSA}} and \textit{application of \acrlong{NS} to software architecture}.
+
+Section \ref{sec:related_work} is a comparison of scope of this thesis to state-of-the-art academic research and industry publications.
+
+The retrieved knowledge is synthesized and critically analyzed in \fullref{sec:msa_analysis}.
+
+% 
+% Literature
+% 
+\section{Available Sources}
+Microservices as an architecture style started appearing around year 2013 \cite{ms-fow-new-term-def}. Since then, research is lead by industry and practitioners. Academia is was a long time reluctant to this field (see \fullref{tab:ms_trends}).
+
+A lot of knowledge appeared on the Internet before the science journals and is often referenced in various articles (e.g., \cite{ms-today-tomorrow, ms-taxonomy, ms-sc-collaborative-mdd, ms-sc-measuring}). To track back the original sources and to follow the most recent trends, an unorthodox category of information sources is created --- the community. This category consists of various non-reviewed Internet sources, such as personal blogs or Git repositories. Trustworthiness of those sources was assessed by cross-checking the information, reputation of the author(s), and to a lesser extent medium of publication. 
+
+
+\subsection{Academic Literature}
+
+Search engines used for the academic sources were: SpringierLink\footnote{https://link.springer.com/}, IEEE Explore\footnote{https://ieeexplore.ieee.org/},  ScienceDirect\footnote{https://www.sciencedirect.com/}, ACM Digital Library\footnote{https://dl.acm.org/}
+
+\begin{table}
+\centering
+\caption{Number of published articles with keyword \textit{microservices}}
+\label{tab:ms_trends}
+\begin{tabular}{r|r|r|r|r}
+              & \textbf{SpringierLink}  & \textbf{IEEE Explore} & \textbf{ScienceDirect} & \textbf{ACM DL}                \\ 
+\hline
+\textbf{2013} & 5                       &  1                    & 0                       & 0                             \\ 
+\hline
+\textbf{2014} & 5                       &  3                    & 0                       & 0                             \\ 
+\hline
+\textbf{2015} & 30                      & 24                    & 6                       & 7                             \\ 
+\hline
+\textbf{2016} & 125                     & 76                    & 30                      & 40                            \\ 
+\hline
+\textbf{2017} & 218                     & 153                   & 53                      & 62                            \\ 
+\hline
+\textbf{2018} & 350                     & 204                   & 118                     & 65                           
+\end{tabular}
+\end{table}
+
+- taxonomie
+
+
+
+
+
+\subsection{Industry Literature}
+
+The book 
+
+
+\subsection{The Community}
+
+- blogs Fowler,
+- github repositories
+- 
+
+Due to the last 
+
+
+% 
+% Related Work
+% 
+\section{Related Work}
+\label{sec:related_work}
+\subsection{Academic Literature}
+\subsubsection*{Normalized System Institute books}
+The first published \acrshort{NS} book \cite{ns-recreating} provides a brief discussion of compliance of the \acrfull{SOA} with \acrshort{NS}. Authors note that \acrshort{SOA} may exhibit desired properties of evolvability, but don't provide any further argumentation.
+
+The second \acrshort{NS} book \cite{ns-toward-general-theory} contains plenty of related information:
+\begin{itemize}
+    \item Chapter \textit{12 Toward Stable Modular Software Architectures} provides a prescriptive design rules for stable software architectures.
+    \item Chapter \textit{15 Normalized Elements for Software Architectures} presents essential building blocks of evolvable architectures --- \textit{normalized elements} --- and shows the implementation of those elements on code examples.
+\end{itemize}
+
+Content of both chapters is highly relatable to the focus of this thesis. Although the knowledge is not effortlessly applicable to the distinctive domain of \acrlong{MSA}.
+
+\subsubsection*{Science Journals}
+The domain of \textit{evolvability of \acrlong{MSA}} seems to be a virgin territory in the scientific journals. Searches performed in databases of respected science publishers yielded exactly zero relevant results. The search results were not always an empty list due to generality of some keywords (e.g., \textit{change} or \textit{distributed system}), but the after closer examination the returned results were all considered irrelevant.
+
+Keywords were all pairs composed of members of two sets:
+\begin{itemize}
+    \item microservices, microservice architecture, service oriented architecture, distributed systems
+    \item evolvability, change, normalized systems
+\end{itemize}
+
+
+
+\subsection{Industry Literature}
+
+
+
+\subsection{The Community}
+Bloggers and programmers often consider \textit{evolvability} a virtue. But it is not a~frequently discussed topic and the community does not provide any relevant information on this particular problem.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
 % Microservice Analysis
 % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\chapter{Analysis of the~Microservice Architecture}
+\label{sec:msa_analysis}
 
 % 
 % Design, scope, etc.
 % 
-
-\chapter{Analysis of the~Microservice Architecture}
-\label{sec:msa_analysis}
-\todo{nějak se vyjádřit k tý literature review}
 \begin{figure}[b]
   \centering
     \includegraphics[width=0.7\textwidth]{images/monolith_vs_microservice.pdf}
@@ -592,9 +713,9 @@ All of the listed fallacies are still valid \cite{devops-fallacies}, although ef
 \end{figure}
 The \acrshort{MSA} is a distributed architecture therefore it exhibits implications of the \acrshort{CAP} (also known as Brewer's) theorem \cite{cap-acm}. The theorem states that a distributed data store can't provide more than two out of the following properties:
 \begin{itemize}
-    \item \textbf{Consistency} --- each read receives the most recent write or an error
-    \item \textbf{Availability} --- each request receives a non-error response, although without a guarantee to contain the most recent write
-    \item \textbf{Partition tolerance} --- the data store responds with an non-error reply despite an erratic number of messages being lost or delayed in communication between nodes
+    \item \textbf{Consistency} --- each read receives the most recent write or an error.
+    \item \textbf{Availability} --- each request receives a non-error response, although without a guarantee to contain the most recent write.
+    \item \textbf{Partition tolerance} --- the data store responds with an non-error reply despite an erratic number of messages being lost or delayed in communication between nodes.
 \end{itemize}
 
 The implications of this phenomenon are known to all users of some of the present-day web applications --- missing updated data, inconsistent notifications counts, etc. That's the nature of distributed architecture: the request to update data is handled by green node, the request for listing the data is handled by blue node. Until the blue and green nodes exchange information, the user is stuck in an \textit{inconsistency window}.
@@ -616,6 +737,10 @@ Distributed architecture also necessitate additional supporting systems, such as
 
 \section{Inter-microservice Communication}
 \label{sec:inter-service-communication}
+
+The \textit{inter-microservice communication} is a specialization of a general problem in \acrshort{IT} called \acrfull{IPC}. In the professional literature the discussion of this specialization of the problem usually resorts to even greater specialization of discussing particular problems and patterns (e.g. \acrshort{REST} vs. \acrshort{RPC} or \acrshort{XML} vs. \acrshort{JSON}). An abstract taxonomy was needed \cite{ms-taxonomy}.
+
+
 The microservice architecture is a distributed architecture, so interprocess communication plays a key role.
 \begin{verbatim}
     - direct vs. messaging
@@ -624,9 +749,18 @@ The microservice architecture is a distributed architecture, so interprocess com
 
 \subsection{Interaction Models}
 Interaction Models refers to the communication flow among components. Possible values: synchronous, asynchronous.
-3.1.1 Interaction styles
+
+
+\subsection{Interaction styles}
+
+
+
 It’s useful to first think about the style of interaction between a service and its clients before selecting an IPC mechanism for a service’s API. Thinking first about the inter- action style will help you focus on the requirements and avoid getting mired in the details of a particular IPC technology. Also, as described in section 3.4, the choice of interaction style impacts the availability of your application. Furthermore, as you’ll see in chapters 9 and 10, it helps you select the appropriate integration testing strategy.
-There are a variety of client-service interaction styles. As table 3.1 shows, they can be categorized in two dimensions. The first dimension is whether the interaction is one-to-one or one-to-many:
+There are a variety of client-service interaction styles.
+
+
+
+As table 3.1 shows, they can be categorized in two dimensions. The first dimension is whether the interaction is one-to-one or one-to-many:
 - One-to-one—Each client request is processed by exactly one service
 - One-to-many—Each request is processed by multiple services.
 The second dimension is whether the interaction is synchronous or asynchronous:
@@ -647,19 +781,6 @@ Asynchronous request/response—A service client sends a request to a service, w
 
 \subsection{Data Exchange Protocol}
 Data Exchange are the protocols used to represent the communication. Possible values: REST/HTTP, RPC-alike, message queues, other.
-
-% 
-% Persistence
-% 
-\section{Persistence}
-
-\textcolor{magenta}{Eventual Consistency: Maintaining strong consistency is extremely difficult for a distributed system, which means everyone has to manage eventual consistency.}
-
-\textcolor{magenta}{Data Storage usually integrated multiple services in legacy systems, but in microservices architectures it is mandatory to find seams in the databases and use the right technologies to split them out cleanly \cite{ms-building-ms}. Possible values: SQL, graph-oriented, document-oriented, other.}
-
-- one DB per MS pattern 
-
-One key challenge when using messaging is atomically updating the database and publishing a message. A good solution is to use the Transactional outbox pattern and first write the message to the database as part of the database trans- action. A separate process then retrieves the message from the database using either the Polling publisher pattern or the Transaction log tailing pattern and publishes it to the message broker.
 
 % 
 % Transaction management
@@ -687,6 +808,21 @@ microservices CA:
 Your microservice system is not just a byproduct of the service components that handle messages at runtime. The system behavior is also a result of the processes and tools that workers in the system use to do their job. In the microservice’s system, this usually includes tooling and processes related to software development, code deployment, maintenance, and product management.
 Choosing the right processes and tools is an important factor in producing good microservice system behavior. For example, adopting standardized processes like DevOps and Agile or tools like Docker containers can increase the changeability of your system. In Chapters 4 and 6 we will take a closer look at the processes and tools that can have the biggest impact on a microservices system.
 
+% 
+% Persistence
+% 
+\section{Persistence}
+
+
+
+
+\textcolor{magenta}{Eventual Consistency: Maintaining strong consistency is extremely difficult for a distributed system, which means everyone has to manage eventual consistency.}
+
+\textcolor{magenta}{Data Storage usually integrated multiple services in legacy systems, but in microservices architectures it is mandatory to find seams in the databases and use the right technologies to split them out cleanly \cite{ms-building-ms}. Possible values: SQL, graph-oriented, document-oriented, other.}
+
+- one DB per MS pattern 
+
+One key challenge when using messaging is atomically updating the database and publishing a message. A good solution is to use the Transactional outbox pattern and first write the message to the database as part of the database trans- action. A separate process then retrieves the message from the database using either the Polling publisher pattern or the Transaction log tailing pattern and publishes it to the message broker.
 
 
 
@@ -772,6 +908,9 @@ The Netflix microservice architecture arises because of separation of concerns (
 
 \section{Thoughts on Utilization}
 \todo[inline,size=\Large]{Missing section}
+- NS - mathematical 
+
+
 
 \section{Future Work}
 \todo[inline,size=\Large]{Missing section}
