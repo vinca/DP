@@ -27,7 +27,7 @@
 % ABSTRACT & KEYWORDS
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\acknowledgements{Thanks to my family and girlfriend, Tamara, for all the patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
+\acknowledgements{Thanks to my family and especially my girlfriend, Tamara, for all their patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
 
 \abstractEN{Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.}
 
@@ -61,6 +61,7 @@
 \newacronym{FP}{FP}{functional programming}
 \newacronym{IOT}{IoT}{internet of things}
 \newacronym{IPC}{IPC}{inter-process communication}
+\newacronym{IS}{IS}{information system}
 \newacronym{IT}{IT}{information technology}
 \newacronym{JSON}{JSON}{JavaScript object notation}
 \newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
@@ -76,6 +77,7 @@
 \newacronym{REST}{REST}{representational state transfer}
 \newacronym{RPC}{RPC}{remote procedure call}
 \newacronym{SA}{SA}{software architecture}
+\newacronym{SLR}{SLR}{systematic literature review}
 \newacronym{SOA}{SOA}{service-oriented architecture}
 \newacronym{SOAP}{SOAP}{simple object access protocol}
 \newacronym{SW}{SW}{software}
@@ -152,16 +154,12 @@ The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a
 
 On the other hand, \acrlong{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
-\subsection{Libraries, frameworks and other 3rd party technologies}
-Microservices are the present-day buzzword
-    - turbulent times, new frameworks emerging and be abandoned every day
-    - https://github.com/mfornos/awesome-microservices not an extensive list of tech, but will suffice
-    - don't bother with choosing and comparing particular 3rd party tech, too small detail
-    - exctract the principcle and compare that
+\subsection{User Interface, Client applications, etc. }
+Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. 
 
-\subsection{User Interface and }
+
 \begin{verbatim}
-    - tons of presentations layers, frontends, desktop apps, mobile apps, watch apps and gadgets 
+    - tons of presentations layers, 
     - end with external API \ref{sec:ext_api}
 \end{verbatim}
 
@@ -170,7 +168,7 @@ In an~effort to~make this work conceptually coherent, there were defined essenti
 \begin{enumerate}
     \item Avoid discussion how organization influences the \acrshort{SW} and vice versa.
     \item Do not sacrifice performance and scalability for the sake of evolvability.
-    \item When recommending to use an existing technology, extract the principle and recommend that 
+    \item Limit the extent of the \acrshort{IS} to the external \acrshort{API} 
 \end{enumerate}
 
 \section{Thesis Structure and Tasks}
@@ -489,9 +487,9 @@ In this thesis the word \textit{monolith} is used exclusively with the second me
 
 \chapter{Microservice Architecture Literature Review}
 \label{sec:literature_review}
-This chapter surveys the available literature and other sources of information on the topic of \textit{\acrlong{MSA}}, \textit{evolvability of \acrlong{MSA}} and \textit{application of \acrlong{NS} to software architecture}.
+This chapter surveys the available academic literature and other sources of information on the topic of \textit{\acrlong{MSA}}.
 
-Section \ref{sec:related_work} is a comparison of scope of this thesis to state-of-the-art academic research and industry publications.
+Section \ref{sec:related_work} investigates sources of information for the topics of \textit{evolvability of \acrlong{MSA}} and \textit{application of \acrlong{NS} to software architecture}. Then it compares the scope of this thesis to state-of-the-art academic research and industry publications.
 
 The retrieved knowledge is synthesized and critically analyzed in \fullref{sec:msa_analysis}.
 
@@ -499,55 +497,87 @@ The retrieved knowledge is synthesized and critically analyzed in \fullref{sec:m
 % Literature
 % 
 \section{Available Sources}
-Microservices as an architecture style started appearing around year 2013 \cite{ms-fow-new-term-def}. Since then, research is lead by industry and practitioners. Academia is was a long time reluctant to this field (see \fullref{tab:ms_trends}).
+Microservices as an architecture style started to emerge around year 2013 \cite{ms-fow-new-term-def}. Since then, the research is lead by industry and professionals. Academia is was a long time reluctant to this field (see \fullref{tab:ms_trends}).
 
-A lot of knowledge appeared on the Internet before the science journals and is often referenced in various articles (e.g., \cite{ms-today-tomorrow, ms-taxonomy, ms-sc-collaborative-mdd, ms-sc-measuring}). To track back the original sources and to follow the most recent trends, an unorthodox category of information sources is created --- the community. This category consists of various non-reviewed Internet sources, such as personal blogs or Git repositories. Trustworthiness of those sources was assessed by cross-checking the information, reputation of the author(s), and to a lesser extent medium of publication. 
+Since a lot of know-how has been published on the Internet before the phenomenon reached scientific journals, many reviewed articles reference to those original ideas, e.g., \cite{ms-today-tomorrow, ms-taxonomy, ms-sc-collaborative-mdd, ms-sc-measuring}. To track back the original sources and to follow the most recent trends, an unorthodox category of information sources is created --- the community. 
 
+\subsection{The Community}
+The microservice boom was kicked-off by practitioners --- developers of big successful companies presenting their know-how on blogs, conference talks and even open-source \acrshort{SW} code repositories.
+
+It is almost impossible not to stumble upon the Martin Fowler's blog\footnote{https://martinfowler.com/microservices/} and blogs of companies like Netflix\footnote{https://medium.com/netflix-techblog} or Spotify\footnote{https://labs.spotify.com/}. Those are the entry-points to the heterogeneous web of cross-referenced documents, which contain fragments of the bleeding-edge expertise on the \acrshort{MSA} --- original ideas, success stories as well as failures and dead ends.
+
+Due to the unstructured nature and temporality of the content, systematic review would require an unimaginable effort. Therefore it was believed that the community will expose and reference the most interesting ideas and experiences. The lack of systematic approach was balanced out by author's proficiency in this field, and his personal interest.
+
+This category consists of various non-reviewed Internet sources. Trustworthiness of the content was assessed by cross-checking the information, reputation of the author(s), and to a lesser extent the publication medium.
+\subsubsection*{Summary}
+The community provides an unstructured but exhaustive overview of all the aspects of \acrshort{MSA}. With the exception of Martin Fowler's blog, community content misses overall visions. All of the sources also lack formal definitions, terminology or taxonomy. The community also prefers colloquial \textit{story-telling} to an unambiguous formal language. Despite all of that, it was invaluable source of most recent ideas and inspiration. 
+
+\subsection{Industry Literature}
+The professional literature publishing business offers vast numbers of books on this topic, but most of them were sorted out due to irrelevance. The criteria of the selection were:
+\begin{itemize}
+    \item analysis of \acrshort{MSA} in general (i.e., not limited to \textit{testing \acrshort{MS}} or \textit{containerization of~\acrshort{MS}})
+    \item no focus to a particular technology (i.e., not limited to \textit{building \acrshort{MS} with Spring})
+    \item focus on the software architecture domain (i.e., not dedicated to \textit{operations}, \textit{agile development} and other adjacent domains)
+    \item good reputation of author or publisher
+\end{itemize}
+
+The final list of book, that were analyzed thoroughly and are considered the essential engineering knowledge about the domain of \acrshort{MSA}:
+\begin{itemize}
+    \item Building Microservices~\cite{ms-building-ms} --- provide an comprehensive overview of \acrshort{MSA}, includes currently used patterns and best practices
+    \item Building Evolutionary Architectures~\cite{ms-evolutionary-arch} --- focuses on how to design \acrshort{SW} systems to better absorb changes (i.e. not limited to \acrshort{MSA}), includes best practices
+    \item Microservice Patterns~\cite{ms-patterns} --- focused on advanced architectural patterns, but still relevant for all the \acrshort{MSA} domain  
+    \item Tao of Microservices~\cite{ms-tao} --- provide an comprehensive overview of \acrshort{MSA}, provides another point of view, author often uses logical argumentation or statistical data to support arguments, tends to be systematical
+\end{itemize}
+
+\subsubsection*{Summary}
+The industry literature provides an overall vision, it is coherent, comprehensible and concise. It describes a lot of aspects of \acrshort{MSA}, yet it claims it is not complete. The literature also lacks formal definitions, leastwise it uses seemingly uniform terminology. All of the books are focused on \textit{getting things done} and don't see any value formal and systematic approach.
 
 \subsection{Academic Literature}
+\label{sec:acad_literature}
 
-Search engines used for the academic sources were: SpringierLink\footnote{https://link.springer.com/}, IEEE Explore\footnote{https://ieeexplore.ieee.org/},  ScienceDirect\footnote{https://www.sciencedirect.com/}, ACM Digital Library\footnote{https://dl.acm.org/}
+There were two main goals for this part of the review:
+\begin{itemize}
+    \item to get an insight to the state-of-the-art research of \acrshort{MSA}
+    \item to find some formal definitions, a terminology, or taxonomy --- the topics the two previous categories of sources do not offer
+\end{itemize}
 
-\begin{table}
+Search engines used for the academic sources were: SpringierLink\footnote{https://link.springer.com/}, IEEE Explore\footnote{https://ieeexplore.ieee.org/},  ScienceDirect\footnote{https://www.sciencedirect.com/}, ACM Digital Library\footnote{https://dl.acm.org/} in a discipline \textit{Computer Science}, \textit{IT} or similar.
+
+The retrieved articles were be divided into these categories:
+\begin{itemize}
+    \item \textbf{Introductions to MSA} --- general summaries of the \acrshort{MSA} domain~\cite{ms-sc-collaborative-mdd, ms-sc-Schwartz2017, ms-sc-Gruhn2018}, some providing formalization and definitions~\cite{ms-today-tomorrow}
+    \item \textbf{Case study} --- experience with some particular technology~(e.g., \textit{Jolie} programming language \cite{ms-sc-Guidi2017}) or domain (eCommerce~\cite{ms-sc-ecommerce}, parking system~\cite{ms-sc-parking})
+    \item \textbf{Narrow focused} --- focus on some particular aspect of \acrshort{MSA} (e.g., financial rentability~\cite{ms-sc-economics}, monitoring and testing~\cite{ms-sc-visualization})
+    \item \textbf{Literature review} --- exactly one~\cite{ms-taxonomy}
+\end{itemize}
+
+\subsubsection*{Summary}
+The literature review by Martin Garriga~\cite{ms-taxonomy} served as the orientation point for the scientific literature. Garriga's review was done using the \acrfull{SLR} method~\cite{slr-guidelines}, therefore it's considered to be complete. Alongside the exhaustive literature review, author proposes a \acrshort{MSA} taxonomy extensively covering many aspects of the architecture style.
+
+The articles in \textit{Introduction to \acrshort{MSA}} somehow summarize the expertise already published by the community or professional literature. A few of them attempt to provide formal definitions of commonly used terms, on the other hand the definitions are not respected out of the scope of the single paper.
+
+The \textit{case study} and \textit{narrow focused} introduced new information, unfortunately they were too specialized to fit into the scope of this thesis.
+
+\begin{table}[b]
 \centering
-\caption{Number of published articles with keyword \textit{microservices}}
+\caption{Number of articles including keyword \textit{microservices} per year}
 \label{tab:ms_trends}
 \begin{tabular}{r|r|r|r|r}
               & \textbf{SpringierLink}  & \textbf{IEEE Explore} & \textbf{ScienceDirect} & \textbf{ACM DL}                \\ 
 \hline
-\textbf{2013} & 5                       &  1                    & 0                       & 0                             \\ 
+2013 & 5                       &  1                    & 0                       & 0                             \\ 
 \hline
-\textbf{2014} & 5                       &  3                    & 0                       & 0                             \\ 
+2014 & 3                       &  3                    & 0                       & 0                             \\ 
 \hline
-\textbf{2015} & 30                      & 24                    & 6                       & 7                             \\ 
+2015 & 30                      & 24                    & 6                       & 7                             \\ 
 \hline
-\textbf{2016} & 125                     & 76                    & 30                      & 40                            \\ 
+2016 & 125                     & 76                    & 30                      & 40                            \\ 
 \hline
-\textbf{2017} & 218                     & 153                   & 53                      & 62                            \\ 
+2017 & 218                     & 153                   & 53                      & 62                            \\ 
 \hline
-\textbf{2018} & 350                     & 204                   & 118                     & 65                           
+2018 & 350                     & 204                   & 118                     & 65                           
 \end{tabular}
 \end{table}
-
-- taxonomie
-
-
-
-
-
-\subsection{Industry Literature}
-
-The book 
-
-
-\subsection{The Community}
-
-- blogs Fowler,
-- github repositories
-- 
-
-Due to the last 
-
 
 % 
 % Related Work
@@ -567,19 +597,16 @@ The second \acrshort{NS} book \cite{ns-toward-general-theory} contains plenty of
 Content of both chapters is highly relatable to the focus of this thesis. Although the knowledge is not effortlessly applicable to the distinctive domain of \acrlong{MSA}.
 
 \subsubsection*{Science Journals}
-The domain of \textit{evolvability of \acrlong{MSA}} seems to be a virgin territory in the scientific journals. Searches performed in databases of respected science publishers yielded exactly zero relevant results. The search results were not always an empty list due to generality of some keywords (e.g., \textit{change} or \textit{distributed system}), but the after closer examination the returned results were all considered irrelevant.
+The domain of \textit{evolvability of \acrlong{MSA}} seems to be a virgin territory in scientific journals. Searches performed in databases of available science publishers (see \ref{sec:acad_literature}) yielded exactly zero relevant results. The search results were not always an empty list (due to generality of some keywords, e.g., \textit{change} or \textit{distributed system}), but the after closer examination the returned results were all considered irrelevant.
 
-Keywords were all pairs composed of members of two sets:
+Keywords were all possible pairs composed of members of two sets:
 \begin{itemize}
     \item microservices, microservice architecture, service oriented architecture, distributed systems
     \item evolvability, change, normalized systems
 \end{itemize}
 
-
-
 \subsection{Industry Literature}
-
-
+The book \textit{Building Evolutionary Architectures}~\cite{ms-evolutionary-arch} to some extent overlaps with focus of this thesis --- as its topic is resistance of software system to change and a great portion is dedicated to \acrlong{MSA}. On the other hand, the authors of the book does not have any formal theory to back up the arguments. Every argument is based on their, undoubtedly immense, experience. 
 
 \subsection{The Community}
 Bloggers and programmers often consider \textit{evolvability} a virtue. But it is not a~frequently discussed topic and the community does not provide any relevant information on this particular problem.
@@ -906,14 +933,25 @@ The Netflix microservice architecture arises because of separation of concerns (
 \section{Evaluation of Goals}
 \todo[inline,size=\Large]{Missing section}
 
+
+
+
+
 \section{Thoughts on Utilization}
 \todo[inline,size=\Large]{Missing section}
 - NS - mathematical 
 
 
 
+
+
 \section{Future Work}
 \todo[inline,size=\Large]{Missing section}
+all done from the MSA viewpoint - only improving craftsmanship using a theory
+
+not promotion of craftsmanship to a formally complete theory
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
