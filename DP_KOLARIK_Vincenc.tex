@@ -6,6 +6,7 @@
 \usepackage{todonotes}
 \usepackage{multicol}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
+\usepackage{diagbox}
 
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \textit{\nameref*{#1}}}}
 
@@ -645,7 +646,7 @@ It's not easy to decide when the pros \acrshort{MSA} compensate the cons. Analys
 \begin{figure}
   \centering
     \includegraphics[width=0.7\textwidth]{images/microservices_productivity.png}
-    \caption{Monolith vs. Microservices --- Productivity to Complexity ratio~\cite{ms-fow-monolith-first}}
+    \caption[Monolith vs. Microservices --- Productivity to Complexity ratio]{Monolith vs. Microservices --- Productivity to Complexity ratio~\cite{ms-fow-monolith-first}}
     \label{fig:microservices_productivity}
 \end{figure}
 
@@ -764,59 +765,86 @@ Distributed architecture also necessitate additional supporting systems, such as
 \section{Inter-microservice Communication}
 \label{sec:inter-service-communication}
 
-The \textit{inter-microservice communication} is a specialization of a general problem in \acrshort{IT} called \acrfull{IPC}. In the professional literature the discussion of this specialization of the problem usually resorts to even greater specialization of discussing particular problems and patterns (e.g. \acrshort{REST} vs. \acrshort{RPC} or \acrshort{XML} vs. \acrshort{JSON}). An abstract taxonomy was needed \cite{ms-taxonomy}.
-
-
-The microservice architecture is a distributed architecture, so interprocess communication plays a key role.
-\begin{verbatim}
-    - direct vs. messaging
-    - smart endpoints vs. dumb pipes
-\end{verbatim}
+The \textit{inter-microservice communication} is a specialization of a general problem in \acrshort{IT} called \acrfull{IPC}. In the professional literature the discussion of this specialization of the problem usually resorts to even greater specialization of discussing particular problems and patterns (e.g. \acrshort{REST} vs. \acrshort{RPC} or \acrshort{XML} vs. \acrshort{JSON}). An abstract taxonomy was needed, the one used here is adapted form \cite{ms-taxonomy} and extended.
 
 \subsection{Interaction Models}
-Interaction Models refers to the communication flow among components. Possible values: synchronous, asynchronous.
 
+\textbf{Interaction model} defines how entities interact with each other in two perpendicular dimensions:
+\begin{enumerate}
+    \item whether the requester is blocked by the reply or not
+    \begin{itemize}
+        \item \textbf{synchronous} --- the requester expects an immediate response from the replier, requester can't continue execution until response is received or timeout expires
+        \item \textbf{asynchronous} --- the requester submits a request and continues execution, received response is processed independently
+    \end{itemize}
+    
+    \item the number of receivers of a request
+    \begin{itemize}
+        \item \textbf{one-to-one} ---  each request is processed by exactly one replier
+        \item \textbf{one-to-many} --- each request is processed by multiple repliers
+    \end{itemize}
+\end{enumerate}
 
-\subsection{Interaction styles}
+\begin{table}[b]
+\centering
+\caption{Communication Model to Style Matrix}
+\label{tab:styles-models}
+\begin{tabular}{r|c|c}
+                            & \textbf{one-to-one}                                                                                                                                                                    & \textbf{one-to-many}                                                                                                                                                     \\ 
+\hline
+\textbf{sync.}        & \begin{tabular}{@{\labelitemi\hspace{\dimexpr\labelsep+0.5\tabcolsep}}l}(sync.) request/response\end{tabular}                                                                                  & ---                                                                                                                                                                      \\ 
+\hline
+\textbf{async.}       & \begin{tabular}[c]{@{}l@{}}\begin{tabular}{@{\labelitemi\hspace{\dimexpr\labelsep+0.5\tabcolsep}}l}one-way notifications\\async. request/response\end{tabular}\end{tabular} & \begin{tabular}[c]{@{}l@{}}\begin{tabular}{@{\labelitemi\hspace{\dimexpr\labelsep+0.5\tabcolsep}}l}publish/async. responses\\publish/subscribe\end{tabular}\end{tabular} 
+\end{tabular}
+\end{table}
 
+\subsection{Interaction Styles}
+Since both of the model dimensions must have a value, actual communication is modelled by the carthesian product of those two dimensions --- an \textit{interaction style} (see \fullref{tab:styles-models}).
 
+The chosen interaction style has a major impact on the degree of final coupling between two requester and replier. In general, the synchronous request/response style causes severe coupling; the asynchronous is coupled very loosely.
+\begin{itemize}
+    \item \textbf{(synchronous) request/response} --- A requesting entity makes a request to a replier and waits for a response; the requester expects the response to arrive promptly, because it can't continue execution until response is received (or timeout expires).
+    \item \textbf{asynchronous request/response} --- A requesting entity makes a request to a replier, which replies occasionally. The requester is aware of the delay continues execution.
+    \item \textbf{publish/async. responses} --- A requesting entity submits a request and then waits for a certain amount of time for responses from interested repliers.
+    \item \textbf{publish/subscribe} --- An entity publishes a message to a channel; the message is consumed by zero or more subscribed consumers.
+    \item \textbf{one-way notifications} --- A requesting entity makes a request to another entity, but no reply is sent nor expected.
+\end{itemize}
 
-It’s useful to first think about the style of interaction between a service and its clients before selecting an IPC mechanism for a service’s API. Thinking first about the inter- action style will help you focus on the requirements and avoid getting mired in the details of a particular IPC technology. Also, as described in section 3.4, the choice of interaction style impacts the availability of your application. Furthermore, as you’ll see in chapters 9 and 10, it helps you select the appropriate integration testing strategy.
-There are a variety of client-service interaction styles.
+\todo{dopsat realizace - dumb pipes smart endpoints}
 
+\subsection{Service Contracts}
+Service contracts are the different means of specifying contracts (protocols) for the inter-process communication~\cite{ms-today-tomorrow}. The possible values are:
 
-
-As table 3.1 shows, they can be categorized in two dimensions. The first dimension is whether the interaction is one-to-one or one-to-many:
-- One-to-one—Each client request is processed by exactly one service
-- One-to-many—Each request is processed by multiple services.
-The second dimension is whether the interaction is synchronous or asynchronous:
-Synchronous—The client expects a timely response from the service and might even block while it waits.
-Asynchronous—The client doesn’t block, and the response, if any, isn’t necessar- ily sent immediately.
-Table 3.1 The various interaction styles can be characterized in two dimensions: one-to-one vs one-to- many and synchronous vs asynchronous.
-Synchronous —
-Asynchronous Publish/subscribe Publish/async responses
-The following are the different types of one-to-one interactions:
-Request/response—A service client makes a request to a service and waits for a response. The client expects the response to arrive in a timely fashion. It might event block while waiting. This is an interaction style that generally results in services being tightly coupled.
-Asynchronous request/response—A service client sends a request to a service, which replies asynchronously. The client doesn’t block while waiting, because the ser- vice might not send the response for a long time.
-
-
-
-\subsection{Service Interfaces}
-\textcolor{magenta}{Service Interfaces are the different means of specifying contracts (if any) for the communication of microservices [45]. Possible values: formal (defined through a formal contract), tech-tied (the interface is tied to the implemen- tation technology), ad-hoc (defined in a novel language).}
-
-
-\subsection{Data Exchange Protocol}
-Data Exchange are the protocols used to represent the communication. Possible values: REST/HTTP, RPC-alike, message queues, other.
+\begin{itemize}
+    \item \textbf{formal} --- defined through a formal, technology agnostic contract (e.g., Swagger)
+    \item \textbf{technology-tied} --- the contract is pre-defined by or tied to a specific technology (e.g., message broker client)
+    \item \textbf{ad-hoc} --- defined in a novel, ad-hoc language
+\end{itemize}
 
 % 
 % Transaction management
 % 
 \section{Transaction management}
 \label{sec:transaction_management}
+
+
+
+
+
 After that I look at the two different ways of coordinating sagas: choreography, where participants exchange events without a centralized point of con- trol, and orchestration, 
 
-\subsection{Two-Phase Commit}
-\subsection{Three-Phase Commit}
+\subsection{N-Phase Commit}
+
+The first protocol to handle handle data transactions in distributed systems was a \textbf{2-phase commit} (see \fullref{fig:two-phase}. The greatest disadvantage is that is is a blocking protocol --- if the coordinator stops responding, the subordinates may never resolve the started transactions and will be blocked until a commit or rollback command is received.
+
+To resolve the issues with blocking and failures, a \textbf{3-phase commit}~\cite{3-phase-commit} was invented. It is by design non-blocking --- it, unsurprisingly, adds one more phase to ensure all participants managed the data processing, and it places an upper bound on the amount of time required before a transaction automatically commits or aborts. This ensures the resources held by particular transaction is always released.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.45\textwidth]{images/2PC.png}
+    \caption[Two-phase Commit]{Two-phase Commit~\cite{two-phase-commit}; the names in italics are commands, an~*~indicates that the record is forced to permanent storage.}
+    \label{fig:two-phase}
+\end{figure}
+
 \subsection{The Saga Pattern}
 
 
