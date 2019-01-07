@@ -59,6 +59,7 @@
 \newacronym{ESB}{ESB}{enterprise service bus}
 \newacronym{FE}{FE}{front-end}
 \newacronym{FP}{FP}{functional programming}
+\newacronym{GUI}{GUI}{graphical user interface}
 \newacronym{IOT}{IoT}{internet of things}
 \newacronym{IPC}{IPC}{inter-process communication}
 \newacronym{IS}{IS}{information system}
@@ -155,13 +156,7 @@ The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a
 On the other hand, \acrlong{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
 \subsection{User Interface, Client applications, etc. }
-Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. 
-
-
-\begin{verbatim}
-    - tons of presentations layers, 
-    - end with external API \ref{sec:ext_api}
-\end{verbatim}
+Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. Due to the heterogeniti of the human-facing interfaces, they are out of scope of this thesis. The frontier of the examined \acrfull{IS} will be the external \acrfull{API} (see sec. \ref{sec:ext_api})
 
 \subsection{General Rules}
 In an~effort to~make this work conceptually coherent, there were defined essential principles with which this thesis is created:
@@ -513,7 +508,7 @@ This category consists of various non-reviewed Internet sources. Trustworthiness
 The community provides an unstructured but exhaustive overview of all the aspects of \acrshort{MSA}. With the exception of Martin Fowler's blog, community content misses overall visions. All of the sources also lack formal definitions, terminology or taxonomy. The community also prefers colloquial \textit{story-telling} to an unambiguous formal language. Despite all of that, it was invaluable source of most recent ideas and inspiration. 
 
 \subsection{Industry Literature}
-The professional literature publishing business offers vast numbers of books on this topic, but most of them were sorted out due to irrelevance. The criteria of the selection were:
+The professional literature publishing business offers vast numbers of books on this topic, so the long list had to be filtered. The criteria of the selection were:
 \begin{itemize}
     \item analysis of \acrshort{MSA} in general (i.e., not limited to \textit{testing \acrshort{MS}} or \textit{containerization of~\acrshort{MS}})
     \item no focus to a particular technology (i.e., not limited to \textit{building \acrshort{MS} with Spring})
@@ -528,6 +523,8 @@ The final list of book, that were analyzed thoroughly and are considered the ess
     \item Microservice Patterns~\cite{ms-patterns} --- focused on advanced architectural patterns, but still relevant for all the \acrshort{MSA} domain  
     \item Tao of Microservices~\cite{ms-tao} --- provide an comprehensive overview of \acrshort{MSA}, provides another point of view, author often uses logical argumentation or statistical data to support arguments, tends to be systematical
 \end{itemize}
+
+There are also two books freely available on the internet, both sponsored by industrial giants. \cite{ms-ca}, sponsored by CA\footnote{https://www.ca.com/us.html}, offers good overall introduction, but it's scope is completely covered by \cite{ms-building-ms}. \cite{ms-bk-familiar}, sponsored by Microsoft to promote their Azure\footnote{https://azure.microsoft.com/} platform, first 30~\% contains very brief and understandable introduction to \acrshort{MSA} domain, suitable for complete beginners. The remaining 70~\% is dedicated to Azure.
 
 \subsubsection*{Summary}
 The industry literature provides an overall vision, it is coherent, comprehensible and concise. It describes a lot of aspects of \acrshort{MSA}, yet it claims it is not complete. The literature also lacks formal definitions, leastwise it uses seemingly uniform terminology. All of the books are focused on \textit{getting things done} and don't see any value formal and systematic approach.
@@ -552,11 +549,13 @@ The retrieved articles were be divided into these categories:
 \end{itemize}
 
 \subsubsection*{Summary}
-The literature review by Martin Garriga~\cite{ms-taxonomy} served as the orientation point for the scientific literature. Garriga's review was done using the \acrfull{SLR} method~\cite{slr-guidelines}, therefore it's considered to be complete. Alongside the exhaustive literature review, author proposes a \acrshort{MSA} taxonomy extensively covering many aspects of the architecture style.
+The \textbf{literature review} by Martin Garriga~\cite{ms-taxonomy} served as the guidepost for the scientific literature until the year 2017. Garriga's review was done using the \acrfull{SLR} method~\cite{slr-guidelines}, therefore it's considered to be complete.
 
-The articles in \textit{Introduction to \acrshort{MSA}} somehow summarize the expertise already published by the community or professional literature. A few of them attempt to provide formal definitions of commonly used terms, on the other hand the definitions are not respected out of the scope of the single paper.
+Alongside the exhaustive literature review, author proposes a \acrshort{MSA} taxonomy extensively covering many aspects of the architecture style.
 
-The \textit{case study} and \textit{narrow focused} introduced new information, unfortunately they were too specialized to fit into the scope of this thesis.
+The articles in \textbf{Introduction to \acrshort{MSA}} somehow summarize the expertise already published by the community or professional literature. A few of them attempt to provide formal definitions of commonly used terms, on the other hand the definitions are not respected out of the scope of the single paper.
+
+The \textbf{case study} and \textbf{narrow focused} introduce new information, unfortunately they were too specialized to fit into the scope of this thesis.
 
 \begin{table}[b]
 \centering
@@ -609,7 +608,7 @@ Keywords were all possible pairs composed of members of two sets:
 The book \textit{Building Evolutionary Architectures}~\cite{ms-evolutionary-arch} to some extent overlaps with focus of this thesis --- as its topic is resistance of software system to change and a great portion is dedicated to \acrlong{MSA}. On the other hand, the authors of the book does not have any formal theory to back up the arguments. Every argument is based on their, undoubtedly immense, experience. 
 
 \subsection{The Community}
-Bloggers and programmers often consider \textit{evolvability} a virtue. But it is not a~frequently discussed topic and the community does not provide any relevant information on this particular problem.
+Bloggers and programmers often consider \textit{evolvability} a virtue. However, it is not a~frequently discussed topic and the community does not provide any relevant information on this particular problem.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
