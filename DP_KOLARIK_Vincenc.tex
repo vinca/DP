@@ -5,6 +5,7 @@
 \usepackage{graphicx} %graphics files inclusion
 \usepackage{todonotes}
 \usepackage{multicol}
+\usepackage{enumitem}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
 \usepackage{diagbox}
 
@@ -28,14 +29,14 @@
 % ABSTRACT & KEYWORDS
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\acknowledgements{Thanks to my family and especially my girlfriend, Tamara, for all their patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
+\acknowledgements{Thanks to my family and especially to my girlfriend, Tamara, for all their patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
 
-\abstractEN{Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.Summarize the contents and contribution of your work in a few sentences in English language.}
+\abstractEN{The thesis is engaged in evolvability of applications build using microservice architecture. It applies the rules defined by the Normalised Systems theory and discusses its impacts. The thesis thoroughly analyses the domain of microservice architecture and identifies the key architectural aspects. The aspects are examined using the Normalised Systems theory and results in a set of guidelines to improve evolvability of the microservice applications.}
+\keywordsEN{evolvability, microservice architecture, microservices, normalized systems theory, software architecture}
 
-\abstractCS{V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.V n{\v e}kolika v{\v e}t{\' a}ch shr{\v n}te obsah a p{\v r}{\' i}nos t{\' e}to pr{\' a}ce v {\v c}esk{\' e}m jazyce.}
+\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury mikroslužeb a identifikuje klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů a výsledkem je soubor pravidel pro zvýšení evolvability aplikací využívajících mikroslužeb.}
+\keywordsCS{architektura mikroslužeb, evolvabilita, mikroslužby, softwarová architektura, teorie normalizovaných systémů\clearpage}
 
-\keywordsCS{Replace with comma-separated list of keywords in Czech.}
-\keywordsEN{Replace with comma-separated list of keywords in English.}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % ACRONYMS
@@ -44,12 +45,15 @@
 \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
 \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
+\newacronym{ACD}{ACD}{atomicity, consistency, durability}
+\newacronym{ACID}{ACID}{atomicity, consistency, isolation, durability}
 \newacronym{API}{API}{application programming interface}
 \newacronym{AWS}{AWS}{Amazon Web Services}
 \newacronym{BE}{BE}{back-end}
 \newacronym{CAP}{CAP}{consistency, availability, partition tolerance (theorem)}
 \newacronym{CI}{CI}{continuous integration}
 \newacronym{CD}{CD}{continuous delivery}
+\newacronym{CRUD}{CRUD}{create, read, update, delete}
 \newacronym{DAO}{DAO}{data access object}
 \newacronym{DB}{DB}{database}
 \newacronym{DBMS}{DBMS}{database management system}
@@ -541,6 +545,8 @@ There were two main goals for this part of the review:
 
 Search engines used for the academic sources were: SpringierLink\footnote{https://link.springer.com/}, IEEE Explore\footnote{https://ieeexplore.ieee.org/},  ScienceDirect\footnote{https://www.sciencedirect.com/}, ACM Digital Library\footnote{https://dl.acm.org/} in a discipline \textit{Computer Science}, \textit{IT} or similar.
 
+\vspace{1em}
+\noindent
 The retrieved articles were be divided into these categories:
 \begin{itemize}
     \item \textbf{Introductions to MSA} --- general summaries of the \acrshort{MSA} domain~\cite{ms-sc-collaborative-mdd, ms-sc-Schwartz2017, ms-sc-Gruhn2018}, some providing formalization and definitions~\cite{ms-today-tomorrow}
@@ -671,7 +677,7 @@ This approach is the essence mentioned in the industry-oriented books \cite{ms-b
 
 \begin{figure}
   \centering
-    \includegraphics[width=0.7\textwidth]{images/architecture_inner_vs_outer.pdf}
+    \includegraphics[width=0.8\textwidth]{images/architecture_inner_vs_outer.pdf}
     \caption{Inner vs. Outer Architecture}
   \label{fig:in-vs-out-arch}
 \end{figure}
@@ -723,13 +729,12 @@ L. Peter Deutsch compiled a list called \textit{Fallacies of distributed computi
 
 All of the listed fallacies are still valid \cite{devops-fallacies}, although effects of some are were alleviated due to the advance of related technology.
 
-\textbf{The network is reliable.} has a whole \fullref{sec:resilience} dedicated to dealing with this phenomenon.
-
-\textbf{Latency is zero.} \& \textbf{Transport cost is zero.} \& \textbf{Bandwidth is infinite.} have a great impact on applications performance. The ways how to mitigate this are discussed in \fullref{sec:inter-service-communication}.
-
-\textbf{Topology doesn't change.} \& \textbf{The network is homogeneous.} \todo{odkazat na service discovery nebo nejak ukecat}
-
-\textbf{The network is secure.} \& \textbf{There is one administrator.} belong to the application operations domain, therefore are out of scope of this analysis.
+\begin{itemize}
+    \item \textbf{The network is reliable} has a whole \fullref{sec:resilience} dedicated to dealing with this phenomenon.
+    \item \textbf{Latency is zero}, \textbf{transport cost is zero}, and \textbf{bandwidth is infinite} have a great impact on applications performance. The ways how to mitigate this are discussed in \fullref{sec:inter-service-communication}.
+    \item \textbf{Topology doesn't change}, and \textbf{the network is homogeneous} \todo{odkazat na service discovery nebo nejak ukecat}
+    \item \textbf{The network is secure}, and \textbf{there is one administrator} belong to the application operations domain, therefore are out of scope of this analysis.
+\end{itemize}
 
 \subsubsection{Eventual Consistency}
 \begin{figure}
@@ -767,6 +772,8 @@ Distributed architecture also necessitate additional supporting systems, such as
 
 The \textit{inter-microservice communication} is a specialization of a general problem in \acrshort{IT} called \acrfull{IPC}. In the professional literature the discussion of this specialization of the problem usually resorts to even greater specialization of discussing particular problems and patterns (e.g. \acrshort{REST} vs. \acrshort{RPC} or \acrshort{XML} vs. \acrshort{JSON}). An abstract taxonomy was needed, the one used here is adapted form \cite{ms-taxonomy} and extended.
 
+
+
 \subsection{Interaction Models}
 
 \textbf{Interaction model} defines how entities interact with each other in two perpendicular dimensions:
@@ -779,14 +786,14 @@ The \textit{inter-microservice communication} is a specialization of a general p
     
     \item the number of receivers of a request
     \begin{itemize}
-        \item \textbf{one-to-one} ---  each request is processed by exactly one replier
-        \item \textbf{one-to-many} --- each request is processed by multiple repliers
+        \item \textbf{one-to-one} ---  each request is processed by exactly one receiver
+        \item \textbf{one-to-many} --- each request is processed by multiple receivers
     \end{itemize}
 \end{enumerate}
 
-\begin{table}[b]
+\begin{table}[!hb]
 \centering
-\caption{Communication Model to Style Matrix}
+\caption{Interaction Model to Interaction Style Matrix}
 \label{tab:styles-models}
 \begin{tabular}{r|c|c}
                             & \textbf{one-to-one}                                                                                                                                                                    & \textbf{one-to-many}                                                                                                                                                     \\ 
@@ -796,9 +803,8 @@ The \textit{inter-microservice communication} is a specialization of a general p
 \textbf{async.}       & \begin{tabular}[c]{@{}l@{}}\begin{tabular}{@{\labelitemi\hspace{\dimexpr\labelsep+0.5\tabcolsep}}l}one-way notifications\\async. request/response\end{tabular}\end{tabular} & \begin{tabular}[c]{@{}l@{}}\begin{tabular}{@{\labelitemi\hspace{\dimexpr\labelsep+0.5\tabcolsep}}l}publish/async. responses\\publish/subscribe\end{tabular}\end{tabular} 
 \end{tabular}
 \end{table}
-
 \subsection{Interaction Styles}
-Since both of the model dimensions must have a value, actual communication is modelled by the carthesian product of those two dimensions --- an \textit{interaction style} (see \fullref{tab:styles-models}).
+Since both of the model dimensions must have a value, actual communication is modelled by the carthesian product of those two dimensions --- an \textit{interaction style} (see tab. \ref{tab:styles-models}).
 
 The chosen interaction style has a major impact on the degree of final coupling between two requester and replier. In general, the synchronous request/response style causes severe coupling; the asynchronous is coupled very loosely.
 \begin{itemize}
@@ -808,8 +814,6 @@ The chosen interaction style has a major impact on the degree of final coupling 
     \item \textbf{publish/subscribe} --- An entity publishes a message to a channel; the message is consumed by zero or more subscribed consumers.
     \item \textbf{one-way notifications} --- A requesting entity makes a request to another entity, but no reply is sent nor expected.
 \end{itemize}
-
-\todo{dopsat realizace - dumb pipes smart endpoints}
 
 \subsection{Service Contracts}
 Service contracts are the different means of specifying contracts (protocols) for the inter-process communication~\cite{ms-today-tomorrow}. The possible values are:
@@ -825,48 +829,206 @@ Service contracts are the different means of specifying contracts (protocols) fo
 % 
 \section{Transaction management}
 \label{sec:transaction_management}
+A common practice in \acrshort{MSA} is the \textit{one \acrshort{DB} per microservice} pattern (see \ref{sec:persistence}). Consolidating data scattered around the swarm of microservices demands non-trivial architectural patterns. Transaction management is crucial aspect of the \acrshort{IS}, as
 
-
-
-
-
-After that I look at the two different ways of coordinating sagas: choreography, where participants exchange events without a centralized point of con- trol, and orchestration, 
+There are two sorts of transactions in the \acrshort{MSA}: those, which guarantee \acrshort{ACID}~\cite{ACID} properties (see \ref{sec:n-phase}), and those which sacrifice isolation for better latency (see \ref{sec:saga}).
 
 \subsection{N-Phase Commit}
-
-The first protocol to handle handle data transactions in distributed systems was a \textbf{2-phase commit} (see \fullref{fig:two-phase}. The greatest disadvantage is that is is a blocking protocol --- if the coordinator stops responding, the subordinates may never resolve the started transactions and will be blocked until a commit or rollback command is received.
-
-To resolve the issues with blocking and failures, a \textbf{3-phase commit}~\cite{3-phase-commit} was invented. It is by design non-blocking --- it, unsurprisingly, adds one more phase to ensure all participants managed the data processing, and it places an upper bound on the amount of time required before a transaction automatically commits or aborts. This ensures the resources held by particular transaction is always released.
+\label{sec:n-phase}
 
 \begin{figure}
   \centering
     \includegraphics[width=0.45\textwidth]{images/2PC.png}
-    \caption[Two-phase Commit]{Two-phase Commit~\cite{two-phase-commit}; the names in italics are commands, an~*~indicates that the record is forced to permanent storage.}
+    \caption[Two-phase Commit]{Two-phase Commit~\cite{two-phase-commit}. Schema from the original paper from 1986. The words in italics are commands. An~*~indicates that the record is forced to permanent storage.}
     \label{fig:two-phase}
 \end{figure}
 
+The first protocol to handle handle data transactions in distributed systems was a \textbf{2-phase commit} (see fig. \ref{fig:two-phase}). The greatest disadvantage is that is is a blocking protocol --- if the coordinator stops responding, the subordinates may never resolve the started transactions and will be blocked until a commit or rollback command is received.
+
+To resolve the issues with blocking and failures, a \textbf{3-phase commit}~\cite{3-phase-commit} was invented. Unsurprisingly, it incorporates one more phase to ensure all participants successfully processed the data, and it places an upper bound on the amount of time required before a transaction automatically commits or aborts. This ensures the resources held by particular transaction is always released.
+
 \subsection{The Saga Pattern}
+\label{sec:saga}
+Although the 3-phase commit is safe and non-blocking way to manage distributed transactions, it still considerably prolongs the response time. Users are used to the comfort of \textit{snappy} applications, therefore a different mechanism had to be adapted to maintain the low latency --- the \textit{saga}. (Surprisingly, the notion of a saga is just a few months younger than the 2-phase commit.~\cite{sagas})
 
+A saga is \textit{a sequence of local transactions executed to maintain data consistency}~\cite{sagas}. Every \textit{local transaction} must exhibit the \acrshort{ACID} properties, otherwise data inconsistencies may occur.
 
-\section{Deployment \& Operations}
-\textcolor{magenta}{Independent Deployment: Simple services are easier to deploy, and since they are autonomous, are less likely to cause system failures when they go wrong.}
+\vspace{1em}
+\noindent
+There are two ways of coordinating sagas:
+\begin{itemize}
+    \item \textbf{choreography} --- has no central point of control; participants listen to other participant's events and decides if an action should be taken or not; after their action is done, they announce it with publishing a message
+    \item \textbf{orchestration} --- a central control entity issues commands to participants what operation to perform via messages
+\end{itemize}
 
-\textcolor{magenta}{Deployment encompasses how and where services are actually hosted and deployed. Although the cloud has been adopted as the de-facto platform for microservices [44], there are several alternatives into and out of the cloud.}
+The following two sections explain the two ways on a simple example and evaluates advantages and disadvantages.
 
-\textcolor{magenta}{– Platform can be customized due to privacy, security or business constraints. Possible values: public cloud, private cloud, in-house.}
+\vspace{1em}
+\noindent
+\textbf{The examples} depicts a simple e-shop order fullfilment flow of an order (steps 3. and 4. may be executed in parallel):
+\begin{multicols}{2}
+   \begin{enumerate}[noitemsep]
+        \item an order is created
+        \item the customer's details are verified
+        \item payment is verified
+        \item warehouse starts expediting the order
+        \item order is completed
+    \end{enumerate} 
+\end{multicols}
 
-\textcolor{magenta}{– Management encompasses the responsive reaction to failures and changing environmental conditions, minimizing human intervention [7]. Possible val- ues: built-in cloud services (e.g., AWS Cloudwatch and Autoscaling), third- party services (e.g., Rightscale, New Relic), ad-hoc solutions (i.e., tied to the particular approach).}
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/saga-chor-happy.pdf}
+    \caption{Saga Pattern --- Choreography (happy flow)}
+    \label{fig:saga-chor-happy}
+\end{figure}
 
+\subsubsection{Choreography}
 
-microservices CA:
-Your microservice system is not just a byproduct of the service components that handle messages at runtime. The system behavior is also a result of the processes and tools that workers in the system use to do their job. In the microservice’s system, this usually includes tooling and processes related to software development, code deployment, maintenance, and product management.
-Choosing the right processes and tools is an important factor in producing good microservice system behavior. For example, adopting standardized processes like DevOps and Agile or tools like Docker containers can increase the changeability of your system. In Chapters 4 and 6 we will take a closer look at the processes and tools that can have the biggest impact on a microservices system.
+The \textbf{successful flow} is executed as follows (see fig.: \ref{fig:saga-chor-happy}):
+\begin{enumerate}
+    \item \textbf{Order Service} receives an external \acrshort{API} call to create an order, creates an instance of \texttt{Order} in state \texttt{ORDER PENDING} and publishes an \texttt{(A) order created} event.
+    \item \textbf{Customer Service} consumes the \texttt{(A) order created} message, verifies the customer's details and publishes an \texttt{(B) customer verified} event.
+    \item \textbf{Warehouse Service} consumes the \texttt{(A) order created} message, and creates an instance of \texttt{OrderTicket} in state \texttt{TICKET PENDING} and publishes an \texttt{(C) ticket created} event.
+    \item \textbf{Payment Service} consumes the \texttt{(A) order created}, and creates an instance of \texttt{Payment} in status \texttt{PAYMENT PENDING}.
+    \item \textbf{Payment Service} consumes \texttt{(B) customer verified}, \texttt{(C) ticket created} messages, and executes the card authorization, then it updates the status of \texttt{Payment} to \texttt{PAYMENT PROCESSED}, and publishes a \texttt{(D) payment successful} message.
+    \item \textbf{Warehouse Service} consumes the \texttt{(D) payment successful} message and updates status of \texttt{OrderTicket} to state \texttt{TICKET EXPEDITING}.
+    \item \textbf{Order Service} consumes the \texttt{(D) payment successful} message and updates status of \texttt{Order} to state \texttt{ORDER EXPEDITING}.
+\end{enumerate}
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/saga-chor-fail.pdf}
+    \caption{Saga Pattern --- Choreography (error flow)}
+    \label{fig:saga-chor-fail}
+\end{figure}
+\noindent
+The flow when \textbf{a payment fails} is executed as follows (see fig.: \ref{fig:saga-chor-fail}):
+\begin{enumerate}
+    \item \textbf{Order Service} receives an external \acrshort{API} call to create an order, creates an instance of \texttt{Order} in state \texttt{ORDER PENDING} and publishes an \texttt{(A) order created} event.
+    \item \textbf{Customer Service} consumes the \texttt{(A) order created} message, verifies the customer's details and publishes an \texttt{(B) customer verified} event.
+    \item \textbf{Warehouse Service} consumes the \texttt{(A) order created} message, and creates an instance of \texttt{OrderTicket} in state \texttt{TICKET PENDING} and publishes an \texttt{(C) ticket created} event.
+    \item \textbf{Payment Service} consumes the \texttt{(A) order created}, and creates an instance of \texttt{Payment} in status \texttt{PAYMENT PENDING}.
+    \item \textbf{Payment Service} consumes \texttt{(B) customer verified},\break\texttt{(C) ticket created} messages, and executes the card authorization, then updates the status of \texttt{Payment} to \texttt{PAYMENT CANCELLED}, and publishes a \texttt{(D) payment failed} message.
+    \item \textbf{Warehouse Service} consumes the \texttt{(D) payment failed} message and updates status of \texttt{OrderTicket} to state \texttt{TICKET CANCELLED}.
+    \item \textbf{Order Service} consumes the \texttt{(D) payment failed} message and updates status of \texttt{Order} to state \texttt{ORDER CANCELLED}.
+\end{enumerate}
+
+To allow the choreography to function properly, messages must contain a \textit{correlation identificator}, so the decoupled messages relate to the same instances of the objects. (For example the consumed messages \texttt{(A)} and \texttt{(D)} could not be associated with the same \texttt{OrderTicket} without an correlation id.)
+
+\vspace{1em}
+\noindent
+\textbf{Advantages}
+\begin{itemize}
+    \item \textbf{loose coupling} --- participants listen to events and don't need to be aware of each other
+    \item \textbf{simplicity} --- services react to events, and publish events when they manipulate business objects
+\end{itemize}
+
+\noindent
+\textbf{Disadvantages}
+\begin{itemize}
+    \item \textbf{difficult to understand} --- there's is no central place of definition of the behaviour, it is dispersed among all participants
+    \item \textbf{cyclic dependencies} --- participants subscribe to each other’s events, which might create a cyclic dependency
+    \item \textbf{risk of tight coupling} --- new functionality may cause unexpected coupling, e.g., the Warehouse Service should newly cancel the order in case some items on the order are not in stock, in that case the Order Service must subscribe to Warehouse Service messages --- which tightens the coupling between the saga participants (more in \cite{ms-com-event-chor-coupling})
+\end{itemize}
+
+\subsubsection{Orchestration}
+The orchestration pattern uses an controlling entity --- an \textit{orchestrator} --- to issue commands to other participants using the \textit{publish / async. response} interaction style. The orchestrator is the only participant responsible for executing the workflow (including the failure path) and keeping the status of the workflow instance.
+
+An orchestrator could be a dedicated service or a class inside a service containing other business logic (as is in the following example).
+
+\begin{figure}[!ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/saga-orch-happy.pdf}
+    \caption{Saga Pattern --- Orchestration (happy flow)}
+    \label{fig:saga-orch-happy}
+\end{figure}
+
+The \textbf{successful flow} is executed as follows (see fig.: \ref{fig:saga-orch-happy}):
+\begin{enumerate}
+    \item \textbf{Order Service} receives an external \acrshort{API} call to create an order, creates an instance of \texttt{CreateOrderSagaOrchestrator}.
+    \item \texttt{CreateOrderSagaOrchestrator} sends the \texttt{(1) verify customer} command to \textbf{Customer Service}.
+    \item \textbf{Customer Service} responds with \texttt{(2) customer verified} message.
+    \item \texttt{CreateOrderSagaOrchestrator} sends the \texttt{(3) create ticket} command to \textbf{Warehouse Service}.
+    \item \textbf{Warehouse Service} responds with \texttt{(4) ticket created} message.
+    \item \texttt{CreateOrderSagaOrchestrator} sends the \texttt{(5) authorize card} command to \textbf{Payment Service}.
+    \item \textbf{Payment Service} responds with \texttt{(6) card authorized} message.
+    \item \texttt{CreateOrderSagaOrchestrator} sends the \texttt{(7) authorize card} command to \textbf{Payment Service} which then continues with its own wofkflow.
+\end{enumerate}
+
+\vspace{1em}
+\noindent
+\textbf{Advantages}
+\begin{itemize}
+    \item \textbf{no cyclic dependencies} --- orchestrator as the central entity depends on the subordinate participants, but they don't depend on the orchestrator
+    \item \textbf{less coupling} --- participants react only to the messages from the orchestrator and are not coupled to the other participants
+    \item \textbf{better separation of concerns} --- participants have less reasons to change, because they don't bear the burden of executing workflow; the orchestrator doesn't execute any bussiness logic but keeping the state of the workflow
+    \item \textbf{workflow as a state machine} --- because the workflow is concetrated in one place, it could be modelled and implemeted as a state machine, simplifying the design and implementation
+\end{itemize}
+
+\noindent
+\textbf{Disadvantages}
+\begin{itemize}
+    \item \textbf{risk of God object} --- if the orchestrator is a class inside a service (as in the example), the service will tend to contain all the related workflows, easily becoming a God object~\cite{wiki-god-object}
+    \item \textbf{risk of power disbalance} --- the orchestrator must only issue commands and don't execute any business logic and use the services as \acrshort{CRUD} proxies
+\end{itemize}
+
+\subsubsection{Anomalies Caused by Lack of Isolation}
+The anomalies caused by lack of isolation encountered while executing saga are similar to anomalies of relational \acrshort{DB}s. 
+
+\vspace{1em}
+\noindent
+List of possible anomalies:
+\begin{itemize}
+    \item \textbf{lost updates} --- one transaction overwrites unfinished writes of other transaction
+    \item \textbf{dirty reads} --- one transaction reads unfinished writes of other transaction
+    \item \textbf{fuzzy/non-repeatable reads} --- two different reads of one transaction make the same query and get different results because another transaction has updated the data
+\end{itemize}
+
+\noindent
+Local transactions may be categorized into the three following categories:
+\begin{itemize}
+    \item \textbf{compensatable transactions} --- transactions, that may be rolled back (using a \textit{compensation} transaction)
+    \item \textbf{pivot transaction} --- the point of no return, only this transaction may fail irreversibly,
+    \item \textbf{retriable transactions} --- transactions guaranteed to eventually succeed (compensated by retrial)
+\end{itemize}
+
+In order to be able to compensate the the whole transaction, the local transactions must be executed in the three phases: \textit{compensatable} --- \textit{pivot} --- \textit{retriable}. \textit{Compensatable} and \textit{retriable} phases may execute the local transactions in random order, even in parallel. The pivot transaction must be executed alone. (For an example of categorization of the local transaction of saga is in tab. \ref{tab:saga_breakdown})
+
+\begin{table}
+\centering
+\caption{Saga to Local Transaction Breakdown}
+\label{tab:saga_breakdown}
+\begin{tabular}{lllll}
+\textbf{cat.} & \textbf{\#} & \textbf{Service} & \textbf{Transaction} & \textbf{Compensation Transaction}  \\ 
+\hline\hline
+C             & 1           & Order            & createOrder()        & cancelOrder()                      \\
+C             & 2           & Customer         & verifyCustomer()     & ---                                \\
+C             & 3           & Warehouse        & createTicket()       & cancelTicket()                     \\
+C             & 4           & Payment          & createPayment()      & cancelPayment()                    \\ 
+\hline
+P             & 5           & Payment          & authorizeCard()      & ---                                \\ 
+\hline
+R             & 6           & Warehouse        & approveTicket()      & ---                                \\
+R             & 7           & Order            & approveOrder()       & ---                               
+\end{tabular}
+\end{table}
 
 % 
 % Persistence
 % 
 \section{Persistence}
+\label{sec:persistence}
 
+To achieve loose coupling between services 
+
+
+
+
+
+
+
+A key characteristic of the microservice architecture is that the services are loosely coupled and communicate only via APIs. One way to achieve loose coupling is by each service having its own datastore.
 
 
 
@@ -877,34 +1039,6 @@ Choosing the right processes and tools is an important factor in producing good 
 - one DB per MS pattern 
 
 One key challenge when using messaging is atomically updating the database and publishing a message. A good solution is to use the Transactional outbox pattern and first write the message to the database as part of the database trans- action. A separate process then retrieves the message from the database using either the Polling publisher pattern or the Transaction log tailing pattern and publishes it to the message broker.
-
-
-
-\subsection{Scalability / Elasticity}
-\label{sec:scalability}
-– Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
-
-
-
-\subsection{Availability and Resilience}
-\label{sec:resilience}
-Successful companies that adapted \acrshort{MSA} always design their systems for failure. 
-Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
-
-
-
-\textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
-
-
-
-Of course you can do a great deal to mitigate this problem. Firstly you can increase the granularity of your calls, so you make fewer of them. This complicates your programming model, you now have to think of how to batch up your inter-service interactions. It will also only get you so far, as you are going to have to call each collaborating service at least once.
-
-The second mitigation is to use asynchrony. If make six asynchronous calls in parallel you're now only as slow as the slowest call instead of the sum of their latencies. This can be a big performance gain, but comes at another cognitive cost. Asynchronous programming is hard: hard to get right, and much harder to debug. But most microservice stories I've heard need asynchrony in order to get acceptable performance.
-
-Right after speed is reliability. You expect in-process function calls to work, but a remote call can fail at any time. With lots of microservices, there's even more potential failure points. Wise developers know this and design for failure. Happily the kinds of tactics you need for asynchronous collaboration also fit well with handling failure and the result can improve resiliency. That's not much compensation however, you still have the extra complexity of figuring out the consequences of failure for every remote call.
-
-
-
 % 
 % External API Design
 % 
@@ -924,9 +1058,52 @@ Right after speed is reliability. You expect in-process function calls to work, 
 
 \missingfigure{JWT vs. Session authentication call diagram}
 
+
+
+
+\subsection{Operation Aspects}
+\subsubsection{Deployment \& Operations}
+
+This section analyses how the actual microservices are deployed to execution environments and how they are 
+
+
+\todo{rychle dopsat nebo vyhodit}
+\textcolor{magenta}{Independent Deployment: Simple services are easier to deploy, and since they are autonomous, are less likely to cause system failures when they go wrong.}
+
+\textcolor{magenta}{Deployment encompasses how and where services are actually hosted and deployed. Although the cloud has been adopted as the de-facto platform for microservices [44], there are several alternatives into and out of the cloud.}
+
+\textcolor{magenta}{– Platform can be customized due to privacy, security or business constraints. Possible values: public cloud, private cloud, in-house.}
+
+\textcolor{magenta}{– Management encompasses the responsive reaction to failures and changing environmental conditions, minimizing human intervention [7]. Possible val- ues: built-in cloud services (e.g., AWS Cloudwatch and Autoscaling), third- party services (e.g., Rightscale, New Relic), ad-hoc solutions (i.e., tied to the particular approach).}
+
+
+\subsubsection{Scalability / Elasticity}
+\label{sec:scalability}
+– Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
+
+
+
+\subsubsection{Availability and Resilience}
+\label{sec:resilience}
+Successful companies that adapted \acrshort{MSA} always design their systems for failure. 
+Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
+
+
+
+\textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
+
+
+
+Of course you can do a great deal to mitigate this problem. Firstly you can increase the granularity of your calls, so you make fewer of them. This complicates your programming model, you now have to think of how to batch up your inter-service interactions. It will also only get you so far, as you are going to have to call each collaborating service at least once.
+
+The second mitigation is to use asynchrony. If make six asynchronous calls in parallel you're now only as slow as the slowest call instead of the sum of their latencies. This can be a big performance gain, but comes at another cognitive cost. Asynchronous programming is hard: hard to get right, and much harder to debug. But most microservice stories I've heard need asynchrony in order to get acceptable performance.
+
+Right after speed is reliability. You expect in-process function calls to work, but a remote call can fail at any time. With lots of microservices, there's even more potential failure points. Wise developers know this and design for failure. Happily the kinds of tactics you need for asynchronous collaboration also fit well with handling failure and the result can improve resiliency. That's not much compensation however, you still have the extra complexity of figuring out the consequences of failure for every remote call.
+
 \subsection{Observability}
 \subsubsection{Monitoring}
 \subsubsection{Logging}
+
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -1002,7 +1179,7 @@ not promotion of craftsmanship to a formally complete theory
 		.1 readme.txt\DTcomment{the file with CD contents description}.
         .1 Figures\DTcomment{source files of figures used in the thesis}.
         .1 Text\DTcomment{thesis text}.
-            .2 DP\_Kolarik\_Vincenc.pdf\DTcomment{PDF version of~the~thesis}.
+            .2 DP Kolarik Vincenc.pdf\DTcomment{PDF version of~the~thesis}.
             .2 src\DTcomment{\LaTeX{} source codes of~the~thesis}.
     }
 
