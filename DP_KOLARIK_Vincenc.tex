@@ -303,6 +303,7 @@ It is a~formalization of~instinctive \emph{avoiding the~transition to an undefin
 An example of a~manifestation of~this design theorem is a~database transaction mechanism. The~commit (rollback) action guarantees atomic transition from one defined state to~another.
 
 \subsection{Impacts on Software Development}
+\label{sec:ns-impacts}
 The postulate in section \ref{sec:theorems} implies all the \textit{design theorems for stable software} must be consistently followed. The~\acrshort{SW} artifact must be free of~instabilities at compile time, deployment time and run time. It requires the~code base to~be entirely error free, which is not an~easy task to~achieve.
 
 Other inconveniences are inevitably encountered during the development of \acrshort{SW} according to \acrshort{NS}. For example the~\emph{data} and \emph{action version transparency} rules also imply a~lot of~\textit{boilerplate} (non-logic) code (e.g., wrapper classes, accessor methods). For a~human programmer writing code complying with \acrshort{NS} is annoying and frustrating.
@@ -1135,7 +1136,7 @@ Aspects were extracted as the outline of the chapter \ref{sec:msa_analysis} and 
     \item[\faCheck] \textbf{External APIs} --- will be discussed separately.
     \item[\faRemove] \textbf{Deployment and Operations} --- operations fall out of scope of this thesis; the interesting topics related to this subdomain are listed in \fullref{sec:ccc}.
     \item[\faRemove] \textbf{Scalability / Elasticity} --- scalability is a matter of operations, therefore does not fall into the scope of this thesis. The only requirements to the microservice is to be transactional and stateless (both are discussed in in \fullref{sec:appl:nphase} and in \fullref{sec:appl:saga}).
-    \item[\faRemove] \textbf{Availability and Resilience} --- both requirements are essential for \acrshort{MSA}, t
+    \item[\faRemove] \textbf{Availability and Resilience} --- both properties are essential for \acrshort{MSA}, therefore are taken into account at every decision or proposal. Although improving both qualities is a matter of operations, therefore out of scope of this thesis.
     \item[\faCheck] \textbf{Observability} --- will be discussed together with other topics in \fullref{sec:ccc}.
     \item[\faCheck] \textbf{Security} --- will be discussed together with other topics in \fullref{sec:ccc}.
     \item[\faCheck] \textbf{Service Discovery} --- will be discussed together with other topics in \fullref{sec:ccc}.
@@ -1157,12 +1158,31 @@ A \acrshort{NS} element is a high-level design pattern, designed to provide a ba
     \end{itemize}
 \end{quote}
 
+\begin{figure}
+  \centering
+    \includegraphics[width=0.7\textwidth]{images/building_element.png}
+    \caption{An example of \acrshort{NS} building element}
+    \label{fig:ns-building-element}
+\end{figure}
+
+- map services 1:1
+
+-trigger element\footnotemark
+
+\footnotetext{This is probably the point where a veteran software engineer can't contain his indignation anymore, and stops reading while yelling: \textit{This is ridiculous, spinning up a Docker container just to have a configured cron running somewhere! What a waste!} If you are one of those, please, hold on. This suboptimal use of system resources will hopefully result in infinite evolvability.}
+
+- not possibele to generate the skeleton form a 
+
+-althou tooling readyt to encapsulate the bussiness logic in service template providing all the ccc out of the box (as discussed in \fullref{sec:ccc}) and automate it via ci and cd tools, no additional tools development is needed 
+
+
 
 \section{Microservice Scope}
 - change drivers
 - do one thing and do it right
 - the class should have only one reason to change
 
+- resorts to the structure mentioned above guarantees the change drivers to be isolated
 
 
 \section{Inner vs. Outer Architecture}
@@ -1173,9 +1193,16 @@ A \acrshort{NS} element is a high-level design pattern, designed to provide a ba
 \section{Cross-Cutting Concerns}
 \label{sec:ccc}
 
+Each \acrshort{NS} element consists of business logic encapsulated in a 
+
+
+- 
+
 
 \section{N-phase commits}
 \label{sec:appl:nphase}
+
+
 
 \section{Saga Pattern}
 \label{sec:appl:saga}
@@ -1194,7 +1221,12 @@ A \acrshort{NS} element is a high-level design pattern, designed to provide a ba
 
 \section{Polyglotism and Technological Diversity}
 
+
+- as long as we are able to fullfill th e
 \section{Persistence}
+The one DB per \acrshort{MS} pattern is perfectly compliant with the \textit{separation of concerns} design theorem
+
+- there are database migration tool like flyway
 
 \section{External APIs}
 - dam jeste pohovoreni o GQL vs rest vs anything else?
@@ -1206,9 +1238,48 @@ A \acrshort{NS} element is a high-level design pattern, designed to provide a ba
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \chapter{Guidelines for Stable Microservice Architecture}
 \label{sec:guidelines}
-\todo[inline,size=\Large]{Missing whole chapter}
 
 
+\section{Microservice Building Element}
+This section proposes the \textit{microservices building block}. It is an analogy to the \acrshort{NS} building element (see \ref{fig:ns-building-element}. Specializations of this building block are the Normalizes elements for \acrshort{MSA} (see sec. \ref{sec:msa-nor-elem}). There are several responsibilities this block fullfils:
+\begin{itemize}
+    \item provides an execution environment for the business logic
+    \item provides adapters for inbound and outbound ports, so the business logic is reachable by and can reach other microservices 
+    \item provides adapters for inbound and outbound ports, so the microservices are able to control the cross-cutting concerns it needs to reach (e.g., persistence access, centralized log output)
+    \item handles the infrastructure cross-cutting concerns and shields the business logic from them (e.g., health-check, access management, service discovery client)
+\end{itemize}
+
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.8\textwidth]{images/proposed-ms-architecture.pdf}
+    \caption{Proposed \textit{building block} of \acrshort{MSA}}
+    \label{fig:proposed-building-block}
+\end{figure}
+
+\noindent
+\textbf{The Layers}
+\begin{itemize}[topsep=0.5em]
+    \item \textbf{bussiness logic layer} --- contains the custom functionality 
+    \item \textbf{adapter layer} --- provides a bridge between the business logic and the 
+    \item \textbf{cross-cutting concern contract} --- decouples the cross-cutting concerns from the infrastructure serving them (e.g., health-check, logging, access management); preferably technology agnostic
+\end{itemize}
+\break
+\noindent
+\textbf{The Contract categories}
+\begin{itemize}[topsep=0.5em]
+    \item \textbf{port -- adapter contracts} --- decouples the business logic from the encapsulating framework; bound to programming language (or a group of compatible languages, e.g. Java, Kotlin, Scala); encapsulation framework may be swapped as long as the appropriate adapters are implemented
+    \item \textbf{inter-microservice contracts} --- decouples the microservices themselves; it bound to the interaction styles (e.g., request/response, publish/subscribe); preferably technology agnostic
+    \item \textbf{cross-cutting concern contracts} --- decouples the cross-cutting concerns from the infrastructure serving them (e.g., health-check, logging, access management); preferably technology agnostic
+\end{itemize}
+
+
+
+
+\section{Normalized Elements for MSA}
+\label{sec:msa-nor-elem}
+
+rozebrat ty jednotlivý typy
 
 
 
