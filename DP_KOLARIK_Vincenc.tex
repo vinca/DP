@@ -98,6 +98,7 @@
 %%                                                        %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetLabelAlign{center}{\hss#1\hss}
 \begin{document}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -129,9 +130,9 @@ The goal of this work is to streamline the best practices of the industry using 
 \section{Goals}
 According to~a~thesis assignment the~following goals were set:
 \begin{itemize}
-	\item Analyze the current state-of-the-art design methods and industrial applications of microservice architecture.
+	\item Analyze the current state-of-the-art design methods and industrial applications of \acrfull{MSA}.
 	\item Identify key features and the most significant challenges encountered in~the~industry.
-	\item Discuss compliance of the currently used methods with \acrlong{NS} and explore possibilities for improvements using \acrshort{NS}. 
+	\item Discuss compliance of the currently used methods with \acrfull{NS} and explore possibilities for improvements using \acrshort{NS}. 
 	\item Formulate guidelines for designing microservices based on the results from the previous chapter, discuss them and demonstrate them on~a~case study if reasonable.
 \end{itemize}
 
@@ -146,14 +147,14 @@ There's also a sociological observation called \textit{Conway's law} that states
     Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure.~\cite{conways-law}
 \end{quote}
 
-The bi-directional influence between software architecture and the organization that creates it is a remarkable topic, and it would be unwise to ignore it while running a business. Despite that, it will be ignored in this thesis, as it would broaden its scope excessively. The \acrshort{NS} literature \cite{ns-recreating, ns-toward-general-theory} has the same attitude and avoids discussion how the organization influences the \acrshort{SW} and vice versa.
+The bi-directional influence between software architecture and the organization that creates it is a remarkable topic, and it would be unwise to ignore it while running a business. Despite that, it will be ignored in this thesis, as it would broaden its scope excessively. The \acrshort{NS} literature \cite{ns-recreating, ns-toward-general-theory} has the same attitude and avoids discussion how the organization influences the \acrfull{SW} and vice versa.
 
-\subsection{Performance aspects}
+\subsection{Performance Aspects}
 The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a system to be free from combinatorial effects, i.e., to be indefinitely evolvable. Until now, the industrial \acrlong{SW} projects \cite{ns-it-isnt-different, ns-exploring-defence} are focused on the evolvability of the \acrshort{SW} artifact and does not value any other non-functional requirement as much as evolvability.
 
-On the other hand, \acrlong{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
+On the other hand, the notion of a \acrfull{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
-\subsection{User Interface, Client applications, etc. }
+\subsection{User Interface, Client Applications, etc. }
 Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. Due to the heterogeniti of the human-facing interfaces, they are out of scope of this thesis. The frontier of the examined \acrfull{IS} will be the external \acrfull{API} (see sec. \ref{sec:ext_api})
 
 \subsection{General Rules}
@@ -630,16 +631,15 @@ Bloggers and programmers often consider \textit{evolvability} a virtue. However,
 
 Microservice architecture is described in process view --- simply as a collection of processes communicating with each other. Although logical and development views may be organized organized in any way, \acrshort{MSA} strongly endorses one rule: share nothing with others. This extremely radical decoupling allows swift development of independently deployable artifacts.
 
-This architecture style is exploited by leading companies in the online business --- e.g., Amazon, Ebay, Netflix, Spotify, Uber, SoundCloud and many more \cite{ms-who-is-using}. The enterprises praise adoption of this style due to its two crucial features: easy \textit{scalability} to their extreme dimensions \cite{ms-ebay-scalability-best-practices, ms-ebay-ds-scalability, ms-spotify-horizontal-scaling, ms-spotify}, and rapid development of new features --- \textit{evolvability}. Modern enterprises are able to create new functionality on an unprecedented rates - online marketplace Etsy is able to release new features 50 times a day and Amazon deploys new code to production every 11.3 seconds \cite{devops-deploying-hourly}.
+This architecture style is exploited by leading companies in the online business --- e.g., Amazon, Ebay, Netflix, Spotify, Uber, SoundCloud and many more \cite{ms-who-is-using}. The enterprises praise adoption of this style due to its two crucial features: easy \textit{scalability} to their extreme dimensions \cite{ms-ebay-scalability-best-practices, ms-ebay-ds-scalability, ms-spotify-horizontal-scaling, ms-spotify}, and rapid development of new features --- \textit{evolvability}. Modern enterprises are able to create new functionality on an unprecedented rates - online marketplace Etsy is able to release new features 50 times a day and Amazon deploys new code to production every 11.7 seconds \cite{devops-deploying-hourly}.
 
-%Independence is the essential principle of \acrshort{MSA}. Not only it allows teams to deploy their artifacts independently, it allows them to choose any 3rd party technology they want to use. Teams handle th 
-\todo{independence? rozepsat?}
+Loose coupling and independently deployable artifacts are the essential principles of \acrshort{MSA}. Not only it allows teams to deploy their artifacts services without waiting for other teams, it allows them to choose any 3rd party technology they want to use. Teams handle th 
 
 In spite of all the listed advantages, \acrlong{MSA} is no silver bullet. This style adds a lot of obvious as well as hidden complexity --- complicated operations, asynchronous communication, fallacies of distributed computing \cite{devops-fallacies}, changes in organization necessary to deal with \textit{Conway's law} \cite{conways-law}. (More in \fullref{sec:tradeoffs}).
 
 It's not easy to decide when the pros \acrshort{MSA} compensate the cons. Analysis of the proper decision making is too complex to fit in scope of this thesis, but the general rule of thumb is:
 \begin{quote}
-    do not even consider microservices unless you have a system that's too complex to manage as a monolith.~\cite{ms-fow-monolith-first}
+    Do not even consider microservices unless you have a system that's too complex to manage as a monolith.~\cite{ms-fow-monolith-first}
 \end{quote}
 
 \begin{figure}
@@ -726,7 +726,7 @@ All of the listed fallacies are still valid \cite{devops-fallacies}, although ef
 \begin{itemize}
     \item \textbf{The network is reliable} has a whole \fullref{sec:resilience} dedicated to dealing with this phenomenon.
     \item \textbf{Latency is zero}, \textbf{transport cost is zero}, and \textbf{bandwidth is infinite} have a great impact on applications performance. The ways how to mitigate this are discussed in \fullref{sec:inter-service-communication}.
-    \item \textbf{Topology does not change}, and \textbf{the network is homogeneous} \todo{odkazat na service discovery nebo nejak ukecat}
+    \item \textbf{Topology does not change}, and \textbf{the network is homogeneous} is mitigated using e.g. service discovery, discussed in \fullref{sec:operations}
     \item \textbf{The network is secure}, and \textbf{there is one administrator} belong to the application operations domain, therefore are out of scope of this analysis.
 \end{itemize}
 
@@ -1057,6 +1057,7 @@ One key challenge when using messaging is atomically updating the database and p
 
 \subsection{Operation Aspects}
 \subsubsection{Deployment \& Operations}
+\label{sec:operations}
 \todo{dopsat dopiče}
 This section analyses how the actual microservices are deployed to execution environments and how they are 
 
@@ -1117,21 +1118,24 @@ Right after speed is reliability. You expect in-process function calls to work, 
 In this chapter, key aspects of \acrshort{MSA} are extracted from \fullref{sec:msa_analysis} and the \acrfull{NS} is applied. Section \ref{sec:selected_aspects} contains list of identified subdomains and discussion whether they will be subject to further analysis. The section \ref{sec:mapping_ns_elems} attempts to map the patterns for normalized elements to the notions of \acrshort{MSA}. Sections following the sec. \ref{sec:mapping_ns_elems} closely examine the respective subdomains.
 
 \section{Selected Aspects}
+
+Aspects were extracted as the outline of the chapter \ref{sec:msa_analysis} and modified. The topics selected for further discussion are marked with check mark (\faCheck), topics rejected are marked with a cross (\faRemove) and the decision is briefly justified.
+
 \label{sec:selected_aspects}
-\begin{itemize}
-    \item[\faCheck] \textbf{Microservice scope} --- a crucial question which is answered only with a very vague guidelines. Will be discussed separately.
+\begin{itemize}[leftmargin=35pt,align=center]
+    \item[\faCheck] \textbf{Microservice scope} --- a crucial question which is now answered only with a very vague guidelines. Will be discussed separately.
     \item[\faCheck] \textbf{Inner vs. outer architecture} --- often neglected, yet important topic, closely related to \textit{separation of concerns}. Will be discussed separately.
-    \item[\faCheck] \textbf{Technological diversity, polyglotism, etc.} --- one of the most hyped benefits of \acrshort{MSA} and potential source of complexity.
+    \item[\faCheck] \textbf{Polyglotism, technological diversity} --- one of the most hyped benefits of \acrshort{MSA} and potential source of complexity. Will be discussed separately.
     \item[\faRemove] \textbf{Trade-offs of distributed system} --- although this is a set of important topics, it is actually only a list of essential problems with distributed architecture. Solutions to those problems are discussed in \fullref{sec:fallacies}. Therefore this topic won't be discussed separately.
-    \item[\faRemove] \textbf{Interaction models and styles} --- only a taxonomy, does not represent real patterns or problems. The real communication complexity is discussed in \fullref{sec:appl:nphase} as well as \fullref{sec:appl:saga}. 
-    \item[\faCheck] \textbf{Service contracts} --- \todo{nevim}
+    \item[\faRemove] \textbf{Interaction models and styles} --- only a taxonomy, does not represent real patterns or problems. The real communication complexity is discussed in \fullref{sec:appl:nphase} as well as in \fullref{sec:appl:saga}. 
+    \item[\faCheck] \textbf{Service contracts} --- will be discussed in \fullref{sec:appl:inout} and \fullref{sec:ccc}.
     \item[\faCheck] \textbf{N-phase commits} --- will be discussed separately.
     \item[\faCheck] \textbf{Saga pattern} --- will be discussed separately.
     \item[\faCheck] \textbf{Persistence} --- will be discussed separately.
     \item[\faCheck] \textbf{External APIs} --- will be discussed separately.
     \item[\faRemove] \textbf{Deployment and Operations} --- operations fall out of scope of this thesis; the interesting topics related to this subdomain are listed in \fullref{sec:ccc}.
-    \item[\faRemove] \textbf{Scalability / Elasticity} --- scalability is matter of operations, therefore does not fall into the scope of this thesis. The only requirements to the  
-    \item[\faRemove] \textbf{Availability and Resilience} --- 
+    \item[\faRemove] \textbf{Scalability / Elasticity} --- scalability is a matter of operations, therefore does not fall into the scope of this thesis. The only requirements to the microservice is to be transactional and stateless (both are discussed in in \fullref{sec:appl:nphase} and in \fullref{sec:appl:saga}).
+    \item[\faRemove] \textbf{Availability and Resilience} --- both requirements are essential for \acrshort{MSA}, t
     \item[\faCheck] \textbf{Observability} --- will be discussed together with other topics in \fullref{sec:ccc}.
     \item[\faCheck] \textbf{Security} --- will be discussed together with other topics in \fullref{sec:ccc}.
     \item[\faCheck] \textbf{Service Discovery} --- will be discussed together with other topics in \fullref{sec:ccc}.
@@ -1142,13 +1146,19 @@ In this chapter, key aspects of \acrshort{MSA} are extracted from \fullref{sec:m
 \section{Mapping NS Elements to Microservice Architecture}
 \label{sec:mapping_ns_elems}
 
+A \acrshort{NS} element is a high-level design pattern, designed to provide a basic functionality of an \acrlong{IS}~\cite{ns-toward-general-theory}. The \acrshort{NS} elements are aptly defined in~\cite{ns-in-practice}:
+\begin{quote}
+    \begin{itemize}
+        \item \textbf{data elements}, to represent data variables and structures, and including support for cross-cutting concerns such as remote access and persistence support;
+        \item \textbf{task elements}, to represent processing instructions, and including support for cross-cutting concerns such as remote access, logging and access control;
+        \item \textbf{flow elements}, to handle control flow and orchestrations (i.e., the execution of a number of task elements on a specific target data element in a stateful way);
+        \item \textbf{connector elements}, to allow the interaction with external systems (via a user interface or another application);
+        \item \textbf{trigger elements}, to offer periodic clock-like control and checking whether a task element needs to be triggered.
+    \end{itemize}
+\end{quote}
 
 
-Separation of Concerns
-The Netflix microservice architecture arises because of separation of concerns (SoC) in the engineering team organization. Each team owns a group of services. They own building, operating, and evolving those services, and present a stable agreed interface and service level agreement to the consumers of those services. Invoking Conway’s law, an organization structured with independent self-contained cells of engineers will naturally build what is now called a microservice architecture.
-
-
-\section{Microservice scope}
+\section{Microservice Scope}
 - change drivers
 - do one thing and do it right
 - the class should have only one reason to change
@@ -1156,10 +1166,13 @@ The Netflix microservice architecture arises because of separation of concerns (
 
 
 \section{Inner vs. Outer Architecture}
+\label{sec:appl:inout}
 -> define strong boundaries, so the context doesnt leak between these two
 
 
-\section{Polyglot}
+\section{Cross-Cutting Concerns}
+\label{sec:ccc}
+
 
 \section{N-phase commits}
 \label{sec:appl:nphase}
@@ -1176,8 +1189,15 @@ The Netflix microservice architecture arises because of separation of concerns (
 - dumb pipes vs. smart endpoints
 
 
-\section{Cross-Cutting Concerns}
-\label{sec:ccc}
+
+
+
+\section{Polyglotism and Technological Diversity}
+
+\section{Persistence}
+
+\section{External APIs}
+- dam jeste pohovoreni o GQL vs rest vs anything else?
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
@@ -1217,12 +1237,12 @@ The Netflix microservice architecture arises because of separation of concerns (
 	\item \textit{Examine compliance of \acrlong{MSA} to \acrlong{NS}}
 
 	\vspace{0.5em}	
-	Accomplished --- the compliance with \acrlong{NS} was 
+	Accomplished --- the compliance with \acrlong{NS} was examined and discovered improvements were suggested.
 
 	\item \textit{Summarize design guidelines for \acrshort{MSA}}
 	
 	\vspace{0.5em}
-	Accomplished --- a set of design guidelines was proposed and demonstrated on suitable examples. Since the design guidelines are isolated suggestions, and not a consistent methodology, the originally proposed case study was considered unnecessary. 
+	Accomplished (with goal alteration) --- a set of design guidelines was proposed and demonstrated on suitable examples. Since the design guidelines are isolated suggestions, and not a consistent methodology as originally expected, the initially proposed case study was considered unnecessary. 
 
 \end{itemize}
 
@@ -1230,13 +1250,14 @@ The Netflix microservice architecture arises because of separation of concerns (
 \todo[inline,size=\Large]{Missing section}
 
 
-
+- the results are limited and lack the formality and completeness of normalized systems
 
 
 \section{Future Work}
 \todo[inline,size=\Large]{Missing section}
 
 \todo{pofnukat si, ze to nebylo matematicky, konzistentni, prilis velky tema a }
+
 
 
 - NS - mathematical 
