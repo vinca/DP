@@ -8,6 +8,7 @@
 \usepackage{enumitem}
 \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel,nopostdot]{glossaries}
 \usepackage{diagbox}
+\usepackage{fontawesome}
 
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \textit{\nameref*{#1}}}}
 
@@ -34,7 +35,7 @@
 \abstractEN{The thesis is engaged in evolvability of applications build using microservice architecture. It applies the rules defined by the Normalised Systems theory and discusses its impacts. The thesis thoroughly analyses the domain of microservice architecture and identifies the key architectural aspects. The aspects are examined using the Normalised Systems theory and results in a set of guidelines to improve evolvability of the microservice applications.}
 \keywordsEN{evolvability, microservice architecture, microservices, normalized systems theory, software architecture}
 
-\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury mikroslužeb a identifikuje klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů a výsledkem je soubor pravidel pro zvýšení evolvability aplikací využívajících mikroslužeb.}
+\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury mikroslužeb a identifikuje klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů a výsledkem je soubor pravidel pro zlepšení evolvability aplikací využívajících mikroslužeb.}
 \keywordsCS{architektura mikroslužeb, evolvabilita, mikroslužby, softwarová architektura, teorie normalizovaných systémů\clearpage}
 
 
@@ -58,7 +59,7 @@
 \newacronym{DB}{DB}{database}
 \newacronym{DBMS}{DBMS}{database management system}
 \newacronym{DDD}{DDD}{domain driven design}
-\newacronym{DRY}{DRY}{don't repeat yourself}
+\newacronym{DRY}{DRY}{do not repeat yourself}
 \newacronym{DTO}{DTO}{data transfer object}
 \newacronym{EA}{EA}{enterprise architecture}
 \newacronym{ESB}{ESB}{enterprise service bus}
@@ -109,9 +110,9 @@
 
 Combining Normalized Systems and microservices is like making two worlds collide. The virtuous academia, which favors sound theories and logical proofs, crashes with the vibrant and restless software development industry, which prefers trial and error to a formulation of a hypothesis.
 
-Normalized systems specify how to build evolvable systems --- systems that will be able to absorb changes with least effort for an infinite amount of time.
+Normalized systems specify how to build \textit{evolvable} systems --- systems that will be able to absorb changes with least effort for an infinite amount of time.
 
-The community around microservices does not use the term evolvability. Nevertheless, in the industry where microservices are widespread, business agility is the key to success. There’s clear evidence that frequent software releases are correlated with good business performance.\footnote{https://puppet.com/resources/whitepaper/2017-state-of-devops-report} Companies like Spotify and Netflix invest tremendous effort to improve their agile software development, focusing on shortening lead time. The technology and retail behemoth Amazon.com deploys new code to production systems every 11.7 seconds on average.\footnote{https://www.youtube.com/watch?v=dxk8b9rSKOo} All of this is an obvious indication of a need for evolvability.
+The community around microservices does not use the term evolvability. Nevertheless, in the industry where microservices are widespread, business agility is the key to success. There is clear evidence that frequent software releases are correlated with good business performance.\footnote{https://puppet.com/resources/whitepaper/2017-state-of-devops-report} Companies like Spotify and Netflix invest tremendous effort to improve their agile software development, focusing on shortening lead time. The technology and retail behemoth Amazon.com deploys new code to production systems every 11.7 seconds on average.\footnote{https://www.youtube.com/watch?v=dxk8b9rSKOo} All of this is an obvious indication of a need for evolvability.
 
 Both worlds are utilizing similar concepts --- high modularity, strict separation of concerns, high cohesion and low coupling --- just to name some. However, the way the tools are used vary.
 
@@ -148,7 +149,7 @@ There's also a sociological observation called \textit{Conway's law} that states
 The bi-directional influence between software architecture and the organization that creates it is a remarkable topic, and it would be unwise to ignore it while running a business. Despite that, it will be ignored in this thesis, as it would broaden its scope excessively. The \acrshort{NS} literature \cite{ns-recreating, ns-toward-general-theory} has the same attitude and avoids discussion how the organization influences the \acrshort{SW} and vice versa.
 
 \subsection{Performance aspects}
-The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a system to be free from combinatorial effects, i.e., to be indefinitely evolvable. Until now, the industrial \acrlong{SW} projects \cite{ns-it-isnt-different, ns-exploring-defence} are focused on the evolvability of the \acrshort{SW} artifact and doesn't value any other non-functional requirement as much as evolvability.
+The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a system to be free from combinatorial effects, i.e., to be indefinitely evolvable. Until now, the industrial \acrlong{SW} projects \cite{ns-it-isnt-different, ns-exploring-defence} are focused on the evolvability of the \acrshort{SW} artifact and does not value any other non-functional requirement as much as evolvability.
 
 On the other hand, \acrlong{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
@@ -342,7 +343,7 @@ The \textit{4+1 View Model} was designed by Philippe Kruchten as a tool \textit{
 
 Architects may use the four views to systematically depict the miscellaneous \acrshort{SW} elements and the fifth view --- scenarios (or \textit{use cases} in contemporary terminology) which \textit{illustrate} or \textit{animate} the static system.
 
-The view model is \textit{generic}. It doesn't prescribe any particular notation for the different perspectives, or any set of available \textit{architectural patterns} or \textit{styles}, hence allowing the multiple styles coexist in one system.
+The view model is \textit{generic}. It does not prescribe any particular notation for the different perspectives, or any set of available \textit{architectural patterns} or \textit{styles}, hence allowing the multiple styles coexist in one system.
 
 \begin{figure}
   \centering
@@ -413,7 +414,7 @@ There is a often-cited definition of architectural style by David Garlanand and 
 An architectural style, then, defines a family of such systems in terms of a pattern of structural organization. More specifically, an architectural style determines the vocabulary of components and connectors that can be used in instances of that style, together with a set of constraints on how they can be combined.~\cite{sa-intro-garlan-shaw}
 \end{quote}
 
-Architectural styles are usually characterized only from a single view. For example, a \acrfull{MVC} application is defined in logical view as a trio of interacting components, each with its defined responsibility and function. \acrshort{MVC} doesn't say how the application should be deployed --- it doesn't prescribe anything for the other views. 
+Architectural styles are usually characterized only from a single view. For example, a \acrfull{MVC} application is defined in logical view as a trio of interacting components, each with its defined responsibility and function. \acrshort{MVC} does not say how the application should be deployed --- it does not prescribe anything for the other views. 
 
 Next two sections provide a brief introduction to some of the architectural styles that are used and compared in further chapters.
 
@@ -467,7 +468,7 @@ On the dawn of microservice architecture, it needed to be compared to the tradit
     A monolith is a software application whose modules cannot be executed independently.
 \end{quote}
 
-In this context, \textit{monolith} doesn't have the pejorative connotation, as it often represents the well structured, n-tier application (see \fullref{fig:monolith_vs_microservices}).
+In this context, \textit{monolith} does not have the pejorative connotation, as it often represents the well structured, n-tier application (see \fullref{fig:monolith_vs_microservices}).
 
 In this thesis the word \textit{monolith} is used exclusively with the second meaning.
 
@@ -524,7 +525,7 @@ The final list of book, that were analyzed thoroughly and are considered the ess
 There are also two books freely available on the internet, both sponsored by industrial giants. \cite{ms-ca}, sponsored by CA\footnote{https://www.ca.com/us.html}, offers good overall introduction, but it's scope is completely covered by \cite{ms-building-ms}. \cite{ms-bk-familiar}, sponsored by Microsoft to promote their Azure\footnote{https://azure.microsoft.com/} platform, first 30~\% contains very brief and understandable introduction to \acrshort{MSA} domain, suitable for complete beginners. The remaining 70~\% is dedicated to Azure.
 
 \subsubsection*{Summary}
-The industry literature provides an overall vision, it is coherent, comprehensible and concise. It describes a lot of aspects of \acrshort{MSA}, yet it claims it is not complete. The literature also lacks formal definitions, leastwise it uses seemingly uniform terminology. All of the books are focused on \textit{getting things done} and don't see any value formal and systematic approach.
+The industry literature provides an overall vision, it is coherent, comprehensible and concise. It describes a lot of aspects of \acrshort{MSA}, yet it claims it is not complete. The literature also lacks formal definitions, leastwise it uses seemingly uniform terminology. All of the books are focused on \textit{getting things done} and do not see any value formal and systematic approach.
 
 \subsection{Academic Literature}
 \label{sec:acad_literature}
@@ -584,7 +585,7 @@ The \textbf{case study} and \textbf{narrow focused} introduce new information, u
 \label{sec:related_work}
 \subsection{Academic Literature}
 \subsubsection*{Normalized System Institute books}
-The first published \acrshort{NS} book \cite{ns-recreating} provides a brief discussion of compliance of the \acrfull{SOA} with \acrshort{NS}. Authors note that \acrshort{SOA} may exhibit desired properties of evolvability, but don't provide any further argumentation.
+The first published \acrshort{NS} book \cite{ns-recreating} provides a brief discussion of compliance of the \acrfull{SOA} with \acrshort{NS}. Authors note that \acrshort{SOA} may exhibit desired properties of evolvability, but do not provide any further argumentation.
 
 The second \acrshort{NS} book \cite{ns-toward-general-theory} contains plenty of related information:
 \begin{itemize}
@@ -638,7 +639,7 @@ In spite of all the listed advantages, \acrlong{MSA} is no silver bullet. This s
 
 It's not easy to decide when the pros \acrshort{MSA} compensate the cons. Analysis of the proper decision making is too complex to fit in scope of this thesis, but the general rule of thumb is:
 \begin{quote}
-    Don't even consider microservices unless you have a system that's too complex to manage as a monolith.~\cite{ms-fow-monolith-first}
+    do not even consider microservices unless you have a system that's too complex to manage as a monolith.~\cite{ms-fow-monolith-first}
 \end{quote}
 
 \begin{figure}
@@ -656,7 +657,7 @@ It's not easy to decide when the pros \acrshort{MSA} compensate the cons. Analys
 
 This section looks closer on the eminent implications and concerns creating a~\acrlong{MS} application.
 
-\subsection{Microservice scope}
+\subsection{Microservice Scope}
 Microservice applications are composed of \textit{microservices}. The preposition \textit{micro} suggests existence of some \textit{milliservices} or \textit{nanoservices}. Or at least that the \textit{microservice} itself should be very small. This might be very misleading interpretation. If we consider the common rule, that the microservice code base should be owned by one cross-functional team \cite{ms-building-ms, ms-evolutionary-arch, ms-fow-new-term-def} with top limit of 8-10 people, the deployed artifact might not be small at all.
 
 \acrshort{MSA} could be used for project starting from scratch (a \textit{greenfield} project), or for splitting a monolithical code base (a \textit{brownfield} project). Regardless of the origin, the recommended first step is always deep analysis of the application domain. The well-known methodology for this purpose is \textit{domain driven design} (\acrshort{DDD}) exquisitely described in \cite{domain-driven-design}.
@@ -676,7 +677,7 @@ This approach is the essence mentioned in the industry-oriented books \cite{ms-b
 
 Until now, the \acrshort{MSA} was discussed as a cluster of independently deployed services and communication between them. On the other hand, the resultant artifact was always addressed as one \textit{application} --- that means the services construct an integral system. In order to keep balance between the freedom of the inner workings of a \acrshort{MS} and complexity of operations, another border between \textit{inner} and \textit{outer} architecture must be defined (see fig. The \fullref{fig:in-vs-out-arch}).
 
-The \textbf{outer architecture} includes direct communication between services and other supporting systems (e.g., monitoring and logging), the execution environments (e.g., docker containers or \acrshort{VM}s), networking (including load-balancing, routing etc.) and messaging channels (i.e. message brokers). It doesn't describe just the inter-connections, but more importantly the \textit{contracts} between them (i.e. the \acrshort{API} definitions). 
+The \textbf{outer architecture} includes direct communication between services and other supporting systems (e.g., monitoring and logging), the execution environments (e.g., docker containers or \acrshort{VM}s), networking (including load-balancing, routing etc.) and messaging channels (i.e. message brokers). It does not describe just the inter-connections, but more importantly the \textit{contracts} between them (i.e. the \acrshort{API} definitions). 
 
 The \textbf{inner architecture} is everything else --- the internal business logic, the choice of programming language, 3rd party libraries and frameworks (if it's possible to run them in the supported execution environment), the data persistence (everything from \acrshort{ORM} through schema to the choice of \acrshort{DBMS} is hidden from the outer world --- as long as it is able to be executed in the unified environment).
 
@@ -687,7 +688,7 @@ The freedom of the inner architecture is often considered an advantage of \acrsh
 \label{sec:strong_boundaries}
 A common recommendation in \acrshort{SW} development is to have clearly defined code module boundaries. It's the manifestation of loose coupling and Douglas McIlroy's vision (see \fullref{sec:evolvability_rules}). \acrshort{MSA} is no different.
 
-Respecting the strong module boundaries doesn't depend on the architecture style --- it is possible to create a perfectly modular monolithic app. It is only the matter of developer's discipline.
+Respecting the strong module boundaries does not depend on the architecture style --- it is possible to create a perfectly modular monolithic app. It is only the matter of developer's discipline.
 
 The \acrlong{MSA} magnifies the need for modularization by its intrinsic features, e.g., separate build artifacts for independent deployment, freedom of choice in technologies or persistence encapsulation.
 
@@ -703,6 +704,7 @@ Authors of the up-to-date industry literature \cite{ms-building-ms, ms-evolution
 This section analyses the costs of adoption of the microservice architecture. Every benefit listed in the previous section has a cost of its own. And almost all of them increase the overall complexity of the system.
 
 \subsubsection{Distribution}
+\label{sec:fallacies}
 \acrshort{MSA} utilizes a distributed system to provide fine-grained modularity. The fact it is distributed bring a lot of complexity and possible unintended consequences. 
 
 L. Peter Deutsch compiled a list called \textit{Fallacies of distributed computing} \cite{devops-fallacies-wiki} in 1994. The list consists of eight false assumptions which must be kept in mind while designing and operating a distributed system: 
@@ -712,7 +714,7 @@ L. Peter Deutsch compiled a list called \textit{Fallacies of distributed computi
         \item Latency is zero.
         \item Bandwidth is infinite.
         \item The network is secure.
-        \item Topology doesn't change.
+        \item Topology does not change.
         \item There is one administrator.
         \item Transport cost is zero.
         \item The network is homogeneous.
@@ -724,7 +726,7 @@ All of the listed fallacies are still valid \cite{devops-fallacies}, although ef
 \begin{itemize}
     \item \textbf{The network is reliable} has a whole \fullref{sec:resilience} dedicated to dealing with this phenomenon.
     \item \textbf{Latency is zero}, \textbf{transport cost is zero}, and \textbf{bandwidth is infinite} have a great impact on applications performance. The ways how to mitigate this are discussed in \fullref{sec:inter-service-communication}.
-    \item \textbf{Topology doesn't change}, and \textbf{the network is homogeneous} \todo{odkazat na service discovery nebo nejak ukecat}
+    \item \textbf{Topology does not change}, and \textbf{the network is homogeneous} \todo{odkazat na service discovery nebo nejak ukecat}
     \item \textbf{The network is secure}, and \textbf{there is one administrator} belong to the application operations domain, therefore are out of scope of this analysis.
 \end{itemize}
 
@@ -821,7 +823,7 @@ Service contracts are the different means of specifying contracts (protocols) fo
 % 
 \section{Transaction management}
 \label{sec:transaction_management}
-A common practice in \acrshort{MSA} is the \textit{one \acrshort{DB} per microservice} pattern (see \ref{sec:persistence}). Consolidating data scattered around the swarm of microservices demands non-trivial architectural patterns. Transaction management is crucial aspect of the \acrshort{IS}, as
+A common practice in \acrshort{MSA} is the \textit{one \acrshort{DB} per microservice} pattern (see \ref{sec:persistence}). Consolidating data scattered around the swarm of microservices demands non-trivial architectural patterns. Transaction management is crucial aspect of the \acrshort{IS}, as it is used to execute complex workflows.
 
 There are two sorts of transactions in the \acrshort{MSA}: those, which guarantee \acrshort{ACID}~\cite{ACID} properties (see \ref{sec:n-phase}), and those which sacrifice isolation for better latency (see \ref{sec:saga}).
 
@@ -912,7 +914,7 @@ To allow the choreography to function properly, messages must contain a \textit{
 \noindent
 \textbf{Advantages}
 \begin{itemize}
-    \item \textbf{loose coupling} --- participants listen to events and don't need to be aware of each other
+    \item \textbf{loose coupling} --- participants listen to events and do not need to be aware of each other
     \item \textbf{simplicity} --- services react to events, and publish events when they manipulate business objects
 \end{itemize}
 
@@ -952,9 +954,9 @@ The \textbf{successful flow} is executed as follows (see fig.: \ref{fig:saga-orc
 \noindent
 \textbf{Advantages}
 \begin{itemize}
-    \item \textbf{no cyclic dependencies} --- orchestrator as the central entity depends on the subordinate participants, but they don't depend on the orchestrator
+    \item \textbf{no cyclic dependencies} --- orchestrator as the central entity depends on the subordinate participants, but they do not depend on the orchestrator
     \item \textbf{less coupling} --- participants react only to the messages from the orchestrator and are not coupled to the other participants
-    \item \textbf{better separation of concerns} --- participants have less reasons to change, because they don't bear the burden of executing workflow; the orchestrator doesn't execute any bussiness logic but keeping the state of the workflow
+    \item \textbf{better separation of concerns} --- participants have less reasons to change, because they do not bear the burden of executing workflow; the orchestrator does not execute any bussiness logic but keeping the state of the workflow
     \item \textbf{workflow as a state machine} --- because the workflow is concetrated in one place, it could be modelled and implemeted as a state machine, simplifying the design and implementation
 \end{itemize}
 
@@ -962,7 +964,7 @@ The \textbf{successful flow} is executed as follows (see fig.: \ref{fig:saga-orc
 \textbf{Disadvantages}
 \begin{itemize}
     \item \textbf{risk of God object} --- if the orchestrator is a class inside a service (as in the example), the service will tend to contain all the related workflows, easily becoming a God object~\cite{wiki-god-object}
-    \item \textbf{risk of power disbalance} --- the orchestrator must only issue commands and don't execute any business logic and use the services as \acrshort{CRUD} proxies
+    \item \textbf{risk of power disbalance} --- the orchestrator must only issue commands and do not execute any business logic and use the services as \acrshort{CRUD} proxies
 \end{itemize}
 
 \subsubsection{Anomalies Caused by Lack of Isolation}
@@ -1036,7 +1038,7 @@ One key challenge when using messaging is atomically updating the database and p
 % 
 \section{External API}
 \label{sec:ext_api}
-
+\todo{dopsat dopiče}
 
 % 
 % Cross-cutting concerns
@@ -1047,7 +1049,7 @@ One key challenge when using messaging is atomically updating the database and p
     - Sessions auth
     - JWT/token authentication
 \end{verbatim}
-
+\todo{dopsat dopiče}
 \missingfigure{JWT vs. Session authentication call diagram}
 
 
@@ -1055,7 +1057,7 @@ One key challenge when using messaging is atomically updating the database and p
 
 \subsection{Operation Aspects}
 \subsubsection{Deployment \& Operations}
-
+\todo{dopsat dopiče}
 This section analyses how the actual microservices are deployed to execution environments and how they are 
 
 
@@ -1071,12 +1073,14 @@ This section analyses how the actual microservices are deployed to execution env
 
 \subsubsection{Scalability / Elasticity}
 \label{sec:scalability}
+\todo{dopsat dopiče}
 – Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
 
 
 
 \subsubsection{Availability and Resilience}
 \label{sec:resilience}
+\todo{dopsat dopiče}
 Successful companies that adapted \acrshort{MSA} always design their systems for failure. 
 Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
 
@@ -1093,8 +1097,11 @@ The second mitigation is to use asynchrony. If make six asynchronous calls in pa
 Right after speed is reliability. You expect in-process function calls to work, but a remote call can fail at any time. With lots of microservices, there's even more potential failure points. Wise developers know this and design for failure. Happily the kinds of tactics you need for asynchronous collaboration also fit well with handling failure and the result can improve resiliency. That's not much compensation however, you still have the extra complexity of figuring out the consequences of failure for every remote call.
 
 \subsection{Observability}
+\todo{dopsat dopiče}
 \subsubsection{Monitoring}
+\todo{dopsat dopiče}
 \subsubsection{Logging}
+\todo{dopsat dopiče}
 
 
 
@@ -1106,17 +1113,85 @@ Right after speed is reliability. You expect in-process function calls to work, 
 
 \chapter{Towards Stable Microservice Architecture}
 \label{sec:msa_compliance}
-\section{Mapping NS Elements to Microservice Architecture}
 
-\todo[inline,size=\Large]{Missing whole chapter}
+In this chapter, key aspects of \acrshort{MSA} are extracted from \fullref{sec:msa_analysis} and the \acrfull{NS} is applied. Section \ref{sec:selected_aspects} contains list of identified subdomains and discussion whether they will be subject to further analysis. The section \ref{sec:mapping_ns_elems} attempts to map the patterns for normalized elements to the notions of \acrshort{MSA}. Sections following the sec. \ref{sec:mapping_ns_elems} closely examine the respective subdomains.
+
+\section{Selected Aspects}
+\label{sec:selected_aspects}
+\begin{itemize}
+    \item[\faCheck] \textbf{Microservice scope} --- a crucial question which is answered only with a very vague guidelines. Will be discussed separately.
+    \item[\faCheck] \textbf{Inner vs. outer architecture} --- often neglected, yet important topic, closely related to \textit{separation of concerns}. Will be discussed separately.
+    \item[\faCheck] \textbf{Technological diversity, polyglotism, etc.} --- one of the most hyped benefits of \acrshort{MSA} and potential source of complexity.
+    \item[\faRemove] \textbf{Trade-offs of distributed system} --- although this is a set of important topics, it is actually only a list of essential problems with distributed architecture. Solutions to those problems are discussed in \fullref{sec:fallacies}. Therefore this topic won't be discussed separately.
+    \item[\faRemove] \textbf{Interaction models and styles} --- only a taxonomy, does not represent real patterns or problems. The real communication complexity is discussed in \fullref{sec:appl:nphase} as well as \fullref{sec:appl:saga}. 
+    \item[\faCheck] \textbf{Service contracts} --- \todo{nevim}
+    \item[\faCheck] \textbf{N-phase commits} --- will be discussed separately.
+    \item[\faCheck] \textbf{Saga pattern} --- will be discussed separately.
+    \item[\faCheck] \textbf{Persistence} --- will be discussed separately.
+    \item[\faCheck] \textbf{External APIs} --- will be discussed separately.
+    \item[\faRemove] \textbf{Deployment and Operations} --- operations fall out of scope of this thesis; the interesting topics related to this subdomain are listed in \fullref{sec:ccc}.
+    \item[\faRemove] \textbf{Scalability / Elasticity} --- scalability is matter of operations, therefore does not fall into the scope of this thesis. The only requirements to the  
+    \item[\faRemove] \textbf{Availability and Resilience} --- 
+    \item[\faCheck] \textbf{Observability} --- will be discussed together with other topics in \fullref{sec:ccc}.
+    \item[\faCheck] \textbf{Security} --- will be discussed together with other topics in \fullref{sec:ccc}.
+    \item[\faCheck] \textbf{Service Discovery} --- will be discussed together with other topics in \fullref{sec:ccc}.
+\end{itemize}
+
+
+
+\section{Mapping NS Elements to Microservice Architecture}
+\label{sec:mapping_ns_elems}
+
+
 
 Separation of Concerns
 The Netflix microservice architecture arises because of separation of concerns (SoC) in the engineering team organization. Each team owns a group of services. They own building, operating, and evolving those services, and present a stable agreed interface and service level agreement to the consumers of those services. Invoking Conway’s law, an organization structured with independent self-contained cells of engineers will naturally build what is now called a microservice architecture.
 
 
+\section{Microservice scope}
+- change drivers
+- do one thing and do it right
+- the class should have only one reason to change
+
+
+
+\section{Inner vs. Outer Architecture}
+-> define strong boundaries, so the context doesnt leak between these two
+
+
+\section{Polyglot}
+
+\section{N-phase commits}
+\label{sec:appl:nphase}
+
+\section{Saga Pattern}
+\label{sec:appl:saga}
+
+- nadhodit blaznivou ideu s api gatewayi a ukazat na prikladu
+
+- prefer orchestration because less potential of tight coupling
+
+- have one orchestration service per workflow
+
+- dumb pipes vs. smart endpoints
+
+
+\section{Cross-Cutting Concerns}
+\label{sec:ccc}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% 
+% Guidelines
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \chapter{Guidelines for Stable Microservice Architecture}
 \label{sec:guidelines}
 \todo[inline,size=\Large]{Missing whole chapter}
+
+
+
+
+
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
@@ -1127,15 +1202,32 @@ The Netflix microservice architecture arises because of separation of concerns (
 \chapter{Conclusion}
 \label{sec:conclusion}
 \section{Evaluation of Goals}
-\todo[inline,size=\Large]{Missing section}
+\begin{itemize}
 
+	\item \textit{Perform a literature review on \acrshort{MS} and on application of \acrshort{NS} to \acrshort{MS} and/or related architecture styles and patterns}
+	
+	\vspace{0.5em}
+	Accomplished --- the literature review was performed on vast amounts of resources. Although lacking systematical approach for the \textit{community}, retrieved information served as an comprehensive base for the analysis.
+	
+	\item \textit{Analyze the \acrlong{MSA}}
+	
+	\vspace{0.5em}
+    Accomplished --- the domain was analyzed thoroughly within a required scope. The key aspects and challenges of \acrlong{MSA} were identified.
 
+	\item \textit{Examine compliance of \acrlong{MSA} to \acrlong{NS}}
 
+	\vspace{0.5em}	
+	Accomplished --- the compliance with \acrlong{NS} was 
 
+	\item \textit{Summarize design guidelines for \acrshort{MSA}}
+	
+	\vspace{0.5em}
+	Accomplished --- a set of design guidelines was proposed and demonstrated on suitable examples. Since the design guidelines are isolated suggestions, and not a consistent methodology, the originally proposed case study was considered unnecessary. 
+
+\end{itemize}
 
 \section{Thoughts on Utilization}
 \todo[inline,size=\Large]{Missing section}
-- NS - mathematical 
 
 
 
@@ -1143,6 +1235,13 @@ The Netflix microservice architecture arises because of separation of concerns (
 
 \section{Future Work}
 \todo[inline,size=\Large]{Missing section}
+
+\todo{pofnukat si, ze to nebylo matematicky, konzistentni, prilis velky tema a }
+
+
+- NS - mathematical 
+
+
 all done from the MSA viewpoint - only improving craftsmanship using a theory
 
 not promotion of craftsmanship to a formally complete theory
@@ -1171,7 +1270,7 @@ not promotion of craftsmanship to a formally complete theory
 		.1 readme.txt\DTcomment{the file with CD contents description}.
         .1 Figures\DTcomment{source files of figures used in the thesis}.
         .1 Text\DTcomment{thesis text}.
-            .2 DP Kolarik Vincenc.pdf\DTcomment{PDF version of~the~thesis}.
+            .2 DP\_Kolarik\_Vincenc.pdf\DTcomment{PDF version of~the~thesis}.
             .2 src\DTcomment{\LaTeX{} source codes of~the~thesis}.
     }
 
