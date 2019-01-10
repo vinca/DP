@@ -32,10 +32,10 @@
 
 \acknowledgements{Thanks to my family and especially to my girlfriend, Tamara, for all their patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
 
-\abstractEN{The thesis is engaged in evolvability of applications build using microservice architecture. It applies the rules defined by the Normalised Systems theory and discusses its impacts. The thesis thoroughly analyses the domain of microservice architecture and identifies the key architectural aspects. The aspects are examined using the Normalised Systems theory and results in a set of guidelines to improve evolvability of the microservice applications.}
+\abstractEN{The thesis is engaged in evolvability of applications build using microservice architecture. It applies the rules defined by the Normalized Systems theory and discusses its impacts. The thesis thoroughly analyses the domain of microservice architecture and identifies the key architectural aspects. The aspects are examined using the Normalized Systems theory and results in a set of guidelines to achieve evolvability of the microservice applications. The viability of proposed guidelines is then discussed.}
 \keywordsEN{evolvability, microservice architecture, microservices, normalized systems theory, software architecture}
 
-\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury mikroslužeb a identifikuje klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů a výsledkem je soubor pravidel pro zlepšení evolvability aplikací využívajících mikroslužeb.}
+\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury mikroslužeb a identifikuje klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů a výsledkem je soubor pravidel pro dosažení evolvability aplikací využívajících mikroslužeb. Navrhovaná pravidla jsou poté diskutována.}
 \keywordsCS{architektura mikroslužeb, evolvabilita, mikroslužby, softwarová architektura, teorie normalizovaných systémů\clearpage}
 
 
@@ -55,6 +55,7 @@
 \newacronym{CI}{CI}{continuous integration}
 \newacronym{CD}{CD}{continuous delivery}
 \newacronym{CRUD}{CRUD}{create, read, update, delete}
+\newacronym{CRUDS}{CRUDS}{create, read, update, delete, search}
 \newacronym{DAO}{DAO}{data access object}
 \newacronym{DB}{DB}{database}
 \newacronym{DBMS}{DBMS}{database management system}
@@ -71,6 +72,7 @@
 \newacronym{IS}{IS}{information system}
 \newacronym{IT}{IT}{information technology}
 \newacronym{JSON}{JSON}{JavaScript object notation}
+\newacronym{JWT}{JST}{JSON web token}
 \newacronym{MAPE}{MAPE}{monitoring, analysis, planning, execution}
 \newacronym{MSA}{MSA}{microservice architecture}
 \newacronym{MS}{MS}{microservice}
@@ -155,7 +157,7 @@ The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a
 On the other hand, the notion of a \acrfull{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
 \subsection{User Interface, Client Applications, etc. }
-Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. Due to the heterogeniti of the human-facing interfaces, they are out of scope of this thesis. The frontier of the examined \acrfull{IS} will be the external \acrfull{API} (see sec. \ref{sec:ext_api})
+Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. Due to the heterogeneity of the human-facing interfaces, they are out of scope of this thesis. The frontier of the examined \acrfull{IS} will be the external \acrfull{API} (see sec. \ref{sec:ext_api})
 
 \subsection{General Rules}
 In an~effort to~make this work conceptually coherent, there were defined essential principles with which this thesis is created:
@@ -435,6 +437,7 @@ Such architecture elegant in its simplicity, and this principle may be applied t
 However, major drawbacks arise for advanced applications. Imagine a logical view of a simple web application. What if a customer running the website wants to add a mobile application to his portfolio? In the style of layered architecture, the code of the mobile app would belong to the presentation layer, causing the web \acrshort{FE} and mobile app code to be mixed. If it would be put to a separate layer, the mobile app would have to interact with the business logic layer through the the web \acrshort{FE}.
 
 \subsection{Hexagonal Architecture}
+\label{sec:hexagonal_arch}
 \begin{figure}[b]
   \centering
     \includegraphics[width=\textwidth]{images/hexagonal_arch.pdf}
@@ -671,7 +674,7 @@ This approach is the essence mentioned in the industry-oriented books \cite{ms-b
 
 \begin{figure}
   \centering
-    \includegraphics[width=0.8\textwidth]{images/architecture_inner_vs_outer.pdf}
+    \includegraphics[width=1\textwidth]{images/architecture_inner_vs_outer.pdf}
     \caption{Inner vs. Outer Architecture}
   \label{fig:in-vs-out-arch}
 \end{figure}
@@ -873,7 +876,7 @@ The following two sections explain the two ways on a simple example and evaluate
 
 \begin{figure}[!ht]
   \centering
-    \includegraphics[width=0.8\textwidth]{images/saga-chor-happy.pdf}
+    \includegraphics[width=1\textwidth]{images/saga-chor-happy.pdf}
     \caption{Saga Pattern --- Choreography (happy flow)}
     \label{fig:saga-chor-happy}
 \end{figure}
@@ -893,7 +896,7 @@ The \textbf{successful flow} is executed as follows (see fig.: \ref{fig:saga-cho
 
 \begin{figure}[!ht]
   \centering
-    \includegraphics[width=0.8\textwidth]{images/saga-chor-fail.pdf}
+    \includegraphics[width=1\textwidth]{images/saga-chor-fail.pdf}
     \caption{Saga Pattern --- Choreography (error flow)}
     \label{fig:saga-chor-fail}
 \end{figure}
@@ -934,7 +937,7 @@ An orchestrator could be a dedicated service or a class inside a service contain
 
 \begin{figure}[!ht]
   \centering
-    \includegraphics[width=0.8\textwidth]{images/saga-orch-happy.pdf}
+    \includegraphics[width=1\textwidth]{images/saga-orch-happy.pdf}
     \caption{Saga Pattern --- Orchestration (happy flow)}
     \label{fig:saga-orch-happy}
 \end{figure}
@@ -1015,46 +1018,11 @@ R             & 7           & Order            & approveOrder()       & ---
 \section{Persistence}
 \label{sec:persistence}
 
-To achieve loose coupling between services 
+To achieve loose coupling between services, datastore is a private matter. The recommended pattern for greenfield projects is to have separated datastore per service kind (not instance). The microservice container itself is stateless, the state is kept in the database. The only allowed \acrshort{DB} integration is with other instances of the same kind.
 
+In a legacy systems, data storage could be used to integrate multiple services. When transitioning to microservices architectures, it is mandatory to find seams in the databases and use the right technologies to split them out cleanly \cite{ms-building-ms}.
 
-
-
-
-
-
-A key characteristic of the microservice architecture is that the services are loosely coupled and communicate only via APIs. One way to achieve loose coupling is by each service having its own datastore.
-
-
-
-\textcolor{magenta}{Eventual Consistency: Maintaining strong consistency is extremely difficult for a distributed system, which means everyone has to manage eventual consistency.}
-
-\textcolor{magenta}{Data Storage usually integrated multiple services in legacy systems, but in microservices architectures it is mandatory to find seams in the databases and use the right technologies to split them out cleanly \cite{ms-building-ms}. Possible values: SQL, graph-oriented, document-oriented, other.}
-
-- one DB per MS pattern 
-
-One key challenge when using messaging is atomically updating the database and publishing a message. A good solution is to use the Transactional outbox pattern and first write the message to the database as part of the database trans- action. A separate process then retrieves the message from the database using either the Polling publisher pattern or the Transaction log tailing pattern and publishes it to the message broker.
-% 
-% External API Design
-% 
-\section{External API}
-\label{sec:ext_api}
-\todo{dopsat dopiče}
-
-% 
-% Cross-cutting concerns
-%
-\section{Cross-cutting concerns}
-\subsection{Security}
-\begin{verbatim}
-    - Sessions auth
-    - JWT/token authentication
-\end{verbatim}
-\todo{dopsat dopiče}
-\missingfigure{JWT vs. Session authentication call diagram}
-
-
-
+Due to the one datastore per service pattern, there is no limit to selection of storage technology, therefore in one 
 
 \subsection{Operation Aspects}
 \subsubsection{Deployment \& Operations}
@@ -1075,37 +1043,24 @@ This section analyses how the actual microservices are deployed to execution env
 
 \subsubsection{Scalability / Elasticity}
 \label{sec:scalability}
-\todo{dopsat dopiče}
-– Scalability and elasticity refer to the capability to rapidly adjust the overall capacity of the platform by adding or removing resources, also minimizing human intervention [7]. Possible values: vendor-provided, autonomic MAPE loops, configuration servers, other.
-
-
+Scalability and elasticity is the the capability to quickly react to the sudden need of increase of the overall capacity of the platform. It is realized by adding or removing service instances. This whole process is also minimize the need for human intervention, using various tools or vendor-provided mechanisms.
 
 \subsubsection{Availability and Resilience}
 \label{sec:resilience}
-\todo{dopsat dopiče}
-Successful companies that adapted \acrshort{MSA} always design their systems for failure. 
-Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
 
+Resistance to failures is a crucial feature of microservice applications. Successful companies that adapted this architecture always design their systems for failure. Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
 
-
-\textcolor{magenta}{Simply handling both service-level and low-level failures that demand for persistence and recovery techniques [45]. Possible values: resilience patterns, fault injection, error-handling policies, resilience tests, other.}
-
-
-
-Of course you can do a great deal to mitigate this problem. Firstly you can increase the granularity of your calls, so you make fewer of them. This complicates your programming model, you now have to think of how to batch up your inter-service interactions. It will also only get you so far, as you are going to have to call each collaborating service at least once.
-
-The second mitigation is to use asynchrony. If make six asynchronous calls in parallel you're now only as slow as the slowest call instead of the sum of their latencies. This can be a big performance gain, but comes at another cognitive cost. Asynchronous programming is hard: hard to get right, and much harder to debug. But most microservice stories I've heard need asynchrony in order to get acceptable performance.
-
-Right after speed is reliability. You expect in-process function calls to work, but a remote call can fail at any time. With lots of microservices, there's even more potential failure points. Wise developers know this and design for failure. Happily the kinds of tactics you need for asynchronous collaboration also fit well with handling failure and the result can improve resiliency. That's not much compensation however, you still have the extra complexity of figuring out the consequences of failure for every remote call.
 
 \subsection{Observability}
-\todo{dopsat dopiče}
-\subsubsection{Monitoring}
-\todo{dopsat dopiče}
-\subsubsection{Logging}
-\todo{dopsat dopiče}
+Observability is the term for measuring, collecting, and analyzing various diagnostics data from an application. These signals may include metrics, logs, profiles and more.
 
+In large-scale microservices systems, some practices from the single process systems do not scale. To achieve a usable observability, some practices must be applied:
 
+\begin{itemize}
+    \item External requests must have assigned a unique id to track across the services (the id must be passed with each inner call)
+    \item Include the external id in logs
+    \item Record all the information in centralized service
+\end{itemize}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
@@ -1128,24 +1083,29 @@ Aspects were extracted as the outline of the chapter \ref{sec:msa_analysis} and 
     \item[\faCheck] \textbf{Inner vs. outer architecture} --- often neglected, yet important topic, closely related to \textit{separation of concerns}. Will be discussed separately.
     \item[\faCheck] \textbf{Polyglotism, technological diversity} --- one of the most hyped benefits of \acrshort{MSA} and potential source of complexity. Will be discussed separately.
     \item[\faRemove] \textbf{Trade-offs of distributed system} --- although this is a set of important topics, it is actually only a list of essential problems with distributed architecture. Solutions to those problems are discussed in \fullref{sec:fallacies}. Therefore this topic won't be discussed separately.
-    \item[\faRemove] \textbf{Interaction models and styles} --- only a taxonomy, does not represent real patterns or problems. The real communication complexity is discussed in \fullref{sec:appl:nphase} as well as in \fullref{sec:appl:saga}. 
+    \item[\faRemove] \textbf{Interaction models and styles} --- only a taxonomy, does not represent real patterns or problems. The real communication complexity is discussed in \fullref{sec:appl:trans}. 
     \item[\faCheck] \textbf{Service contracts} --- will be discussed in \fullref{sec:appl:inout} and \fullref{sec:ccc}.
-    \item[\faCheck] \textbf{N-phase commits} --- will be discussed separately.
-    \item[\faCheck] \textbf{Saga pattern} --- will be discussed separately.
+    \item[\faCheck] \textbf{N-phase commits} --- will be discussed in \fullref{sec:appl:trans}.
+    \item[\faCheck] \textbf{Saga pattern} --- will be discussed in \fullref{sec:appl:trans}.
     \item[\faCheck] \textbf{Persistence} --- will be discussed separately.
     \item[\faCheck] \textbf{External APIs} --- will be discussed separately.
     \item[\faRemove] \textbf{Deployment and Operations} --- operations fall out of scope of this thesis; the interesting topics related to this subdomain are listed in \fullref{sec:ccc}.
-    \item[\faRemove] \textbf{Scalability / Elasticity} --- scalability is a matter of operations, therefore does not fall into the scope of this thesis. The only requirements to the microservice is to be transactional and stateless (both are discussed in in \fullref{sec:appl:nphase} and in \fullref{sec:appl:saga}).
+    \item[\faRemove] \textbf{Scalability / Elasticity} --- scalability is a matter of operations, therefore does not fall into the scope of this thesis. The only requirements to the microservice is to be transactional and stateless (both are discussed in in \fullref{sec:appl:trans}).
     \item[\faRemove] \textbf{Availability and Resilience} --- both properties are essential for \acrshort{MSA}, therefore are taken into account at every decision or proposal. Although improving both qualities is a matter of operations, therefore out of scope of this thesis.
-    \item[\faCheck] \textbf{Observability} --- will be discussed together with other topics in \fullref{sec:ccc}.
-    \item[\faCheck] \textbf{Security} --- will be discussed together with other topics in \fullref{sec:ccc}.
-    \item[\faCheck] \textbf{Service Discovery} --- will be discussed together with other topics in \fullref{sec:ccc}.
+    \item[\faCheck] \textbf{Cross-cutting concerns} --- will be discussed separately.
 \end{itemize}
 
+\section{Microservice Scope}
+\acrshort{NS} states that \textit{a software element should have only one change driver}. A software element in this case is a microservice. Applying this rule would lead to extremely granular system --- a \acrshort{MS} for each data element or workflow would need its own service. If this rule is not respected, the number of change drivers rise and combinatorial effects emerge. 
 
+\subsection{Microservice as a Normalized System}
+Let us assume that the microservice itself is a Normalized System. This way it is possible to avoid the extreme granularity, but it doesn't help with the original question.
 
-\section{Mapping NS Elements to Microservice Architecture}
+There is also a definition of microservice by Sam Newman: \textit{A microservice should be rewritten by a team of developers in two weeks.}~\cite{ms-building-ms} Implication of this statement is that the complexity of one \acrshort{MS} is bounded (to the two weeks of work of one team). Considering that, microservice itself as a Normalized System doesn't bring any value.
+
+\subsection{Mapping NS Elements to Microservice Architecture}
 \label{sec:mapping_ns_elems}
+This section explores the idea of building a microservices application as a Normalised System.
 
 A \acrshort{NS} element is a high-level design pattern, designed to provide a basic functionality of an \acrlong{IS}~\cite{ns-toward-general-theory}. The \acrshort{NS} elements are aptly defined in~\cite{ns-in-practice}:
 \begin{quote}
@@ -1161,34 +1121,22 @@ A \acrshort{NS} element is a high-level design pattern, designed to provide a ba
 \begin{figure}
   \centering
     \includegraphics[width=0.7\textwidth]{images/building_element.png}
-    \caption{An example of \acrshort{NS} building element}
+    \caption{An example of \acrshort{NS} building element~\cite{ns-toward-general-theory}}
     \label{fig:ns-building-element}
 \end{figure}
 
-- map services 1:1
+These elements are theoretically proven to have only one change driver (reason to change), therefore they are free from combinatorial effects~\cite{ns-toward-general-theory}. Also, it is experimentally proven that it is possible to create a viable \acrfull{IS}~\cite{ns-enabling} using only these elements.
 
--trigger element\footnotemark
+The idea is to create a microservice \textit{building block}, similar to a \textit{\acrshort{NS} building element}, which would allow imitation of the \acrshort{NS} elements using services\footnotemark.
 
 \footnotetext{This is probably the point where a veteran software engineer can't contain his indignation anymore, and stops reading while yelling: \textit{This is ridiculous, spinning up a Docker container just to have a configured cron running somewhere! What a waste!} If you are one of those, please, hold on. This suboptimal use of system resources will hopefully result in infinite evolvability.}
 
-- not possibele to generate the skeleton form a 
-
--althou tooling readyt to encapsulate the bussiness logic in service template providing all the ccc out of the box (as discussed in \fullref{sec:ccc}) and automate it via ci and cd tools, no additional tools development is needed 
-
-
-
-\section{Microservice Scope}
-- change drivers
-- do one thing and do it right
-- the class should have only one reason to change
-
-- resorts to the structure mentioned above guarantees the change drivers to be isolated
-
-
 \section{Inner vs. Outer Architecture}
 \label{sec:appl:inout}
--> define strong boundaries, so the context doesnt leak between these two
 
+The notion of inner and outer architecture resembles the \acrshort{NS} element approach --- the cross-cutting concerns are separated from the business logic.
+
+Normalized Systems consider persistence a cross-cutting concern. Due to the \acrshort{MSA} pattern \textit{one DB per service}, it is the private matter of the single service. None of the principles of the \acrshort{NS} seem to contradict that assumption.
 
 \section{Cross-Cutting Concerns}
 \label{sec:ccc}
@@ -1199,22 +1147,26 @@ Each \acrshort{NS} element consists of business logic encapsulated in a
 - 
 
 
-\section{N-phase commits}
+
+
+
+
+\section{Transactional Management}
+\label{sec:appl:trans}
+
+Saga 
+
+
+
+
+
+Saga using the \textit{choreography} principle exhibits a risk of tight coupling, since there's no bounded number of 
+
+- fulfills the separation of states principle, action version transparency nor 
+
+
+\subsection{N-phase commits}
 \label{sec:appl:nphase}
-
-
-
-\section{Saga Pattern}
-\label{sec:appl:saga}
-
-- nadhodit blaznivou ideu s api gatewayi a ukazat na prikladu
-
-- prefer orchestration because less potential of tight coupling
-
-- have one orchestration service per workflow
-
-- dumb pipes vs. smart endpoints
-
 
 
 
@@ -1224,24 +1176,23 @@ Each \acrshort{NS} element consists of business logic encapsulated in a
 
 - as long as we are able to fullfill th e
 \section{Persistence}
-The one DB per \acrshort{MS} pattern is perfectly compliant with the \textit{separation of concerns} design theorem
-
-- there are database migration tool like flyway
+The one DB per \acrshort{MS} pattern is perfectly compliant with the \textit{separation of concerns} design theorem.
 
 \section{External APIs}
-- dam jeste pohovoreni o GQL vs rest vs anything else?
+The both external and internal APIs must exhibit the \textit{data version transparency}. This is easily achievable by versioning the API, e.g., using the version in URL. This already used and recommended practise in \acrshort{MSA}.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
 % Guidelines
 % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-\chapter{Guidelines for Stable Microservice Architecture}
+\chapter{The Stable Microservice Architecture}
 \label{sec:guidelines}
 
+This section attempts to apply the findings of the last chapter. 
 
-\section{Microservice Building Element}
-This section proposes the \textit{microservices building block}. It is an analogy to the \acrshort{NS} building element (see \ref{fig:ns-building-element}. Specializations of this building block are the Normalizes elements for \acrshort{MSA} (see sec. \ref{sec:msa-nor-elem}). There are several responsibilities this block fullfils:
+\section{Microservice Building Block}
+This section proposes the \textit{microservices building block}. It is an analogy to the \acrshort{NS} building element (see \ref{fig:ns-building-element}). There are several functions this block fulfills:
 \begin{itemize}
     \item provides an execution environment for the business logic
     \item provides adapters for inbound and outbound ports, so the business logic is reachable by and can reach other microservices 
@@ -1249,40 +1200,98 @@ This section proposes the \textit{microservices building block}. It is an analog
     \item handles the infrastructure cross-cutting concerns and shields the business logic from them (e.g., health-check, access management, service discovery client)
 \end{itemize}
 
-
 \begin{figure}
   \centering
-    \includegraphics[width=0.8\textwidth]{images/proposed-ms-architecture.pdf}
+    \includegraphics[width=1\textwidth]{images/proposed-ms-architecture-db.pdf}
     \caption{Proposed \textit{building block} of \acrshort{MSA}}
     \label{fig:proposed-building-block}
 \end{figure}
 
-\noindent
-\textbf{The Layers}
-\begin{itemize}[topsep=0.5em]
-    \item \textbf{bussiness logic layer} --- contains the custom functionality 
-    \item \textbf{adapter layer} --- provides a bridge between the business logic and the 
-    \item \textbf{cross-cutting concern contract} --- decouples the cross-cutting concerns from the infrastructure serving them (e.g., health-check, logging, access management); preferably technology agnostic
-\end{itemize}
-\break
-\noindent
-\textbf{The Contract categories}
-\begin{itemize}[topsep=0.5em]
-    \item \textbf{port -- adapter contracts} --- decouples the business logic from the encapsulating framework; bound to programming language (or a group of compatible languages, e.g. Java, Kotlin, Scala); encapsulation framework may be swapped as long as the appropriate adapters are implemented
-    \item \textbf{inter-microservice contracts} --- decouples the microservices themselves; it bound to the interaction styles (e.g., request/response, publish/subscribe); preferably technology agnostic
-    \item \textbf{cross-cutting concern contracts} --- decouples the cross-cutting concerns from the infrastructure serving them (e.g., health-check, logging, access management); preferably technology agnostic
+\subsection{Building Block Layers}
+The building block consists of three layers and it is heavily inspired by the hexagonal architecture (see \fullref{sec:hexagonal_arch}). The responsibilities of the layers are as follows:
+\textbf{The building block layers}
+\begin{itemize}
+    \item \textbf{business logic layer} --- contains the custom code and algorithms 
+    \item \textbf{adapter layer} --- provides a bridge between the business logic and the runtime, separating the inner and outer architecture (see \fullref{sec:appl:inout})
+    \item \textbf{operation layer} --- the independently deployable runtime environment
 \end{itemize}
 
+The operation layer is the prefabricated \acrshort{MS} building block. It serves the same purpose as a \acrshort{NS} element of an application skeleton generated by the \acrshort{NS} expander --- it shields the business from the execution environment, thus making it free of combinatorial effects of the cross-cutting concerns.
 
+The adapters fulfill the same function as in the original hexagonal architecture. It bridges the business logic and the technology surrounding it. Since the business logic does not depend on the adapters, but the adapters on the business logic. Therefore, it is necessary to define a \textit{contract} --- a language agnostic interface definition --- between those two layers, so the adapters can be implement the functionality accordingly.
 
+\subsection{Building Block Contracts}
+Contracts are also the proposed way how to keep the whole system independent decoupled from the particular 3rd party technologies. It defines the interface regardless of the programming language, similar to \acrshort{SOAP} messaging or \acrshort{REST} calls.
 
-\section{Normalized Elements for MSA}
+Total of three categories of contracts for each building block is defined (see fig. \ref{fig:proposed-building-block}):
+\begin{itemize}
+    \item \textbf{port -- adapter contracts} --- decouples the business logic from the encapsulating framework; bound to programming language (or a group of compatible languages, e.g. Java, Kotlin, Scala)
+    \item \textbf{inter-microservice contracts} --- decouples the microservices themselves; it bound to the interaction styles (e.g., request/response, publish/subscribe)
+    \item \textbf{cross-cutting concern contracts} --- decouples the cross-cutting concerns from the infrastructure serving them (e.g., health-check, logging, access management)
+\end{itemize}
+
+Thanks to the contracts, the used 3rd technologies may be freely swapped. An application built using a framework A, but because of e.g., security reasons, it needs to be swapped for a framework B. Both frameworks implement the REST standard (as the only inter-MS communication standart used). Both frameworks also implement a \acrfull{JWT} authentication (as the only cross-cutting concern used). Thanks to the port -- adapter contracts, the only respective adapters for framework B need to be re-implemented. Once it is done, the framework B may be deployed in the whole \acrshort{MS} application.
+
+\subsection{An Example Building Block}
+To fullfill the functions listed in beginning of this section, the easiest way to create a building block is to assemble it from various third-party technologies. There's a plenty of tooling available that together create a complete \acrshort{MSA} ecosystem.
+
+Here is an example building block using a ready-made technologies: The most common way to create a independently deployable artefact in \acrshort{MSA} is to use a application containerization tool, such as Docker\footnote{https://www.docker.com/}. The Docker is running a lightweight Linux distribution, such as AlpineLinux\footnote{https://alpinelinux.org/}, which runs a Java Runtime Environment\footnote{https://openjdk.java.net/}, which runs Tomcat\footnote{http://tomcat.apache.org/}, which runs a SpringBoot\footnote{http://spring.io/projects/spring-boot} application. The Spring Boot application is bundled with a developer's own, prepared adapters. Although this sounds extremely complicated, the Docker makes the whole process simple and automated out of the box.
+
+Docker containers are built using \textit{layers} stacked on top of each other. When something is changed, only the layer containing the change and layers above need to be rebuilt. Therefore rebuilding a prepared \acrshort{MSA} building block with a custom code (the top layer) is a matter of seconds.
+
+Even though the preparation of a single building block is relatively simple, a complete application would need a vast amount of such building blocks to cover a reasonable functionality. The viable solution seems to be the one that is utilized by Normalized Systems Expander --- automatic code generation of an application skeleton based on a domain model, and then implementing the bussiness logic as a \textit{custom code} (more about this approach in \cite{ns-toward-general-theory}). 
+
+\section{The Normalized Elements of MSA}
 \label{sec:msa-nor-elem}
 
-rozebrat ty jednotlivý typy
+The empty building block from the last section may be further specialized to the normalized elements of MSA --- the normalized services.
+
+\begin{quote}
+    \begin{itemize}
+        \item \textbf{data services} --- responsible for \acrfull{CRUDS} operations of data
+        \item \textbf{task services} --- responsible for executing data operations on 1 or more data entities
+        \item \textbf{flow elements} --- responsible for executing workflows using saga-like transactions
+        \item \textbf{connector elements} --- responsible for external APIs
+        \item \textbf{trigger elements} --- responsible for triggering scheduled workflows and tasks
+    \end{itemize}
+\end{quote}
+
+All of the elements are bundled with the vital cross-cutting concerns out of the box (logging, access control, message broker connectors, direct inbound and outbound calls etc.). The data and flow services also equipped with persistence so they persist the processed data entities as well as workflow status.
 
 
+\section{Example Usage}
 
+The following section is an example of a workflow in a system composed of Normalized elements of \acrshort{MSA}. It represents a system excerp and shows only the communicating entities.
+
+The usecase is very simple: \textit{at the end of the month, calculate a salary of an employee from his timesheet}. 
+
+\begin{figure} [!ht]
+  \centering
+    \includegraphics[width=0.7\textwidth]{images/sample_usage.pdf}
+    \caption{The Payroll Usecase}
+    \label{fig:proposed-building-block}
+\end{figure}
+
+\break
+
+\noindent
+\textbf{Scenario} (for illustration see fig.: \ref{fig:proposed-building-block})
+\begin{enumerate}
+    \item the \texttt{PayrollTimer} expires and triggers a \texttt{CalculatePayrollOrchestrator}, which created an instance of its workflow
+    \item the \texttt{CalculatePayrollOrchestrator} requests instance of an \texttt{Employee} data entity from \texttt{Employees} and gets a response
+    \item the \texttt{CalculatePayrollOrchestrator} requests instance of an \texttt{Timesheet} data entity from \texttt{Timesheets} and gets a response
+    \item the \texttt{CalculatePayrollOrchestrator} requests a payroll calculation from \texttt{CalculatePayroll} task service (using the \texttt{Employee} and \texttt{Timesheet} as arguments) and gets a \texttt{Payroll} entity back
+    \item the \texttt{CalculatePayrollOrchestrator} submits the \texttt{Payroll} entity to \texttt{Payrolls} data service. 
+\end{enumerate}
+
+\section{Viability of the Proposed Method}
+As seen on the example, even such a trivial task requires a large number of services and very chatty communication between the services.
+
+Large numbers of services mean an excess of used resources. Although, thanks to the flexible cloud environments \textit{an excess of used resources} does not require \textit{an excess of money} in hardware and Docker containers are lightweight compared to \acrshort{VM}s. But still, resources are not for free and wasting them is wrong business strategy.
+
+As is stated in the \textit{fallacies of distributed computing} (see sec. \ref{sec:fallacies}), the network is slow and unreliable compared to local calls. The stumbling block in this case is the metric --- the network latency --- which is almost impossible to scale or improve. That would render each non-trivial operation intolerably slow.
+
+To conclude, this method is theoretically achievable, but not economically viable way to build information systems.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
@@ -1292,6 +1301,18 @@ rozebrat ty jednotlivý typy
 \setsecnumdepth{part}
 \chapter{Conclusion}
 \label{sec:conclusion}
+\section{Author's comments on proposed solution}
+I, as an author, have had high expectations from this research topic. The solution I've proposed I the last chapter was wrong from the very beginning. It does not require strong imagination to realize that such system would have extremely high latency. I started this research with completely different idea.
+
+The Normalizes Systems and microservice architecture share many characteristics: High modularity. Need for evolvability. Separation of concerns --- the \textit{do one thing but do it right} principle. Separation of states. The versioning of APIs resembles \textit{data} and {action version transparency}. Both approaches appear to have the same challenges with cross cutting concerns. I believed that there must be something in Normalized Systems, that would help the craftsmanship of microservice practitioners to improve their know-how.
+
+The development of the microservices is driven by immense experience and intuition, but it is also limited by restraint to do anything extreme --- such as breaking an application to extremely small modules. And yet this has been proven to be the way to guarantee an infinite evolvability.
+
+\begin{center}
+\textit{It was proven that applying Normalized Systems theory on microservices architecture would result in a system that is infinitely evolvable. However, it would be a waste of computational resources as well as human patience.}
+\end{center}
+
+\break
 \section{Evaluation of Goals}
 \begin{itemize}
 
@@ -1313,32 +1334,9 @@ rozebrat ty jednotlivý typy
 	\item \textit{Summarize design guidelines for \acrshort{MSA}}
 	
 	\vspace{0.5em}
-	Accomplished (with goal alteration) --- a set of design guidelines was proposed and demonstrated on suitable examples. Since the design guidelines are isolated suggestions, and not a consistent methodology as originally expected, the initially proposed case study was considered unnecessary. 
+	Accomplished --- a set of design rules was proposed and demonstrated on suitable example. A discussion of viability of the proposed method was done. The initially proposed case study was omitted due to the findings.
 
 \end{itemize}
-
-\section{Thoughts on Utilization}
-\todo[inline,size=\Large]{Missing section}
-
-
-- the results are limited and lack the formality and completeness of normalized systems
-
-
-\section{Future Work}
-\todo[inline,size=\Large]{Missing section}
-
-\todo{pofnukat si, ze to nebylo matematicky, konzistentni, prilis velky tema a }
-
-
-
-- NS - mathematical 
-
-
-all done from the MSA viewpoint - only improving craftsmanship using a theory
-
-not promotion of craftsmanship to a formally complete theory
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
