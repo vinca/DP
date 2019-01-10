@@ -32,10 +32,10 @@
 
 \acknowledgements{Thanks to my family and especially to my girlfriend, Tamara, for all their patience and care. Thanks to my thesis supervisor, Robert, for everything he taught me.}
 
-\abstractEN{The thesis is engaged in evolvability of applications build using microservice architecture. It applies the rules defined by the Normalized Systems theory and discusses its impacts. The thesis thoroughly analyses the domain of microservice architecture and identifies the key architectural aspects. The aspects are examined using the Normalized Systems theory and results in a set of guidelines to achieve evolvability of the microservice applications. The viability of proposed guidelines is then discussed.}
+\abstractEN{The thesis is engaged in evolvability of applications build using microservice architecture. It applies the rules defined by the Normalized Systems theory and discusses its impacts. The thesis thoroughly analyses the domain of microservice architecture and identifies the key architectural aspects. The aspects are examined using the Normalized Systems theory and results in a~set of guidelines to achieve evolvability of the microservice applications. The viability of proposed guidelines is then discussed.}
 \keywordsEN{evolvability, microservice architecture, microservices, normalized systems theory, software architecture}
 
-\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury mikroslužeb a identifikuje klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů a výsledkem je soubor pravidel pro dosažení evolvability aplikací využívajících mikroslužeb. Navrhovaná pravidla jsou poté diskutována.}
+\abstractCS{Práce se zabývá schopností evolvability aplikací postavených na architektuře mikroslužeb. Aplikuje pravidla definovaná teorií Normalizovaných systémů a~diskutuje jejich dopad. Práce zevrubně zkoumá doménu architektury\break mikroslužeb a identifikuje její klíčové architektonické aspekty. Aspekty jsou dále zkoumány pomocí teorie Normalizovaných systémů. Výsledkem je soubor pravidel pro dosažení evolvability aplikací využívajících mikroslužeb. Vhodnost navrhovaných pravidel je poté diskutována.}
 \keywordsCS{architektura mikroslužeb, evolvabilita, mikroslužby, softwarová architektura, teorie normalizovaných systémů\clearpage}
 
 
@@ -139,7 +139,7 @@ According to~a~thesis assignment the~following goals were set:
 \end{itemize}
 
 \section{Approach}
-Microservices architecture is an \acrfull{EA} pattern. \acrshort{EA} could be analyzed in enormously broad context, spanning from business-IT alignment, through \acrshort{SW} development methodologies to a choice of programming languages. This section discusses boundaries for this thesis to make the topic reasonably narrow without overlooking the quintessence of \acrlong{MSA}.
+Microservices architecture is an \acrfull{EA} pattern. \acrshort{EA} could be analyzed in enormously broad context, spanning from business -- IT alignment, through \acrshort{SW} development methodologies to a choice of programming languages. This section discusses boundaries for this thesis to make the topic reasonably narrow without overlooking the quintessence of \acrlong{MSA}.
 
 \subsection{Organizational Aspects}
 Microservices are often valued for their positive effects on organizations and teams of engineers creating them. Development of end-to-end features and operational responsibility fosters DevOps culture \cite{devops-what-is}. Code ownership and cross-functional teams cultivate team spirit and nurture motivation of developers \cite{ms-fow-new-term-def, ms-modelling-with-petter, ms-building-ms}.
@@ -157,18 +157,18 @@ The \acrlong{NS} describes a set of laws which, if applied strictly, guarantee a
 On the other hand, the notion of a \acrfull{MS} came into being due to the need for performance and scalability \cite{ms-building-ms, ms-evolutionary-arch}. The evolvability aspect is never more important that those two mentioned. Therefore this thesis will respect this order and will not sacrifice performance and scalability for the sake of evolvability.
 
 \subsection{User Interface, Client Applications, etc. }
-Successful Internet applications have tenths of \acrshort{GUI}s: web browser\acrshort{FE}s, desktop apps, mobile apps, watch apps and desktop widgets. Due to the heterogeneity of the human-facing interfaces, they are out of scope of this thesis. The frontier of the examined \acrfull{IS} will be the external \acrfull{API} (see sec. \ref{sec:ext_api})
+Successful Internet applications have tenths of \acrshort{GUI}s: web browser \acrfull{FE}, desktop apps, mobile apps, watch apps and desktop widget. Due to the heterogeneity of the human-facing interfaces, they are out of scope of this thesis.
 
 \subsection{General Rules}
 In an~effort to~make this work conceptually coherent, there were defined essential principles with which this thesis is created:
 \begin{enumerate}
     \item Avoid discussion how organization influences the \acrshort{SW} and vice versa.
     \item Do not sacrifice performance and scalability for the sake of evolvability.
-    \item Limit the extent of the \acrshort{IS} to the external \acrshort{API} 
+    \item Focus on the internal architecture of the \acrfull{BE}.
 \end{enumerate}
 
 \section{Thesis Structure and Tasks}
-To fulfill the goals of this thesis the following finer-grain task was defined. The~final structure of~this work is derived from this task list.
+To fulfill the goals of this thesis the following finer-grain task list was defined. The~final structure of~this work is derived from this list.
 \begin{enumerate}
 % 	\item Provide an~overview of~utilized theories and concepts (Chapter~\textit{\nameref{sec:theoretical_background}})
 % 	\begin{itemize}
@@ -402,7 +402,7 @@ The view model is \textit{generic}. It does not prescribe any particular notatio
 \end{itemize}
 
 \subsection{Relations between views}
-The four views are not fully independent or orthogonal. Elements of one view must relate to elements in other views, otherwise, the model has some inconsistencies (e.g., non deployed code artifacts, not utilized or inaccessible \acrshort{VM}s). Directions of those relations --- \textit{mappings} --- are shown in \ref{fig:arch-41-view} using the black arrows.
+The four views are not fully independent or orthogonal. Elements of one view must relate to elements in other views, otherwise, the model has some inconsistencies (e.g., non deployed code artifacts, not utilized or inaccessible \acrshort{VM}s). Directions of those relationships --- \textit{mappings} --- between the views are shown in fig. \ref{fig:arch-41-view} using the black arrows.
 
 Although every \acrlong{SA} could be viewed from all of those four viewpoints, it is not always necessary to draw all of them to describe the architecture sufficiently. For example, a simple web application running on a single machine with an embedded database does not need a physical view, as it would depict just one machine hosting one process. On the opposite side, systems with millions of lines of code may require logical view diagrams containing thousands of classes and packages. This view would require a high level of abstraction to be understandable. The abstractions could become almost identical to the development view, and therefore render the logical view redundant.
 
@@ -519,6 +519,7 @@ The professional literature publishing business offers vast numbers of books on 
     \item good reputation of author or publisher
 \end{itemize}
 
+\break
 The final list of book, that were analyzed thoroughly and are considered the essential engineering knowledge about the domain of \acrshort{MSA}:
 \begin{itemize}
     \item Building Microservices~\cite{ms-building-ms} --- provide an comprehensive overview of \acrshort{MSA}, includes currently used patterns and best practices
@@ -531,6 +532,27 @@ There are also two books freely available on the internet, both sponsored by ind
 
 \subsubsection*{Summary}
 The industry literature provides an overall vision, it is coherent, comprehensible and concise. It describes a lot of aspects of \acrshort{MSA}, yet it claims it is not complete. The literature also lacks formal definitions, leastwise it uses seemingly uniform terminology. All of the books are focused on \textit{getting things done} and do not see any value formal and systematic approach.
+
+\begin{table}[t]
+\centering
+\caption{Number of articles including keyword \textit{microservices} per year}
+\label{tab:ms_trends}
+\begin{tabular}{r|r|r|r|r}
+              & \textbf{SpringierLink}  & \textbf{IEEE Explore} & \textbf{ScienceDirect} & \textbf{ACM DL}                \\ 
+\hline
+2013 & 5                       &  1                    & 0                       & 0                             \\ 
+\hline
+2014 & 3                       &  3                    & 0                       & 0                             \\ 
+\hline
+2015 & 30                      & 24                    & 6                       & 7                             \\ 
+\hline
+2016 & 125                     & 76                    & 30                      & 40                            \\ 
+\hline
+2017 & 218                     & 153                   & 53                      & 62                            \\ 
+\hline
+2018 & 350                     & 204                   & 118                     & 65                           
+\end{tabular}
+\end{table}
 
 \subsection{Academic Literature}
 \label{sec:acad_literature}
@@ -558,30 +580,9 @@ The \textbf{literature review} by Martin Garriga~\cite{ms-taxonomy} served as th
 
 Alongside the exhaustive literature review, author proposes a \acrshort{MSA} taxonomy extensively covering many aspects of the architecture style.
 
-The articles in \textbf{Introduction to \acrshort{MSA}} somehow summarize the expertise already published by the community or professional literature. A few of them attempt to provide formal definitions of commonly used terms, on the other hand the definitions are not respected out of the scope of the single paper.
+The articles in \textbf{Introduction to \acrshort{MSA}} somehow summarize the expertise already published by the community or professional literature. A few of them attempt to provide formal definitions of commonly used terms, on the other hand, the definitions are not respected out of the scope of the single paper.
 
 The \textbf{case study} and \textbf{narrow focused} introduce new information, unfortunately they were too specialized to fit into the scope of this thesis.
-
-\begin{table}[b]
-\centering
-\caption{Number of articles including keyword \textit{microservices} per year}
-\label{tab:ms_trends}
-\begin{tabular}{r|r|r|r|r}
-              & \textbf{SpringierLink}  & \textbf{IEEE Explore} & \textbf{ScienceDirect} & \textbf{ACM DL}                \\ 
-\hline
-2013 & 5                       &  1                    & 0                       & 0                             \\ 
-\hline
-2014 & 3                       &  3                    & 0                       & 0                             \\ 
-\hline
-2015 & 30                      & 24                    & 6                       & 7                             \\ 
-\hline
-2016 & 125                     & 76                    & 30                      & 40                            \\ 
-\hline
-2017 & 218                     & 153                   & 53                      & 62                            \\ 
-\hline
-2018 & 350                     & 204                   & 118                     & 65                           
-\end{tabular}
-\end{table}
 
 % 
 % Related Work
@@ -1025,22 +1026,6 @@ In a legacy systems, data storage could be used to integrate multiple services. 
 Due to the one datastore per service pattern, there is no limit to selection of storage technology, therefore in one 
 
 \subsection{Operation Aspects}
-\subsubsection{Deployment \& Operations}
-\label{sec:operations}
-\todo{dopsat dopiče}
-This section analyses how the actual microservices are deployed to execution environments and how they are 
-
-
-\todo{rychle dopsat nebo vyhodit}
-\textcolor{magenta}{Independent Deployment: Simple services are easier to deploy, and since they are autonomous, are less likely to cause system failures when they go wrong.}
-
-\textcolor{magenta}{Deployment encompasses how and where services are actually hosted and deployed. Although the cloud has been adopted as the de-facto platform for microservices [44], there are several alternatives into and out of the cloud.}
-
-\textcolor{magenta}{– Platform can be customized due to privacy, security or business constraints. Possible values: public cloud, private cloud, in-house.}
-
-\textcolor{magenta}{– Management encompasses the responsive reaction to failures and changing environmental conditions, minimizing human intervention [7]. Possible val- ues: built-in cloud services (e.g., AWS Cloudwatch and Autoscaling), third- party services (e.g., Rightscale, New Relic), ad-hoc solutions (i.e., tied to the particular approach).}
-
-
 \subsubsection{Scalability / Elasticity}
 \label{sec:scalability}
 Scalability and elasticity is the the capability to quickly react to the sudden need of increase of the overall capacity of the platform. It is realized by adding or removing service instances. This whole process is also minimize the need for human intervention, using various tools or vendor-provided mechanisms.
@@ -1049,7 +1034,6 @@ Scalability and elasticity is the the capability to quickly react to the sudden 
 \label{sec:resilience}
 
 Resistance to failures is a crucial feature of microservice applications. Successful companies that adapted this architecture always design their systems for failure. Netflix has developed a tool called \textit{Chaos Monkey}~\cite{chaos-monkey} that is able to randomly terminate services. They are running this tool in production environment, to be sure the whole system is robust and resilient enough to withstand the erroneous termination of deployed instances.
-
 
 \subsection{Observability}
 Observability is the term for measuring, collecting, and analyzing various diagnostics data from an application. These signals may include metrics, logs, profiles and more.
@@ -1099,13 +1083,13 @@ Aspects were extracted as the outline of the chapter \ref{sec:msa_analysis} and 
 \acrshort{NS} states that \textit{a software element should have only one change driver}. A software element in this case is a microservice. Applying this rule would lead to extremely granular system --- a \acrshort{MS} for each data element or workflow would need its own service. If this rule is not respected, the number of change drivers rise and combinatorial effects emerge. 
 
 \subsection{Microservice as a Normalized System}
-Let us assume that the microservice itself is a Normalized System. This way it is possible to avoid the extreme granularity, but it doesn't help with the original question.
+Let us assume that the microservice itself is a Normalized System. This way it is possible to avoid the extreme granularity, but it does not help with the original question.
 
-There is also a definition of microservice by Sam Newman: \textit{A microservice should be rewritten by a team of developers in two weeks.}~\cite{ms-building-ms} Implication of this statement is that the complexity of one \acrshort{MS} is bounded (to the two weeks of work of one team). Considering that, microservice itself as a Normalized System doesn't bring any value.
+There is also a definition of microservice by Sam Newman: \textit{A microservice should be rewritten by a team of developers in two weeks.}~\cite{ms-building-ms} Implication of this statement is that the complexity of one \acrshort{MS} is bounded (to the two weeks of work of one team). Considering that, microservice itself as a Normalized System does not bring any value.
 
 \subsection{Mapping NS Elements to Microservice Architecture}
 \label{sec:mapping_ns_elems}
-This section explores the idea of building a microservices application as a Normalised System.
+This section explores the idea of building a microservices application as a~Normalised System.
 
 A \acrshort{NS} element is a high-level design pattern, designed to provide a basic functionality of an \acrlong{IS}~\cite{ns-toward-general-theory}. The \acrshort{NS} elements are aptly defined in~\cite{ns-in-practice}:
 \begin{quote}
@@ -1136,23 +1120,23 @@ The idea is to create a microservice \textit{building block}, similar to a \text
 
 The notion of inner and outer architecture resembles the \acrshort{NS} element approach --- the cross-cutting concerns are separated from the business logic.
 
-Normalized Systems consider persistence a cross-cutting concern. Due to the \acrshort{MSA} pattern \textit{one DB per service}, it is the private matter of the single service. None of the principles of the \acrshort{NS} seem to contradict that assumption. Therefore, the definition of inner ans outer architecture is left as-is.
+Normalized Systems consider persistence a cross-cutting concern. Due to the \acrshort{MSA} pattern \textit{one DB per service}, it is the private matter of the single service. None of the principles of the \acrshort{NS} seem to contradict that assumption. Therefore, the definition of inner and outer architecture considered compliant with \acrshort{NS} theory.
 
 \section{Cross-Cutting Concerns}
 \label{sec:ccc}
 
 Each \acrshort{NS} element consists of business logic encapsulated in a \textit{building block}. The building block executes the business logic code, as well as it provides access to cross-cutting concerns (e.g. persistence, access control).
 
-This very same concept is used by various \textit{microservice ready} frameworks, e.g., Spring Boot\footnote{http://spring.io/projects/spring-boot}. The Spring Boot application out-of-the-box contains some cross-cutting concerns (e.g. security and logging), others can be added via configuration (e.g. Actuator plugin for monitoring) and others can be added simply by including a plugin (e.g. JPA access).
+This very same concept is used by various \textit{microservice ready} frameworks, e.g., Spring Boot\footnote{http://spring.io/projects/spring-boot}. The Spring Boot application out-of-the-box contains some cross-cutting concerns (e.g. security and logging), others can be added via configuration (e.g. Actuator plugin for monitoring) and others can be added simply by including a dependency in a build script (e.g. JPA access).
 
 The framework uses dependency injection to shield the programmer from implementation detail and the framework itself can be easily updated via Maven or Gradle build script.
 
-To summarize, the engineering community is dealing with the cross-cutting concerns in a very similar manner, thus there is not much to learn from \acrshort{NS}.
+To summarize, the engineering community is dealing with the cross-cutting concerns in a very similar manner, thus it is considered compliant with \acrshort{NS}. (However, there is nothing to learn from \acrshort{NS},.)
 
 \section{Transactional Management}
 \label{sec:appl:trans}
 \subsection{N-phase Commit}
-The 2-phase as well as 3-phase commit is a relationship coordinator --- cohort(s). That means it is orchestrated by a single entity, all communication and coordination is done through this entity and it is the only one keeping the state of the commit (i.e., workflow). This is the very same approach that is used in Normalized Systems.
+The 2-phase as well as 3-phase commit is a relationship coordinator -- cohort(s). That means it is orchestrated by a single entity. All communication and coordination is done through single entity and it is the only one keeping the state of the commit (i.e., of a workflow). Therefore, the number of dependencies in the transaction is not rising faster than the number of participants and does not became unbounded. 
 
 The fact that the transaction is blocking/non-blocking does not seem to break any of the rules of evolvability.
 
@@ -1164,29 +1148,20 @@ Saga has two possible modes of execution:
 \subsubsection*{Orchestration}
 The orchestration is also a coordinator --- cohort relationship. It exhibits the same properties as the 3-phase commit (it is non-blocking and eventually consistent). As a result, it is considered compliant with the \acrshort{NS} theory.
 
-It is also the preferred way to execute sagas in various literature, e.g., \cite{ms-patterns}
+It is also the preferred way to execute sagas in various literature, e.g., \cite{ms-patterns}.
 
-\subsubsection{Coordination}
+\subsubsection*{Coordination}
 
+Saga using the \textit{choreography} principle exhibits a risk of tight coupling, since there's no fixed number dependencies on which of the particular participant depends, therefore, the number may eventually become unbounded and complexity rises unnecessarily. Therefore, this way of execution is not compliant with the \acrshort{NS} theory.
 
-
-Saga using the \textit{choreography} principle exhibits a risk of tight coupling, since there's no bounded number of 
-
-- fulfills the separation of states principle, action version transparency nor 
-
-
-
-
+This concern is raised in professional literature \cite{ms-patterns}.
 
 \section{Polyglotism and Technological Diversity}
-\acrshort{NS} theory 
 
+In \acrshort{MSA} the services communicate only via \acrshort{API}s or via message brokers, therefore they can not depend on each other's implementation details. Therefore, the polyglot approach does influence the architectural complexity.
 
-
-
-- as long as we are able to fullfill th e
 \section{Persistence}
-The one DB per \acrshort{MS} pattern is perfectly compliant with the \textit{separation of concerns} design theorem.
+The one DB per \acrshort{MS} pattern prohibits any integration throught database or other code smells, it is perfectly compliant with the \textit{separation of concerns} design theorem.
 
 \section{External APIs}
 The both external and internal APIs must exhibit the \textit{data version transparency}. This is easily achievable by versioning the API, e.g., using the version in URL. This already used and recommended practise in \acrshort{MSA}.
@@ -1219,7 +1194,7 @@ This section proposes the \textit{microservices building block}. It is an analog
 
 \subsection{Building Block Layers}
 The building block consists of three layers and it is heavily inspired by the hexagonal architecture (see \fullref{sec:hexagonal_arch}). The responsibilities of the layers are as follows:
-\textbf{The building block layers}
+\break
 \begin{itemize}
     \item \textbf{business logic layer} --- contains the custom code and algorithms 
     \item \textbf{adapter layer} --- provides a bridge between the business logic and the runtime, separating the inner and outer architecture (see \fullref{sec:appl:inout})
@@ -1240,7 +1215,7 @@ Total of three categories of contracts for each building block is defined (see f
     \item \textbf{cross-cutting concern contracts} --- decouples the cross-cutting concerns from the infrastructure serving them (e.g., health-check, logging, access management)
 \end{itemize}
 
-Thanks to the contracts, the used 3rd technologies may be freely swapped. An application built using a framework A, but because of e.g., security reasons, it needs to be swapped for a framework B. Both frameworks implement the REST standard (as the only inter-MS communication standart used). Both frameworks also implement a \acrfull{JWT} authentication (as the only cross-cutting concern used). Thanks to the port -- adapter contracts, the only respective adapters for framework B need to be re-implemented. Once it is done, the framework B may be deployed in the whole \acrshort{MS} application.
+Thanks to the contracts, the used 3rd technologies may be freely swapped. An application built using a framework A, but because of, e.g., security reasons, it needs to be swapped for a framework B. Both frameworks implement the REST standard (as the only inter-MS communication standart used). Both frameworks also implement a \acrfull{JWT} authentication (as the only cross-cutting concern used). Thanks to the port -- adapter contracts, the only respective adapters for framework B need to be re-implemented. Once it is done, the framework B may be deployed in the whole \acrshort{MS} application.
 
 \subsection{An Example Building Block}
 To fullfill the functions listed in beginning of this section, the easiest way to create a building block is to assemble it from various third-party technologies. There's a plenty of tooling available that together create a complete \acrshort{MSA} ecosystem.
@@ -1304,9 +1279,9 @@ As is stated in the \textit{fallacies of distributed computing} (see sec. \ref{s
 To conclude, this method is theoretically achievable, but not economically viable way to build information systems.
 
 \section{Other Observations}
-There might be some \textit{guidelines}, \textit{lessons learned} or proves provided by the \acrshort{NS} theory. For example it proves the high coupling in choreographed saga; or it encapsulates bussiness logic code to a framework managing cross-cutting concerns (see \ref{sec:ccc})
+There might be some \textit{guidelines}, \textit{lessons learned} or proofs provided by the \acrshort{NS} theory. For example it proves the high coupling in choreographed saga; encapsulation of bussiness logic code to a framework managing cross-cutting concerns (see \ref{sec:ccc}).
 
-On the other hand, this fact is also revealed by microservices literature (although, using just a simple example instead of logical proofs).
+On the other hand, this fact is also revealed by professional literature in microservices field (although, using just a simple example instead of logical proofs).
 
 Confirmations of such recommendation or obvious facts is not credited to \acrshort{NS} theory.
 
@@ -1322,7 +1297,7 @@ Confirmations of such recommendation or obvious facts is not credited to \acrsho
 \section{Author's comments on proposed solution}
 I, as an author, have had high expectations from this research topic. The solution I've proposed I the last chapter was wrong from the very beginning. It does not require strong imagination to realize that such system would have extremely high latency. I started this research with completely different idea.
 
-The Normalizes Systems and microservice architecture share many characteristics: High modularity. Need for evolvability. Separation of concerns --- the \textit{do one thing but do it right} principle. Separation of states. The versioning of APIs resembles \textit{data} and {action version transparency}. Both approaches appear to have the same challenges with cross cutting concerns. I believed that there must be something in Normalized Systems, that would help the craftsmanship of microservice practitioners to improve their know-how.
+The Normalizes Systems and microservice architecture share many characteristics: High modularity. The need for evolvability. Separation of concerns --- the \textit{do one thing but do it right} principle. Separation of states. The versioning of APIs resembles \textit{data} and {action version transparency}. Both approaches appear to have the same challenges with cross cutting concerns. I believed that there must be something in Normalized Systems, that would help the craftsmanship of microservice practitioners to improve their know-how.
 
 The development of the microservices is driven by immense experience and intuition, but it is also limited by restraint to do anything extreme --- such as breaking an application to extremely small modules. And yet this has been proven to be the way to guarantee an infinite evolvability.
 
@@ -1384,6 +1359,6 @@ The development of the microservices is driven by immense experience and intuiti
 
 \end{figure}
 
-\listoftodos
+%\listoftodos
 
 \end{document}
