@@ -1136,12 +1136,12 @@ The idea is to create a microservice \textit{building block}, similar to a \text
 
 The notion of inner and outer architecture resembles the \acrshort{NS} element approach --- the cross-cutting concerns are separated from the business logic.
 
-Normalized Systems consider persistence a cross-cutting concern. Due to the \acrshort{MSA} pattern \textit{one DB per service}, it is the private matter of the single service. None of the principles of the \acrshort{NS} seem to contradict that assumption.
+Normalized Systems consider persistence a cross-cutting concern. Due to the \acrshort{MSA} pattern \textit{one DB per service}, it is the private matter of the single service. None of the principles of the \acrshort{NS} seem to contradict that assumption. Therefore, the definition of inner ans outer architecture is left as-is.
 
 \section{Cross-Cutting Concerns}
 \label{sec:ccc}
 
-Each \acrshort{NS} element consists of business logic encapsulated in a 
+Each \acrshort{NS} element consists of business logic encapsulated in a \textit{building block}. The building block executes the business logic code, as well as it provides  
 
 
 - 
@@ -1154,8 +1154,13 @@ Each \acrshort{NS} element consists of business logic encapsulated in a
 \section{Transactional Management}
 \label{sec:appl:trans}
 
-Saga 
+In both of the 
 
+
+Saga has two possible modes of execution:
+\begin{itemize}
+	\item 
+\end{itemize}
 
 
 
@@ -1165,13 +1170,13 @@ Saga using the \textit{choreography} principle exhibits a risk of tight coupling
 - fulfills the separation of states principle, action version transparency nor 
 
 
-\subsection{N-phase commits}
-\label{sec:appl:nphase}
-
 
 
 
 \section{Polyglotism and Technological Diversity}
+\acrshort{NS} theory 
+
+
 
 
 - as long as we are able to fullfill th e
@@ -1292,6 +1297,10 @@ Large numbers of services mean an excess of used resources. Although, thanks to 
 As is stated in the \textit{fallacies of distributed computing} (see sec. \ref{sec:fallacies}), the network is slow and unreliable compared to local calls. The stumbling block in this case is the metric --- the network latency --- which is almost impossible to scale or improve. That would render each non-trivial operation intolerably slow.
 
 To conclude, this method is theoretically achievable, but not economically viable way to build information systems.
+
+\section{Other Observations}
+
+
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
