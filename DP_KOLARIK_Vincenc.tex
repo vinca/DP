@@ -1141,27 +1141,32 @@ Normalized Systems consider persistence a cross-cutting concern. Due to the \acr
 \section{Cross-Cutting Concerns}
 \label{sec:ccc}
 
-Each \acrshort{NS} element consists of business logic encapsulated in a \textit{building block}. The building block executes the business logic code, as well as it provides  
+Each \acrshort{NS} element consists of business logic encapsulated in a \textit{building block}. The building block executes the business logic code, as well as it provides access to cross-cutting concerns (e.g. persistence, access control).
 
+This very same concept is used by various \textit{microservice ready} frameworks, e.g., Spring Boot\footnote{http://spring.io/projects/spring-boot}. The Spring Boot application out-of-the-box contains some cross-cutting concerns (e.g. security and logging), others can be added via configuration (e.g. Actuator plugin for monitoring) and others can be added simply by including a plugin (e.g. JPA access).
 
-- 
+The framework uses dependency injection to shield the programmer from implementation detail and the framework itself can be easily updated via Maven or Gradle build script.
 
-
-
-
-
+To summarize, the engineering community is dealing with the cross-cutting concerns in a very similar manner, thus there is not much to learn from \acrshort{NS}.
 
 \section{Transactional Management}
 \label{sec:appl:trans}
+\subsection{N-phase Commit}
+The 2-phase as well as 3-phase commit is a relationship coordinator --- cohort(s). That means it is orchestrated by a single entity, all communication and coordination is done through this entity and it is the only one keeping the state of the commit (i.e., workflow). This is the very same approach that is used in Normalized Systems.
 
-In both of the 
+The fact that the transaction is blocking/non-blocking does not seem to break any of the rules of evolvability.
 
+Therefore both transaction modes are considered compliant with a \acrshort{NS}.
 
+\subsection{Saga}
 Saga has two possible modes of execution:
-\begin{itemize}
-	\item 
-\end{itemize}
 
+\subsubsection*{Orchestration}
+The orchestration is also a coordinator --- cohort relationship. It exhibits the same properties as the 3-phase commit (it is non-blocking and eventually consistent). As a result, it is considered compliant with the \acrshort{NS} theory.
+
+It is also the preferred way to execute sagas in various literature, e.g., \cite{ms-patterns}
+
+\subsubsection{Coordination}
 
 
 
@@ -1299,7 +1304,11 @@ As is stated in the \textit{fallacies of distributed computing} (see sec. \ref{s
 To conclude, this method is theoretically achievable, but not economically viable way to build information systems.
 
 \section{Other Observations}
+There might be some \textit{guidelines}, \textit{lessons learned} or proves provided by the \acrshort{NS} theory. For example it proves the high coupling in choreographed saga; or it encapsulates bussiness logic code to a framework managing cross-cutting concerns (see \ref{sec:ccc})
 
+On the other hand, this fact is also revealed by microservices literature (although, using just a simple example instead of logical proofs).
+
+Confirmations of such recommendation or obvious facts is not credited to \acrshort{NS} theory.
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
